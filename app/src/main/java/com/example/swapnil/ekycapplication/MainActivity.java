@@ -3,8 +3,12 @@ package com.example.swapnil.ekycapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,
             agerangeEt,height1Et,occupation3Et,preferredcityEt;
+
+    JSONObject jsonObject;
 
     Button submitbt;
 
@@ -67,11 +73,17 @@ public class MainActivity extends AppCompatActivity {
         height1Et=(EditText)findViewById(R.id.height1);
         occupation3Et=(EditText)findViewById(R.id.occupation3);
         preferredcityEt=(EditText)findViewById(R.id.preferredcity);
-
+        submitbt=(Button)findViewById(R.id.submitbt);
 
 
         ///
 
+
+
+
+submitbt.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
         usernameSt=usernameEt.getText().toString();
         passwordSt=passwordEt.getText().toString();
         firstnameSt=firstnameEt.getText().toString();
@@ -111,8 +123,92 @@ public class MainActivity extends AppCompatActivity {
         occupation3St=occupation3Et.getText().toString();
         preferredcitySt=preferredcityEt.getText().toString();
 
+        try {
+            jsonObject.put("usernameSt",usernameSt);
+
+            jsonObject.put("passwordSt",passwordSt);
+
+            jsonObject.put("firstnameSt",firstnameSt);
+
+            jsonObject.put("middlenameSt",middlenameSt);
+
+            jsonObject.put("lastnameSt",lastnameSt);
+
+            jsonObject.put("dateofbirthSt",dateofbirthSt);
+
+            jsonObject.put("occupatioSt",occupatioSt);
+
+            jsonObject.put("aboutmeSt",aboutmeSt);
+
+            jsonObject.put("maritalstatusSt",maritalstatusSt);
+
+            jsonObject.put("firstgotraSt",firstgotraSt);
+
+            jsonObject.put("secondgotraSt",secondgotraSt);
+
+            jsonObject.put("emailidSt",emailidSt);
+
+            jsonObject.put("resiaddSt",resiaddSt);
+
+            jsonObject.put("permaddSt",permaddSt);
+
+            jsonObject.put("contactnumberSt",contactnumberSt);
+
+            jsonObject.put("heightSt",heightSt);
+
+            jsonObject.put("bloodgroupSt",bloodgroupSt);
+
+            jsonObject.put("complexionSt",complexionSt);
+
+            jsonObject.put("educationSt",educationSt);
+
+            jsonObject.put("annualincomeSt",annualincomeSt);
+
+            jsonObject.put("mothertonugeSt",mothertonugeSt);
+
+            jsonObject.put("birthnameSt",birthnameSt);
+
+            jsonObject.put("birthtimeSt",birthtimeSt);
+
+            jsonObject.put("birthplaceSt",birthplaceSt);
+
+            jsonObject.put("fathersnameSt",fathersnameSt);
+
+            jsonObject.put("occupation1St",occupation1St);
+
+            jsonObject.put("mothersnameSt",mothersnameSt);
+
+            jsonObject.put("noofbrothersSt",noofbrothersSt);
+
+            jsonObject.put("brotherdetailsSt",brotherdetailsSt);
+
+            jsonObject.put("noofsistersSt",noofsistersSt);
+
+            jsonObject.put("sisterdetailsSt",sisterdetailsSt);
+
+            jsonObject.put("qualificationSt",qualificationSt);
+
+            jsonObject.put("annualincome1St",annualincome1St);
+
+            jsonObject.put("agerangeSt",agerangeSt);
+
+            jsonObject.put("height1St",height1St);
+
+            jsonObject.put("occupation3St",occupation3St);
+
+            jsonObject.put("preferredcitySt",preferredcitySt);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
+
+
+
+
+    }
+});
 
 
 

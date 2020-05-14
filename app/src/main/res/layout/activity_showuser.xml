@@ -49,119 +49,64 @@
                     android:id="@+id/accountinformation"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textSize="16sp"
+                    android:textSize="25sp"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/edittextround"
                     android:text="Account Information" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/inputemail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:hint="Username" />
-
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/inputpassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:hint="Password" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/firstname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="First Name" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
+                        android:hint="Name" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/middlename"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Middle Name" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/lastname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Last Name" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/dateofbirth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Date Of Birth" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                <TextView
                         android:id="@+id/occupation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Occupation" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
+
+                    <TextView
                         android:id="@+id/aboutme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="About Me/Hobbies" />
-                </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
@@ -169,7 +114,7 @@
                     android:id="@+id/personalinformation"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textSize="16sp"
+                    android:textSize="25sp"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -177,182 +122,166 @@
                     android:text="Personal Information" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
+
+                    <TextView
                         android:id="@+id/maritalstatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Marital Status" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/firstgotra"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="First Gotra" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/secondgotra"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Second Gotra" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/emailid"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Email Id" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/resiadd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Resi.Add" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/permadd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Perm.Add" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/contact1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Contact No:" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/height"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Height" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/bloodgroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Blood Group" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/complexion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Complexion" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/education"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Education" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/annualincome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Annual Income" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/mothertonung"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Mother Tongue" />
-                </com.google.android.material.textfield.TextInputLayout>
-
 
 
                 <TextView
                     android:id="@+id/kundalidetails"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textSize="16sp"
+                    android:textSize="25sp"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -360,52 +289,46 @@
                     android:text="Kundali Details" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/birthname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Birth Name" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/birthtime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Birth Time" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/birthplace"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Birth Place" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <TextView
                     android:id="@+id/familydetails"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textSize="16sp"
+                    android:textSize="25sp"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -413,209 +336,191 @@
                     android:text="Family Details" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
+
+                    <TextView
                         android:id="@+id/fathername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Father Name" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/occupation1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Occupation" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/mothername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Mother's Name" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/occupation2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Occupation" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/noofbrothers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="No. Of Brothers" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/brothersdetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Brother Details" />
-                </com.google.android.material.textfield.TextInputLayout>
+               >
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/noofsisters"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="No. Of Sisters" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/sistersdetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Sister Details" />
-                </com.google.android.material.textfield.TextInputLayout>
-
 
                 <TextView
                     android:id="@+id/partnersexpectation"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textSize="16sp"
+                    android:textSize="25sp"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/edittextround"
                     android:text="Partner's Expectation" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
+
+                    <TextView
                         android:id="@+id/qualification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Qualification" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/annualincome1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Annual Income" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/agerange"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Age Range" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/height1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Height" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/occupation3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Occupation" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    <TextView
                         android:id="@+id/preferredcity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/edittextsharp"
+                        android:textSize="18sp"
                         android:hint="Preferred City" />
-                </com.google.android.material.textfield.TextInputLayout>
-
 
 
                 <Button
-                    android:id="@+id/submitbt"
+                    android:id="@+id/retuenbtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:textColor="#fff"
-                    android:text="Submit" />
+                    android:text="Return To Homepage" />
 
 
             </LinearLayout>

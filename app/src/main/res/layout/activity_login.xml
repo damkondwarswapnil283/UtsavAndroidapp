@@ -23,6 +23,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittextsharp"
             android:padding="10dp"
@@ -84,10 +89,30 @@
                 android:textColor="#fff"
                 android:text="Login" />
 
+            <TextView
+                android:id="@+id/forgotpass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#0EBFE9"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:text="Forgot Password" />
+
 
         </LinearLayout>
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:textColor="#fff"
+                android:text="New User" />
 
+        </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>
