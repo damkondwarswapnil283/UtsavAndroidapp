@@ -1,14 +1,35 @@
 package com.example.swapnil.ekycapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,10 +43,19 @@ public class MainActivity extends AppCompatActivity {
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,
             agerangeEt,height1Et,occupation3Et,preferredcityEt;
-
+    private StorageReference mStorageRef,storageReffront;
+    private final int PICK_IMAGE_REQUEST = 22;
+    Button selectphotofromgalleryBtn;
     JSONObject jsonObject;
-
+    private ImageView usersImg;
+    private Uri filePath;
     Button submitbt;
+    ProgressBar progressBar;
+    // Write a message to the database
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("data");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +104,11 @@ public class MainActivity extends AppCompatActivity {
         occupation3Et=(EditText)findViewById(R.id.occupation3);
         preferredcityEt=(EditText)findViewById(R.id.preferredcity);
         submitbt=(Button)findViewById(R.id.submitbt);
-
-
+        selectphotofromgalleryBtn=(Button)findViewById(R.id.selectphotofromgallery);
+        usersImg=(ImageView)findViewById(R.id.imageView3) ;
         ///
-
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
 
 
@@ -122,7 +153,8 @@ submitbt.setOnClickListener(new View.OnClickListener() {
         height1St=height1Et.getText().toString();
         occupation3St=occupation3Et.getText().toString();
         preferredcitySt=preferredcityEt.getText().toString();
-
+        usersImg=(ImageView)findViewById(R.id.imageView3);
+jsonObject=new JSONObject();
         try {
             jsonObject.put("usernameSt",usernameSt);
 
@@ -198,23 +230,127 @@ submitbt.setOnClickListener(new View.OnClickListener() {
 
             jsonObject.put("preferredcitySt",preferredcitySt);
 
+            myRef.child(contactnumberSt).setValue(jsonObject.toString());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
 
+        storageReffront = FirebaseStorage.getInstance().getReference(contactnumberSt);
 
+        uploadImage();
 
 
     }
 });
 
-
-
-
-
-
+selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+SelectImage();
+    }
+});
 
     }
+
+    private void SelectImage()
+    {
+
+        // Defining Implicit Intent to mobile gallery
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(
+                        intent,
+                        "Select Image from here..."),
+                PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent data)
+    {
+
+        super.onActivityResult(requestCode,
+                resultCode,
+                data);
+
+
+        if (requestCode == PICK_IMAGE_REQUEST
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData() != null) {
+
+            // Get the Uri of data
+            filePath = data.getData();
+            try {
+
+                // Setting image on image view using Bitmap
+                Bitmap bitmap = MediaStore
+                        .Images
+                        .Media
+                        .getBitmap(
+                                getContentResolver(),
+                                filePath);
+
+
+                    usersImg.setImageBitmap(bitmap);
+
+
+            }
+
+            catch (IOException e) {
+                // Log the exception
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void uploadImage()
+    {
+        progressBar.setProgress(10);
+        //emiratesfront upload
+        usersImg.setDrawingCacheEnabled(true);
+        usersImg.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) usersImg.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+
+        UploadTask uploadTask = storageReffront.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                Toast.makeText(MainActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        //emiratesback upload
+
+
+        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                int value=(int)progress;
+                if(value>30) {
+                    progressBar.setProgress(value);
+                }
+            }
+        });
+
+    }
+
 }
