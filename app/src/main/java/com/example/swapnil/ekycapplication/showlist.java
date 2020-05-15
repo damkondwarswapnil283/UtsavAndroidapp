@@ -1,13 +1,14 @@
 package com.example.swapnil.ekycapplication;
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
-public class Emiratesidverification extends Activity {
+public class showlist extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emiratesidverification);
+        setContentView(R.layout.activity_showlist);
     }
 }

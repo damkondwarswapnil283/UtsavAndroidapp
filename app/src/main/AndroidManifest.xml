@@ -9,13 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Showuser">
-
-        </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".Splashscreen" >
+        <activity android:name=".showlist"></activity>
+        <activity android:name=".Forgotpassword" />
+        <activity android:name=".Showuser" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,10 +22,6 @@
         </activity>
         <activity android:name=".Login" />
         <activity android:name=".Selectionactivity" />
-        <activity android:name=".Emiratesidverification" />
-        <activity android:name=".Capturefingerprint" />
-        <activity android:name=".Upload_Documents" />
-        <activity android:name=".Summary" />
         <activity android:name=".Success" />
     </application>
 
