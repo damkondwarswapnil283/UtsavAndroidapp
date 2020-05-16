@@ -66,6 +66,8 @@ public class Showuser extends AppCompatActivity {
         occupation3Et=(TextView)findViewById(R.id.occupation3);
         preferredcityEt=(TextView)findViewById(R.id.preferredcity);
 
+
+
         try {
             usernameSt=jsonObject.getString("usernameSt");
 

@@ -15,6 +15,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="150dp"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:text="What are you looking for ? " />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:weightSum="2"
             android:orientation="horizontal" >
@@ -36,7 +51,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:src="@drawable/newuser" />
+                    android:src="@drawable/groom" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -44,7 +59,7 @@
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:textColor="@color/colorPrimary"
-                    android:text="Existing Customer" />
+                    android:text="Groom" />
 
             </LinearLayout>
 
@@ -63,7 +78,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:src="@drawable/newuser" />
+                    android:src="@drawable/bride" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,11 +86,12 @@
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:textColor="@color/colorPrimary"
-                    android:text="New Customer" />
+                    android:text="Bride" />
 
             </LinearLayout>
-
         </LinearLayout>
+        </LinearLayout>
+
 
     </ScrollView>
 
