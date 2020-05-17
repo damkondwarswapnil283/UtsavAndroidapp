@@ -9,12 +9,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,13 +47,16 @@ public class MainActivity extends AppCompatActivity {
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
             educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
-            agerangeSt,height1St,occupation3St,preferredcitySt;
+            agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
+            dnum6_string,
+            dnum7_string,dnum8_string;
     EditText usernameEt,passwordEt,firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,
-            agerangeEt,height1Et,occupation3Et,preferredcityEt;
+            agerangeEt,height1Et,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et;
     private StorageReference mStorageRef,storageReffront;
+    TextView clearTxt;
     private final int PICK_IMAGE_REQUEST = 22;
     Button selectphotofromgalleryBtn;
     JSONObject jsonObject;
@@ -57,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Uri filePath;
     Button submitbt;
+    RadioButton marriedRb,nevermarriedRb;
     ProgressBar progressBar;
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -77,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         firstnameEt=(EditText)findViewById(R.id.firstname);
         middlenameEt=(EditText)findViewById(R.id.middlename);
         lastnameEt=(EditText)findViewById(R.id.lastname);
-        dateofbirthEt=(EditText)findViewById(R.id.dateofbirth);
+
         occupatioEt=(EditText)findViewById(R.id.occupation);
         aboutmeEt=(EditText)findViewById(R.id.aboutme);
         maritalstatusEt=(EditText)findViewById(R.id.maritalstatus);
@@ -117,18 +125,187 @@ public class MainActivity extends AppCompatActivity {
         ///
         mStorageRef = FirebaseStorage.getInstance().getReference();
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
+        dnum1_et=(EditText)findViewById(R.id.num1);
+        dnum2_et=(EditText)findViewById(R.id.num2);
+        dnum3_et=(EditText)findViewById(R.id.num3);
+        dnum4_et=(EditText)findViewById(R.id.num4);
+        dnum5_et=(EditText)findViewById(R.id.num5);
+        dnum6_et=(EditText)findViewById(R.id.num6);
+        dnum7_et=(EditText)findViewById(R.id.num7);
+        dnum8_et=(EditText)findViewById(R.id.num8);
+        clearTxt=(TextView)findViewById(R.id.cleartxt);
+        marriedRb=(RadioButton)findViewById(R.id.married);
+        nevermarriedRb=(RadioButton)findViewById(R.id.nevermarried);
+        dnum1_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                dnum2_et.requestFocus();
+            }
+        });
+
+        dnum2_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                dnum3_et.requestFocus();
+            }
+        });
+
+        dnum3_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                dnum4_et.requestFocus();
+            }
+        });
+
+        dnum4_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                dnum5_et.requestFocus();
+            }
+        });
+
+        dnum5_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                dnum6_et.requestFocus();
+            }
+        });
+
+        dnum6_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                dnum7_et.requestFocus();
+            }
+        });
+
+        dnum7_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                dnum8_et.requestFocus();
+            }
+        });
+
+        dnum8_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
+        clearTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dnum1_et.setText("");
+                dnum2_et.setText("");
+                dnum3_et.setText("");
+                dnum4_et.setText("");
+                dnum5_et.setText("");
+                dnum6_et.setText("");
+                dnum7_et.setText("");
+                dnum8_et.setText("");
+                dnum1_et.requestFocus();
+            }
+        });
 
-submitbt.setOnClickListener(new View.OnClickListener() {
+
+        submitbt.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        dnum1_string=dnum1_et.getText().toString();
+        dnum2_string=dnum2_et.getText().toString();
+        dnum3_string=dnum3_et.getText().toString();
+        dnum4_string=dnum4_et.getText().toString();
+        dnum5_string=dnum5_et.getText().toString();
+        dnum6_string=dnum6_et.getText().toString();
+        dnum7_string=dnum7_et.getText().toString();
+        dnum8_string=dnum8_et.getText().toString();
         usernameSt=usernameEt.getText().toString();
         passwordSt=passwordEt.getText().toString();
         firstnameSt=firstnameEt.getText().toString();
         middlenameSt=middlenameEt.getText().toString();
         lastnameSt=lastnameEt.getText().toString();
-        dateofbirthSt=dateofbirthEt.getText().toString();
+        dateofbirthSt=dnum1_string+dnum2_string+" - "+dnum3_string+dnum4_string+" - "+dnum5_string+dnum6_string+dnum7_string+dnum8_string;
         occupatioSt=occupatioEt.getText().toString();
         aboutmeSt=aboutmeEt.getText().toString();
         maritalstatusSt=maritalstatusEt.getText().toString();

@@ -20,15 +20,16 @@ public class Selectionactivity extends Activity {
         OldCustomerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent GotoSelectionActivity = new Intent(Selectionactivity.this, MainActivity.class);
+                Intent GotoSelectionActivity = new Intent(Selectionactivity.this, showlist.class);
                 startActivity(GotoSelectionActivity);
+                finish();
             }
         });
 
         NewcustomerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent GotoSelectionActivity=new Intent(Selectionactivity.this,MainActivity.class);
+                Intent GotoSelectionActivity=new Intent(Selectionactivity.this,showlist.class);
                 startActivity(GotoSelectionActivity);
                 finish();
             }
