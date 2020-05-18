@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -136,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
         clearTxt=(TextView)findViewById(R.id.cleartxt);
         marriedRb=(RadioButton)findViewById(R.id.married);
         nevermarriedRb=(RadioButton)findViewById(R.id.nevermarried);
+
+
         dnum1_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

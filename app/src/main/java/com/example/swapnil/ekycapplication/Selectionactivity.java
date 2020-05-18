@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 public class Selectionactivity extends Activity {
-    LinearLayout OldCustomerbtn,NewcustomerBtn;;
+    LinearLayout OldCustomerbtn,NewcustomerBtn,myProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +15,7 @@ public class Selectionactivity extends Activity {
 
         OldCustomerbtn = (LinearLayout) findViewById(R.id.oldcustomerll);
         NewcustomerBtn = (LinearLayout) findViewById(R.id.newcustomerll);
+        myProfile=(LinearLayout)findViewById(R.id.myprofilell);
 
 
         OldCustomerbtn.setOnClickListener(new View.OnClickListener() {
@@ -35,5 +36,14 @@ public class Selectionactivity extends Activity {
             }
         });
 
+
+        myProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent GotoSelectionActivity=new Intent(Selectionactivity.this,Editmyprofile.class);
+                startActivity(GotoSelectionActivity);
+                finish();
+            }
+        });
     }
 }

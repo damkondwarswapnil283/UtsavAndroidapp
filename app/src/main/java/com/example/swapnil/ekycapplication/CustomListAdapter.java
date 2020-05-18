@@ -71,11 +71,8 @@ public class CustomListAdapter extends BaseAdapter {
 		
 		// genre
 		String genreStr = "";
-		for (String str : m.getGenre()) {
-			genreStr += str + ", ";
-		}
-		genreStr = genreStr.length() > 0 ? genreStr.substring(0,
-				genreStr.length() - 2) : genreStr;
+
+		genreStr = m.getGenre();
 		genre.setText(genreStr);
 		
 		// release year

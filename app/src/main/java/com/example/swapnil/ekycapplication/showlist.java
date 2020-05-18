@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,9 +41,10 @@ public class showlist extends AppCompatActivity {
     private ListView listView;
     private CustomListAdapter adapter;
     JsonObjectRequest jsonObjectRequest;
+    TextView response;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("data");
-
+    JSONObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +53,56 @@ public class showlist extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, movieList);
         listView.setAdapter(adapter);
+        response=(TextView)findViewById(R.id.responsetxt) ;
+
+
 
         pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
         pDialog.setMessage("Loading...");
 
+// Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    response.setText(snapshot.getValue().toString());
+                    try {
+                      jsonObject=new JSONObject(snapshot.getValue().toString());
+                        //Toast.makeText(showlist.this, jsonObject.getString("usernameSt"), Toast.LENGTH_SHORT).show();
+                        Movie movie = new Movie();
+                        movie.setTitle(jsonObject.getString("firstnameSt")+" "+jsonObject.getString("middlenameSt")+" "+jsonObject.getString("lastnameSt"));
+                        movie.setThumbnailUrl("https://firebasestorage.googleapis.com/v0/b/utsav-matrimonial-application.appspot.com/o/38358353?alt=media&token=2ed3feca-f581-47c8-8279-db93902eb57f");
+                        movie.setRating(1);
+                        movie.setYear(jsonObject.getInt("contactnumberSt"));
 
 
-        JsonArrayRequest movieReq = new JsonArrayRequest(url,
+                        movie.setGenre(null);
+
+                        // adding movie to movies array
+                        movieList.add(movie);
+                        adapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                String value = dataSnapshot.getValue().toString();
+                Log.d(TAG, "Value is: " + value);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+       /* JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -105,12 +149,12 @@ public class showlist extends AppCompatActivity {
                 hidePDialog();
 
             }
-        });
+        });*/
 
 
 
 
-        AppController.getInstance().addToRequestQueue(movieReq);
+        //AppController.getInstance().addToRequestQueue(movieReq);
     }
 
     @Override
