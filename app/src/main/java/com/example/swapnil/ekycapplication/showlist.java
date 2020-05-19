@@ -1,29 +1,28 @@
 package com.example.swapnil.ekycapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,17 +34,18 @@ public class showlist extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Movies json url
-    private static final String url = "https://api.androidhive.info/json/movies.json";
+
     private ProgressDialog pDialog;
     private List<Movie> movieList = new ArrayList<Movie>();
     private ListView listView;
     private CustomListAdapter adapter;
-    JsonObjectRequest jsonObjectRequest;
+    String imageurl;
     TextView response;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("data");
+    DatabaseReference myRef = database.getReference("data").child("male");
     JSONObject jsonObject;
-
+    StorageReference storageRef;
+    Movie movie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +55,9 @@ public class showlist extends AppCompatActivity {
         listView.setAdapter(adapter);
         response=(TextView)findViewById(R.id.responsetxt) ;
 
+        FirebaseStorage storage=FirebaseStorage.getInstance();
+         storageRef = storage.getReference();
+
 
 
         pDialog = new ProgressDialog(this);
@@ -62,6 +65,8 @@ public class showlist extends AppCompatActivity {
         pDialog.setMessage("Loading...");
 
 // Read from the database
+
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -73,9 +78,26 @@ public class showlist extends AppCompatActivity {
                     try {
                       jsonObject=new JSONObject(snapshot.getValue().toString());
                         //Toast.makeText(showlist.this, jsonObject.getString("usernameSt"), Toast.LENGTH_SHORT).show();
-                        Movie movie = new Movie();
+                        movie = new Movie();
                         movie.setTitle(jsonObject.getString("firstnameSt")+" "+jsonObject.getString("middlenameSt")+" "+jsonObject.getString("lastnameSt"));
-                        movie.setThumbnailUrl("https://firebasestorage.googleapis.com/v0/b/utsav-matrimonial-application.appspot.com/o/38358353?alt=media&token=2ed3feca-f581-47c8-8279-db93902eb57f");
+
+                        storageRef.child("splashimg.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+
+                            public void onSuccess(Uri uri) {
+                            // Got the download URL for 'users/me/profile.png'
+                                imageurl= "https://firebasestorage.googleapis.com/v0/b/utsav-matrimonial-application.appspot.com/o/splashimg.png?alt=media&token=3138452a-b357-42ec-bde1-5ff9aa7d5110";
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Toast.makeText(showlist.this, exception.toString(), Toast.LENGTH_SHORT).show();                        }
+                        });
+
+
+                        movie.setThumbnailUrl(imageurl);
+
                         movie.setRating(1);
                         movie.setYear(jsonObject.getInt("contactnumberSt"));
 
@@ -102,59 +124,8 @@ public class showlist extends AppCompatActivity {
             }
         });
 
-       /* JsonArrayRequest movieReq = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-                        hidePDialog();
-
-                        // Parsing json
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-
-                                JSONObject obj = response.getJSONObject(i);
-                                Movie movie = new Movie();
-                                movie.setTitle(obj.getString("title"));
-                                movie.setThumbnailUrl(obj.getString("image"));
-                                movie.setRating(((Number) obj.get("rating"))
-                                        .doubleValue());
-                                movie.setYear(obj.getInt("releaseYear"));
-
-                                // Genre is json array
-                                JSONArray genreArry = obj.getJSONArray("genre");
-                                ArrayList<String> genre = new ArrayList<String>();
-                                for (int j = 0; j < genreArry.length(); j++) {
-                                    genre.add((String) genreArry.get(j));
-                                }
-                                movie.setGenre(genre);
-
-                                // adding movie to movies array
-                                movieList.add(movie);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        // notifying list adapter about data changes
-                        // so that it renders the list view with updated data
-                        adapter.notifyDataSetChanged();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                hidePDialog();
-
-            }
-        });*/
 
 
-
-
-        //AppController.getInstance().addToRequestQueue(movieReq);
     }
 
     @Override

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
             agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
             dnum6_string,
-            dnum7_string,dnum8_string;
+            dnum7_string,dnum8_string,genderSt;
     EditText usernameEt,passwordEt,firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Uri filePath;
     Button submitbt;
-    RadioButton marriedRb,nevermarriedRb;
+    RadioButton marriedRb,nevermarriedRb,genderMale,genderFemale;
     ProgressBar progressBar;
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         firstnameEt=(EditText)findViewById(R.id.firstname);
         middlenameEt=(EditText)findViewById(R.id.middlename);
         lastnameEt=(EditText)findViewById(R.id.lastname);
+        genderMale=(RadioButton)findViewById(R.id.male);
+        genderFemale=(RadioButton)findViewById(R.id.female);
+
 
         occupatioEt=(EditText)findViewById(R.id.occupation);
         aboutmeEt=(EditText)findViewById(R.id.aboutme);
@@ -311,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
         dateofbirthSt=dnum1_string+dnum2_string+" - "+dnum3_string+dnum4_string+" - "+dnum5_string+dnum6_string+dnum7_string+dnum8_string;
         occupatioSt=occupatioEt.getText().toString();
         aboutmeSt=aboutmeEt.getText().toString();
-        maritalstatusSt=maritalstatusEt.getText().toString();
+
         firstgotraSt=firstgotraEt.getText().toString();
         secondgotraSt=secondgotraEt.getText().toString();
         emailidSt=emailidEt.getText().toString();
@@ -342,6 +345,13 @@ public class MainActivity extends AppCompatActivity {
         occupation3St=occupation3Et.getText().toString();
         preferredcitySt=preferredcityEt.getText().toString();
         usersImg=(ImageView)findViewById(R.id.imageView3);
+
+        if(genderMale.isChecked()){
+            genderSt="male";
+        }else {
+            genderSt="female";
+        }
+
 jsonObject=new JSONObject();
         try {
             jsonObject.put("usernameSt",usernameSt);
@@ -418,7 +428,7 @@ jsonObject=new JSONObject();
 
             jsonObject.put("preferredcitySt",preferredcitySt);
 
-            myRef.child(contactnumberSt).setValue(jsonObject.toString());
+            myRef.child(genderSt).child(contactnumberSt).setValue(jsonObject.toString());
 
         } catch (JSONException e) {
             e.printStackTrace();
