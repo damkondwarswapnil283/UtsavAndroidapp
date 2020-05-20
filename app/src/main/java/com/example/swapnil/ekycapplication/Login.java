@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ TextView forgotpassword;
     private FirebaseAuth mAuth;
     EditText usernameEt,passwordEt;
     String usernameStr,passwordStr;
+    ProgressBar loginProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ TextView forgotpassword;
         usernameEt=(EditText)findViewById(R.id.input_email);
         passwordEt=(EditText)findViewById(R.id.input_password) ;
         forgotpassword=(TextView)findViewById(R.id.forgotpass);
+        loginProgress=(ProgressBar)findViewById(R.id.progressBar);
 
         mAuth = FirebaseAuth.getInstance();
         forgotpassword.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +51,7 @@ TextView forgotpassword;
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginProgress.setVisibility(View.VISIBLE);
                 usernameStr=usernameEt.getText().toString();
                 passwordStr=passwordEt.getText().toString();
                 login(usernameStr,passwordStr);

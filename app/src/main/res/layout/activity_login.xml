@@ -79,6 +79,14 @@
                     android:hint="Password" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <ProgressBar
+                android:id="@+id/loginbar"
+                style="?android:attr/progressBarStyle"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
             <Button
                 android:id="@+id/loginbtn"
                 android:layout_width="match_parent"

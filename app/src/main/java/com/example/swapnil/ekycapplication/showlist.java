@@ -71,6 +71,7 @@ public class showlist extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent gotologinscreen=new Intent(showlist.this,Showuser.class);
+                gotologinscreen.putExtra("gender",genderSt);
                 gotologinscreen.putExtra("id",movieList.get(position).getRating());
                 startActivity(gotologinscreen);
             }

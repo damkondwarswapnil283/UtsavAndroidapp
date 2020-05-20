@@ -105,7 +105,7 @@ public class Showuser extends AppCompatActivity {
         FirebaseStorage storage=FirebaseStorage.getInstance();
         storageRef = storage.getReference();
         keystring=getIntent().getExtras().getString("id");
-        genderSt="male";
+        genderSt=getIntent().getExtras().getString("gender");
         myRef = database.getReference("data").child(genderSt).child(keystring);
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
