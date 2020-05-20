@@ -1,13 +1,33 @@
 package com.example.swapnil.ekycapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.LruCache;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,13 +45,22 @@ public class Showuser extends AppCompatActivity {
             agerangeEt,height1Et,occupation3Et,preferredcityEt;
     JSONObject jsonObject;
     private DatabaseReference mDatabase;
+    private RequestQueue mRequestQueue;
+    private ImageLoader mImageLoader;
+    DatabaseReference myRef;
+    StorageReference storageRef;
+    NetworkImageView networkImageView;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    String genderSt,keystring;
+    Button returnhomebutton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showuser);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        returnhomebutton=(Button)findViewById(R.id.retuenbtn);
         usernameEt=(TextView)findViewById(R.id.inputemail);
         passwordEt=(TextView)findViewById(R.id.inputpassword);
         firstnameEt=(TextView)findViewById(R.id.firstname);
@@ -72,130 +101,186 @@ public class Showuser extends AppCompatActivity {
         occupation3Et=(TextView)findViewById(R.id.occupation3);
         preferredcityEt=(TextView)findViewById(R.id.preferredcity);
 
+        networkImageView=(NetworkImageView)findViewById(R.id.candidateimage);
+        FirebaseStorage storage=FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+        keystring=getIntent().getExtras().getString("id");
+        genderSt="male";
+        myRef = database.getReference("data").child(genderSt).child(keystring);
+        mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
+            private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
+            public void putBitmap(String url, Bitmap bitmap) {
+                mCache.put(url, bitmap);
+            }
+            public Bitmap getBitmap(String url) {
+                return mCache.get(url);
+            }
+        });
 
 
-        try {
-            usernameSt=jsonObject.getString("usernameSt");
+            storageRef.child(keystring).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
 
-            passwordSt=jsonObject.getString("passwordSt");
+                    networkImageView.setImageUrl(uri.toString(),mImageLoader);
 
-            firstnameSt=jsonObject.getString("firstnameSt");
+                }
 
-            middlenameSt=jsonObject.getString("middlenameSt");
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
 
-            lastnameSt=jsonObject.getString("lastnameSt");
-
-            dateofbirthSt=jsonObject.getString("dateofbirthSt");
-
-            occupatioSt=jsonObject.getString("occupatioSt");
-
-            aboutmeSt=jsonObject.getString("aboutmeSt");
-
-            maritalstatusSt=jsonObject.getString("maritalstatusSt");
-
-            firstgotraSt=jsonObject.getString("firstgotraSt");
-
-            secondgotraSt=jsonObject.getString("secondgotraSt");
-
-            emailidSt=jsonObject.getString("emailidSt");
-
-            resiaddSt=jsonObject.getString("resiaddSt");
-
-            permaddSt=jsonObject.getString("permaddSt");
-
-            contactnumberSt=jsonObject.getString("contactnumberSt");
-
-            heightSt=jsonObject.getString("heightSt");
-
-            bloodgroupSt=jsonObject.getString("bloodgroupSt");
-
-            complexionSt=jsonObject.getString("complexionSt");
-
-            educationSt=jsonObject.getString("educationSt");
-
-            annualincomeSt=jsonObject.getString("annualincomeSt");
-
-            mothertonugeSt=jsonObject.getString("mothertonugeSt");
-
-            birthnameSt=jsonObject.getString("birthnameSt");
-
-            birthtimeSt=jsonObject.getString("birthtimeSt");
-
-            birthplaceSt=jsonObject.getString("birthplaceSt");
-
-            fathersnameSt=jsonObject.getString("fathersnameSt");
-
-            occupation1St=jsonObject.getString("occupation1St");
-
-            mothersnameSt=jsonObject.getString("mothersnameSt");
-
-            noofbrothersSt=jsonObject.getString("noofbrothersSt");
-
-            brotherdetailsSt=jsonObject.getString("brotherdetailsSt");
-
-            noofsistersSt=jsonObject.getString("noofsistersSt");
-
-            sisterdetailsSt=jsonObject.getString("sisterdetailsSt");
-
-            qualificationSt=jsonObject.getString("qualificationSt");
-
-            annualincome1St=jsonObject.getString("annualincome1St");
-
-            agerangeSt=jsonObject.getString("agerangeSt");
-
-            height1St=jsonObject.getString("height1St");
-
-            occupation3St=jsonObject.getString("occupation3St");
-
-            preferredcitySt=jsonObject.getString("preferredcitySt");
-
-            usernameEt.setText( usernameSt);
-            passwordEt.setText(passwordSt);
-            firstnameEt.setText(firstnameSt);
-            middlenameEt.setText(middlenameSt);
-            lastnameEt.setText(lastnameSt);
-            dateofbirthEt.setText(dateofbirthSt);
-            occupatioEt.setText(occupatioSt);
-            aboutmeEt.setText(aboutmeSt);
-            maritalstatusEt.setText(maritalstatusSt);
-            firstgotraEt.setText(firstgotraSt);
-            secondgotraEt.setText(secondgotraSt);
-            emailidEt.setText(emailidSt);
-            resiaddEt.setText(resiaddSt);
-            permaddEt.setText(permaddSt);
-            contactnumberEt.setText(contactnumberSt);
-            heightEt.setText(heightSt);
-            bloodgroupEt.setText(bloodgroupSt);
-            complexionEt.setText(complexionSt);
-            educationEt.setText(educationSt);
-            annualincomeEt.setText(annualincomeSt);
-            mothertonugeEt.setText(mothertonugeSt);
-            birthnameEt.setText(birthnameSt);
-            birthtimeEt.setText(birthtimeSt);
-            birthplaceEt.setText(birthplaceSt);
-            fathersnameEt.setText(fathersnameSt);
-            occupation1Et.setText(occupation1St);
-            mothersnameEt.setText(mothersnameSt);
-            occupation2Et.setText(occupation2St);
-            noofbrothersEt.setText(noofbrothersSt);
-            brotherdetailsEt.setText(brotherdetailsSt);
-            noofsistersEt.setText(noofsistersSt);
-            sisterdetailsEt.setText(sisterdetailsSt);
-            qualificationEt.setText(qualificationSt);
-            annualincome1Et.setText(annualincome1St);
-            agerangeEt.setText(agerangeSt);
-            height1Et.setText(height1St);
-            occupation3Et.setText(occupation3St);
-            preferredcityEt.setText(preferredcitySt);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                }
+            });
 
 
-        ///
 
 
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue().toString();
+                try {
+                    jsonObject=new JSONObject(value);
+
+                    Toast.makeText(Showuser.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                    Log.e("Response",jsonObject.toString());
+
+                    usernameSt=jsonObject.getString("usernameSt");
+
+                    passwordSt=jsonObject.getString("passwordSt");
+
+                    firstnameSt=jsonObject.getString("firstnameSt");
+
+                    middlenameSt=jsonObject.getString("middlenameSt");
+
+                    lastnameSt=jsonObject.getString("lastnameSt");
+
+                    dateofbirthSt=jsonObject.getString("dateofbirthSt");
+
+                    occupatioSt=jsonObject.getString("occupatioSt");
+
+                    aboutmeSt=jsonObject.getString("aboutmeSt");
+
+               //     maritalstatusSt=jsonObject.getString("maritalstatusSt");
+
+                    firstgotraSt=jsonObject.getString("firstgotraSt");
+
+                    secondgotraSt=jsonObject.getString("secondgotraSt");
+
+                    emailidSt=jsonObject.getString("emailidSt");
+
+                    resiaddSt=jsonObject.getString("resiaddSt");
+
+                    permaddSt=jsonObject.getString("permaddSt");
+
+                    contactnumberSt=jsonObject.getString("contactnumberSt");
+
+                    heightSt=jsonObject.getString("heightSt");
+
+                    bloodgroupSt=jsonObject.getString("bloodgroupSt");
+
+                    complexionSt=jsonObject.getString("complexionSt");
+
+                    educationSt=jsonObject.getString("educationSt");
+
+                    annualincomeSt=jsonObject.getString("annualincomeSt");
+
+                    mothertonugeSt=jsonObject.getString("mothertonugeSt");
+
+                    birthnameSt=jsonObject.getString("birthnameSt");
+
+                    birthtimeSt=jsonObject.getString("birthtimeSt");
+
+                    birthplaceSt=jsonObject.getString("birthplaceSt");
+
+                    fathersnameSt=jsonObject.getString("fathersnameSt");
+
+                    occupation1St=jsonObject.getString("occupation1St");
+
+                    mothersnameSt=jsonObject.getString("mothersnameSt");
+
+                    noofbrothersSt=jsonObject.getString("noofbrothersSt");
+
+                    brotherdetailsSt=jsonObject.getString("brotherdetailsSt");
+
+                    noofsistersSt=jsonObject.getString("noofsistersSt");
+
+                    sisterdetailsSt=jsonObject.getString("sisterdetailsSt");
+
+                    qualificationSt=jsonObject.getString("qualificationSt");
+
+                    annualincome1St=jsonObject.getString("annualincome1St");
+
+                    agerangeSt=jsonObject.getString("agerangeSt");
+
+                    height1St=jsonObject.getString("height1St");
+
+                    occupation3St=jsonObject.getString("occupation3St");
+
+                    preferredcitySt=jsonObject.getString("preferredcitySt");
+
+                    //usernameEt.setText( usernameSt);
+                   // passwordEt.setText(passwordSt);
+                    firstnameEt.setText(firstnameSt);
+//                    middlenameEt.setText(middlenameSt);
+ //                   lastnameEt.setText(lastnameSt);
+                    dateofbirthEt.setText(dateofbirthSt);
+                    occupatioEt.setText(occupatioSt);
+                    aboutmeEt.setText(aboutmeSt);
+                    maritalstatusEt.setText(maritalstatusSt);
+                    firstgotraEt.setText(firstgotraSt);
+                    secondgotraEt.setText(secondgotraSt);
+                    emailidEt.setText(emailidSt);
+                    resiaddEt.setText(resiaddSt);
+                    permaddEt.setText(permaddSt);
+                    contactnumberEt.setText(contactnumberSt);
+                    heightEt.setText(heightSt);
+                    bloodgroupEt.setText(bloodgroupSt);
+                    complexionEt.setText(complexionSt);
+                    educationEt.setText(educationSt);
+                    annualincomeEt.setText(annualincomeSt);
+                    mothertonugeEt.setText(mothertonugeSt);
+                    birthnameEt.setText(birthnameSt);
+                    birthtimeEt.setText(birthtimeSt);
+                    birthplaceEt.setText(birthplaceSt);
+                    fathersnameEt.setText(fathersnameSt);
+                    occupation1Et.setText(occupation1St);
+                    mothersnameEt.setText(mothersnameSt);
+                    occupation2Et.setText(occupation2St);
+                    noofbrothersEt.setText(noofbrothersSt);
+                    brotherdetailsEt.setText(brotherdetailsSt);
+                    noofsistersEt.setText(noofsistersSt);
+                    sisterdetailsEt.setText(sisterdetailsSt);
+                    qualificationEt.setText(qualificationSt);
+                    annualincome1Et.setText(annualincome1St);
+                    agerangeEt.setText(agerangeSt);
+                    height1Et.setText(height1St);
+                    occupation3Et.setText(occupation3St);
+                    preferredcityEt.setText(preferredcitySt);
+                } catch (JSONException e) {
+                    Toast.makeText(Showuser.this, e.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(Showuser.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        returnhomebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotologinscreen=new Intent(Showuser.this,Selectionactivity.class);
+                startActivity(gotologinscreen);
+            }
+        });
 
 
 

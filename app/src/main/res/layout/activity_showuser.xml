@@ -56,6 +56,13 @@
                     android:background="@drawable/edittextround"
                     android:text="Account Information" />
 
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/candidateimage"
+                    android:layout_width="400dp"
+                    android:layout_height="400dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="8dp" />
+
                     <TextView
                         android:id="@+id/firstname"
                         android:layout_width="match_parent"

@@ -22,8 +22,9 @@ public class Selectionactivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent GotoSelectionActivity = new Intent(Selectionactivity.this, showlist.class);
+                GotoSelectionActivity.putExtra("gender","male");
                 startActivity(GotoSelectionActivity);
-                finish();
+
             }
         });
 
@@ -31,8 +32,9 @@ public class Selectionactivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent GotoSelectionActivity=new Intent(Selectionactivity.this,showlist.class);
+                GotoSelectionActivity.putExtra("gender","female");
                 startActivity(GotoSelectionActivity);
-                finish();
+
             }
         });
 
@@ -42,7 +44,7 @@ public class Selectionactivity extends Activity {
             public void onClick(View v) {
                 Intent GotoSelectionActivity=new Intent(Selectionactivity.this,Editmyprofile.class);
                 startActivity(GotoSelectionActivity);
-                finish();
+
             }
         });
     }

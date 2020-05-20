@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,15 +40,19 @@ public class showlist extends AppCompatActivity {
 
     private ProgressDialog pDialog;
     private List<Movie> movieList = new ArrayList<Movie>();
+
+    private List<String> imageurls = new ArrayList<String>();
     private ListView listView;
     private CustomListAdapter adapter;
-    String imageurl;
+    JSONObject individualObject;
     TextView response;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("data").child("male");
+    DatabaseReference myRef;
     JSONObject jsonObject;
+    String genderSt,imageurl,firstName;
     StorageReference storageRef;
-    Movie movie;
+
+    int countofImageurl=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,66 +60,81 @@ public class showlist extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, movieList);
         listView.setAdapter(adapter);
-        response=(TextView)findViewById(R.id.responsetxt) ;
 
         FirebaseStorage storage=FirebaseStorage.getInstance();
-         storageRef = storage.getReference();
+        storageRef = storage.getReference();
 
+        genderSt=getIntent().getExtras().getString("gender");
+        myRef = database.getReference("data").child(genderSt);
 
-
-        pDialog = new ProgressDialog(this);
-        // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent gotologinscreen=new Intent(showlist.this,Showuser.class);
+                gotologinscreen.putExtra("id",movieList.get(position).getRating());
+                startActivity(gotologinscreen);
+            }
+        });
 // Read from the database
 
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(final DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                movieList.clear();
+                adapter.notifyDataSetChanged();
 
-                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                    response.setText(snapshot.getValue().toString());
+
+                for(final DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+
                     try {
-                      jsonObject=new JSONObject(snapshot.getValue().toString());
-                        //Toast.makeText(showlist.this, jsonObject.getString("usernameSt"), Toast.LENGTH_SHORT).show();
-                        movie = new Movie();
-                        movie.setTitle(jsonObject.getString("firstnameSt")+" "+jsonObject.getString("middlenameSt")+" "+jsonObject.getString("lastnameSt"));
 
-                        storageRef.child("splashimg.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        jsonObject=new JSONObject(snapshot.getValue().toString());
+
+                        storageRef.child(jsonObject.getString("contactnumberSt")).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
-
                             public void onSuccess(Uri uri) {
-                            // Got the download URL for 'users/me/profile.png'
-                                imageurl= "https://firebasestorage.googleapis.com/v0/b/utsav-matrimonial-application.appspot.com/o/splashimg.png?alt=media&token=3138452a-b357-42ec-bde1-5ff9aa7d5110";
+                                String keyString=uri.getLastPathSegment();
+                                    try {
+                                        Movie   movie=new Movie();
+                                    individualObject=new JSONObject(dataSnapshot.child(keyString).getValue().toString());
+                                    //Log.e("String-",individualObject.toString());
+                                    movie.setTitle(individualObject.getString("firstnameSt")+" "+individualObject.getString("middlenameSt")+" "+individualObject.getString("lastnameSt"));
+                                    Log.e("Title-",individualObject.getString("firstnameSt")+" "+individualObject.getString("middlenameSt")+" "+individualObject.getString("lastnameSt"));
+                                    movie.setGenre(individualObject.getString("occupation3St"));
+                                    Log.e("Occupation-",individualObject.getString("occupation3St"));
+                                    movie.setRating(individualObject.getString("contactnumberSt"));
+                                    Log.e("Rating-",individualObject.getString("contactnumberSt"));
+                                    movie.setYear(individualObject.getString("contactnumberSt"));
+                                    Log.e("uniqueid-",individualObject.getString("usernameSt"));
+                                    movie.setThumbnailUrl(uri.toString());
+                                    Log.e("Url-",uri.toString());
+                                    movieList.add(movie);
+
+                                    Log.e("Verify",movieList.get(0).getTitle());
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                adapter.notifyDataSetChanged();
+                            }
+
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
 
                             }
-                        }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            Toast.makeText(showlist.this, exception.toString(), Toast.LENGTH_SHORT).show();                        }
                         });
 
-
-                        movie.setThumbnailUrl(imageurl);
-
-                        movie.setRating(1);
-                        movie.setYear(jsonObject.getInt("contactnumberSt"));
-
-
-                        movie.setGenre(null);
-
-                        // adding movie to movies array
-                        movieList.add(movie);
-                        adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                String value = dataSnapshot.getValue().toString();
-                Log.d(TAG, "Value is: " + value);
+
+
 
 
             }
