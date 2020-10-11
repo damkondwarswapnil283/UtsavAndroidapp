@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EKYC Application</string>
+    <string name="hints"><![CDATA[Member ID(Don\'t include dash or space)<font color=\'#cc0029\'>*</font>]]></string>
 </resources>

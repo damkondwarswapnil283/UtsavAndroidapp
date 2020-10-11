@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:hint="Username" />
+                        android:hint="Username *" />
 
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:hint="Password" />
+                        android:hint="Password *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -98,7 +98,7 @@
                     android:gravity="center"
                     android:layout_margin="16dp"
                     android:textColor="@color/colorPrimary"
-                    android:text="Gender" />
+                    android:text="Gender *" />
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -127,6 +127,13 @@
                     android:layout_height="400px"
                     android:src="@drawable/image" />
 
+                <ProgressBar
+                    android:id="@+id/imageprogress"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
                 <Button
                     android:id="@+id/selectphotofromgallery"
                     android:layout_width="match_parent"
@@ -147,7 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="First Name" />
+                        android:hint="First Name *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -160,7 +167,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Middle Name" />
+                        android:hint="Middle Name *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -173,7 +180,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Last Name" />
+                        android:hint="Last Name *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -185,7 +192,7 @@
                     android:gravity="center"
                     android:layout_margin="12dp"
                     android:textColor="@color/colorPrimary"
-                    android:text="Data of birth" />
+                    android:text="Data of birth *" />
 
 
 
@@ -367,7 +374,7 @@
                     android:gravity="center"
                     android:layout_margin="16dp"
                     android:textColor="@color/colorPrimary"
-                    android:text="Marital Status" />
+                    android:text="Marital Status *" />
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -391,17 +398,7 @@
                 </RadioGroup>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/firstgotra"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="First Gotra" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -413,6 +410,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:visibility="gone"
                         android:hint="Second Gotra" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -439,7 +437,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Resi.Add" />
+                        android:hint="Residential Address *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -452,7 +450,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Perm.Add" />
+                        android:hint="Permanent Address(Rajsthan)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -466,7 +464,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Contact No:" />
+                        android:hint="Contact Number *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -480,7 +478,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Height" />
+                        android:hint="Height *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -493,7 +491,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Blood Group" />
+                        android:hint="Blood Group *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -560,6 +558,18 @@
                     android:background="@drawable/edittextround"
                     android:text="Kundali Details" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/firstgotra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="Gotra *" />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -623,7 +633,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Father Name" />
+                        android:hint="Father`s Name *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -648,7 +658,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Mother's Name" />
+                        android:hint="Mother's Name *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -763,7 +773,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Age Range" />
+                        android:hint="Age Range *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 

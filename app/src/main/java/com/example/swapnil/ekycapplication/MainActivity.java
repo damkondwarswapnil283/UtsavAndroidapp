@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,13 +53,17 @@ public class MainActivity extends AppCompatActivity {
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
             agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
             dnum6_string,
-            dnum7_string,dnum8_string,genderSt;
+            dnum7_string,dnum8_string,genderSt,imageString;
+    ProgressBar progressBar;
     EditText usernameEt,passwordEt,firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,
             agerangeEt,height1Et,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et;
     private StorageReference mStorageRef,storageReffront;
+    Bitmap bitmap;
+    byte[] imagebytes;
+    String imagestring="";
     TextView clearTxt;
     private final int PICK_IMAGE_REQUEST = 22;
     Button selectphotofromgalleryBtn;
@@ -66,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
     private Uri filePath;
     Button submitbt;
     RadioButton marriedRb,nevermarriedRb,genderMale,genderFemale;
-    ProgressBar progressBar;
+    ProgressBar progressBarimage;
+    ByteArrayOutputStream bytearrayimage;
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("data");
@@ -88,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         lastnameEt=(EditText)findViewById(R.id.lastname);
         genderMale=(RadioButton)findViewById(R.id.male);
         genderFemale=(RadioButton)findViewById(R.id.female);
-
+        progressBar=(ProgressBar)findViewById(R.id.imageprogress);
 
         occupatioEt=(EditText)findViewById(R.id.occupation);
         aboutmeEt=(EditText)findViewById(R.id.aboutme);
@@ -140,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         clearTxt=(TextView)findViewById(R.id.cleartxt);
         marriedRb=(RadioButton)findViewById(R.id.married);
         nevermarriedRb=(RadioButton)findViewById(R.id.nevermarried);
+        progressBar=(ProgressBar)findViewById(R.id.imageprogress);
 
 
         dnum1_et.addTextChangedListener(new TextWatcher() {
@@ -345,14 +354,106 @@ public class MainActivity extends AppCompatActivity {
         occupation3St=occupation3Et.getText().toString();
         preferredcitySt=preferredcityEt.getText().toString();
         usersImg=(ImageView)findViewById(R.id.imageView3);
+        testdata();
+    }
+});
 
-        if(genderMale.isChecked()){
-            genderSt="male";
+
+
+selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+       SelectImage();
+    }
+});
+
+    }
+
+    public void testdata(){
+        Toast.makeText(this, imageString.length()+"", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addvalidations(){
+        if(usernameSt.trim().equals("")){
+            usernameEt.requestFocus();
+            Toast.makeText(this, "Username can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(passwordSt.trim().equals("")){
+            passwordEt.requestFocus();
+            Toast.makeText(this, "Password can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(genderSt.trim().equals("")){
+            usernameEt.requestFocus();
+            Toast.makeText(this, "Please select Gender", Toast.LENGTH_SHORT).show();
+        }else if(firstnameSt.trim().equals("")){
+            firstnameEt.requestFocus();
+            Toast.makeText(this, "Firstname can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(middlenameSt.trim().equals("")){
+            middlenameEt.requestFocus();
+            Toast.makeText(this, "Middle Name can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(lastnameSt.trim().equals("")){
+            lastnameEt.requestFocus();
+            Toast.makeText(this, "Lastname can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(firstgotraSt.trim().equals("")){
+            firstgotraEt.requestFocus();
+            Toast.makeText(this, "First gotra can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(resiaddSt.trim().equals("")){
+            resiaddEt.requestFocus();
+            Toast.makeText(this, "Residance address can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(permaddSt.trim().equals("")){
+            permaddEt.requestFocus();
+            Toast.makeText(this, "Permanent address can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(contactnumberSt.trim().equals("")){
+            contactnumberEt.requestFocus();
+            Toast.makeText(this, "Contact number can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(heightSt.trim().equals("")){
+            heightEt.requestFocus();
+            Toast.makeText(this, "Height can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(bloodgroupSt.trim().equals("")){
+            bloodgroupEt.requestFocus();
+            Toast.makeText(this, "Blood Group can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(complexionSt.trim().equals("")){
+            complexionEt.requestFocus();
+            Toast.makeText(this, "Complexion can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(educationSt.trim().equals("")){
+            educationEt.requestFocus();
+            Toast.makeText(this, "Education can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(annualincomeSt.trim().equals("")){
+            annualincome1Et.requestFocus();
+            Toast.makeText(this, "Annual Income can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(mothertonugeSt.trim().equals("")){
+            mothertonugeEt.requestFocus();
+            Toast.makeText(this, "Mother Tongue can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(fathersnameSt.trim().equals("")){
+            fathersnameEt.requestFocus();
+            Toast.makeText(this, "Father Name can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(mothersnameSt.trim().equals("")){
+            mothersnameEt.requestFocus();
+            Toast.makeText(this, "Mother Name can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(noofbrothersSt.trim().equals("")){
+            noofbrothersEt.requestFocus();
+            Toast.makeText(this, "No of brother can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(noofsistersSt.trim().equals("")){
+            noofsistersEt.requestFocus();
+            Toast.makeText(this, "No of sister can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(qualificationSt.trim().equals("")){
+            qualificationEt.requestFocus();
+            Toast.makeText(this, "Qualification can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(agerangeSt.trim().equals("")){
+            agerangeEt.requestFocus();
+            Toast.makeText(this, "Age range can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(dateofbirthSt.trim().equals("")){
+            lastnameEt.requestFocus();
+            Toast.makeText(this, "Date of birth is not appropriate", Toast.LENGTH_SHORT).show();
+        }else if(maritalstatusSt.trim().equals("")){
+            firstgotraEt.requestFocus();
+            Toast.makeText(this, "Select Marital status", Toast.LENGTH_SHORT).show();
         }else {
-            genderSt="female";
+            createjsonobject();
         }
 
-jsonObject=new JSONObject();
+    }
+
+    public void createjsonobject(){
+        jsonObject=new JSONObject();
         try {
             jsonObject.put("usernameSt",usernameSt);
 
@@ -433,24 +534,6 @@ jsonObject=new JSONObject();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
-        storageReffront = FirebaseStorage.getInstance().getReference(contactnumberSt);
-
-        uploadImage();
-
-
-    }
-});
-
-selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-SelectImage();
-    }
-});
-
     }
 
     private void SelectImage()
@@ -488,17 +571,18 @@ SelectImage();
             try {
 
                 // Setting image on image view using Bitmap
-                Bitmap bitmap = MediaStore
+                bitmap = MediaStore
                         .Images
                         .Media
                         .getBitmap(
                                 getContentResolver(),
                                 filePath);
 
+                bytearrayimage=new ByteArrayOutputStream();
+                    ///here asynctask call
 
-                    usersImg.setImageBitmap(bitmap);
-
-
+                ImageClass imageClass=new ImageClass();
+                imageClass.execute(bitmap);
             }
 
             catch (IOException e) {
@@ -508,71 +592,46 @@ SelectImage();
         }
     }
 
-    private void uploadImage()
-    {
-        progressBar.setProgress(10);
-        //emiratesfront upload
-        usersImg.setDrawingCacheEnabled(true);
-        usersImg.buildDrawingCache();
-        Bitmap bitmap = ((BitmapDrawable) usersImg.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] data = baos.toByteArray();
 
-
-        UploadTask uploadTask = storageReffront.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                Toast.makeText(MainActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                registration(usernameSt,passwordSt);
-            }
-        });
-
-        //emiratesback upload
-
-
-        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                int value=(int)progress;
-                if(value>30) {
-                    progressBar.setProgress(value);
-                }
-            }
-        });
-
-    }
 
     public void registration(String username,String Password){
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.createUserWithEmailAndPassword(username, Password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+
                             Toast.makeText(MainActivity.this, "User Registered successfully", Toast.LENGTH_SHORT).show();
                             Intent gotologinscreen=new Intent(MainActivity.this,Login.class);
                             startActivity(gotologinscreen);
                             finish();
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+    }
+    class ImageClass extends AsyncTask<Bitmap,Void,String> {
 
-                        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
+        protected String doInBackground(Bitmap... bitmaps) {
 
 
-                    }
-                });
+            bitmap.compress(Bitmap.CompressFormat.JPEG,5,bytearrayimage);
+
+            imagebytes = bytearrayimage.toByteArray();
+
+            imageString = Base64.encodeToString(imagebytes,0);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            usersImg.setImageBitmap(bitmap);
+            progressBar.setVisibility(View.GONE);
+
+        }
+
 
     }
-
 }

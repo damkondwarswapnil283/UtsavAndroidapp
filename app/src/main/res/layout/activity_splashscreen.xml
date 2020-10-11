@@ -7,11 +7,13 @@
     android:padding="16dp"
     tools:context="com.example.swapnil.ekycapplication.Splashscreen">
 
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="258dp"
-        android:layout_height="438dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/splashimg" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="इस परिचयऐप का यह उद्देश हैं की इस के माध्यम से ,
+श्रीगौड़ समाज के युवक और युवतियों का परिचय हों,
+जिस से वैवाहिक ,शैक्षणिक ,
+तथा व्यवसाईक  कार्य में सभी को आपसी सहज मदत हों.
+अपितु अभी आप इसमें निशुल्क रजीस्ट्रेशन  कर  के इस का सदउपयोग लिज़िए..!" />
 </RelativeLayout>

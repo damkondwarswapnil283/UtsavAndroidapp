@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/EKYCApplication.iml" filepath="$PROJECT_DIR$/.idea/EKYCApplication.iml" group="EKYCApplication" />
+      <module fileurl="file://$PROJECT_DIR$/UtsavAndroidapp.iml" filepath="$PROJECT_DIR$/UtsavAndroidapp.iml" group="UtsavAndroidapp" />
+      <module fileurl="file://$PROJECT_DIR$/app/UtsavAndroidapp-app.iml" filepath="$PROJECT_DIR$/app/UtsavAndroidapp-app.iml" group="UtsavAndroidapp/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="EKYCApplication/app" />
     </modules>
   </component>
