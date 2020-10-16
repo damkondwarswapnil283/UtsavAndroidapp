@@ -7,9 +7,9 @@
     <application
         android:name=".AppController"
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/ic_launcher"
         android:label="Utsav"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Editmyprofile"></activity>
@@ -30,7 +30,9 @@
         <activity android:name=".Splashscreen">
 
         </activity>
-        <activity android:name=".Login" />
+        <activity android:name=".Login" >
+
+        </activity>
         <activity android:name=".Selectionactivity" >
 
         </activity>

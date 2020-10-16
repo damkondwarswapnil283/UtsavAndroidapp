@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200px"
                     android:layout_weight="1"
-                    android:src="@drawable/upper" />
+                    android:src="@drawable/utsavlogo" />
 
 
 
@@ -50,6 +50,15 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     />
+
+                <ImageView
+                    android:id="@+id/testdata"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:background="@drawable/edittextround"
+                    android:src="@drawable/test" />
 
                 <TextView
                     android:id="@+id/accountinformation"
@@ -121,28 +130,18 @@
 
                 </RadioGroup>
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="400px"
-                    android:layout_height="400px"
-                    android:src="@drawable/image" />
+
+
 
                 <ProgressBar
                     android:id="@+id/imageprogress"
                     style="?android:attr/progressBarStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_weight="1" />
 
-                <Button
-                    android:id="@+id/selectphotofromgallery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:textColor="#fff"
-                    android:text="Select photo from gallery" />
+
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -180,7 +179,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Last Name *" />
+                        android:hint="Last Name * (For Ex. Mehta)" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/avantak"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="Avantak * (For Ex. Todrawat)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -206,7 +217,7 @@
                     <EditText
                         android:id="@+id/num1"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -218,7 +229,7 @@
                     <EditText
                         android:id="@+id/num2"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -238,7 +249,7 @@
                     <EditText
                         android:id="@+id/num3"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:hint="M"
                         android:gravity="center"
@@ -250,7 +261,7 @@
                     <EditText
                         android:id="@+id/num4"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:hint="M"
@@ -268,7 +279,7 @@
                     <EditText
                         android:id="@+id/num5"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:hint="Y"
@@ -279,7 +290,7 @@
                     <EditText
                         android:id="@+id/num6"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:hint="Y"
@@ -290,7 +301,7 @@
                     <EditText
                         android:id="@+id/num7"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:hint="Y"
@@ -301,7 +312,7 @@
                     <EditText
                         android:id="@+id/num8"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:hint="Y"
                         android:layout_weight="1"
@@ -319,7 +330,7 @@
                     android:textSize="20sp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:background="@drawable/edittextround"
                     android:textColor="@color/colorPrimary"
                     android:text="Clear" />
@@ -395,6 +406,19 @@
                         android:layout_weight="1"
                         android:text="Married" />
 
+                    <RadioButton
+                        android:id="@+id/divorced"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Divorced" />
+                    <RadioButton
+                        android:id="@+id/widow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Widow" />
+
                 </RadioGroup>
 
 
@@ -450,7 +474,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Permanent Address(Rajsthan)" />
+                        android:hint="Native Village (Rajsthan) *" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/currentcity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="Current City*" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -478,7 +514,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Height *" />
+                        android:hint="Height * For example 5' 4&quot;" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -495,17 +531,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/complexion"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Complexion" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -529,34 +555,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Annual Income" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/mothertonung"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Mother Tongue" />
+                        android:hint="Annual Income (In thousand)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
 
-                <TextView
-                    android:id="@+id/kundalidetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/edittextround"
-                    android:text="Kundali Details" />
+
+
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -570,48 +576,6 @@
                         android:hint="Gotra *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/birthname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Birth Name" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/birthtime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Birth Time" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/birthplace"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Birth Place" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
                 <TextView
                     android:id="@+id/familydetails"
                     android:layout_width="match_parent"
@@ -624,17 +588,7 @@
                     android:text="Family Details" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/fathername"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Father`s Name *" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -645,7 +599,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Occupation" />
+                        android:hint="Father`s Occupation" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -760,7 +714,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Annual Income" />
+                        android:hint="Annual Income range. For example(3 - 5 LPA)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -773,7 +727,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Age Range *" />
+                        android:hint="Age Range * (For example 26-31)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -787,7 +741,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Height" />
+                        android:hint="Height (For example 5' 4&quot; )" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -816,13 +770,33 @@
                         android:hint="Preferred City" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <ProgressBar
-                    android:id="@+id/progressBar2"
-                    style="?android:attr/progressBarStyle"
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="800px"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/edittextround"
+                    android:src="@drawable/image" />
+                <TextView
+                    android:id="@+id/sizemessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"
+                    android:layout_weight="1"
+                    android:text="Image size must be less than 1000kb" />
+                <Button
+                    android:id="@+id/selectphotofromgallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#fff"
+                    android:text="Select photo from gallery" />
+
+
 
                 <ProgressBar
                     android:id="@+id/mainprogressbar"

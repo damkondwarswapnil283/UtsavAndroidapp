@@ -14,11 +14,21 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends Activity {
 Button login ,signup;
@@ -27,6 +37,8 @@ TextView forgotpassword;
     EditText usernameEt,passwordEt;
     String usernameStr,passwordStr;
     ProgressBar loginProgress;
+    String loginurl="http://greenleafpureveg.in/utsavapplication/login.php";
+    StringRequest stringRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +48,48 @@ TextView forgotpassword;
         usernameEt=(EditText)findViewById(R.id.input_email);
         passwordEt=(EditText)findViewById(R.id.input_password) ;
         forgotpassword=(TextView)findViewById(R.id.forgotpass);
-        loginProgress=(ProgressBar)findViewById(R.id.progressBar);
+        loginProgress=(ProgressBar)findViewById(R.id.loginprogress);
 
-        mAuth = FirebaseAuth.getInstance();
+        stringRequest=new StringRequest(Request.Method.POST, loginurl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Toast.makeText(Login.this, response, Toast.LENGTH_LONG).show();
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    String flag=jsonObject.getString("success");
+                    if(flag.equals("1")){
+                        loginProgress.setVisibility(View.GONE);
+                        Intent gotodash=new Intent(Login.this,Selectionactivity.class);
+                        startActivity(gotodash);
+
+                    }else{
+                        loginProgress.setVisibility(View.GONE);
+                        Toast.makeText(Login.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loginProgress.setVisibility(View.GONE);
+                Toast.makeText(Login.this, "Something went wrong. Please try again", Toast.LENGTH_LONG).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", usernameStr);
+                params.put("password",passwordStr );
+                return params;
+            }
+
+        };
+
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,10 +102,11 @@ TextView forgotpassword;
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginProgress.setVisibility(View.VISIBLE);
+
                 usernameStr=usernameEt.getText().toString();
                 passwordStr=passwordEt.getText().toString();
-                login(usernameStr,passwordStr);
+                loginProgress.setVisibility(View.VISIBLE);
+                AppController.getInstance().addToRequestQueue(stringRequest);
             }
         });
 
@@ -69,28 +121,8 @@ TextView forgotpassword;
 
 
 
+
     }
 
-    public void login(String username,String password){
-        mAuth.signInWithEmailAndPassword(username, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent gotologinscreen=new Intent(Login.this,Selectionactivity.class);
-                            startActivity(gotologinscreen);
-                            finish();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(Login.this, "Wrong Credentials.",
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-
-                        // ...
-                    }
-                });
-    }
 }

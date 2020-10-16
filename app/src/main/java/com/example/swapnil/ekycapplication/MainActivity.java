@@ -24,6 +24,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,24 +51,27 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    String usernameSt,passwordSt,firstnameSt,middlenameSt,lastnameSt,dateofbirthSt,occupatioSt,aboutmeSt,maritalstatusSt,
+    String imageString="",usernameSt,passwordSt,firstnameSt,middlenameSt,lastnameSt,dateofbirthSt,occupatioSt,aboutmeSt,maritalstatusSt,
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
             educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
             agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
-            dnum6_string,
-            dnum7_string,dnum8_string,genderSt,imageString;
+            dnum6_string,avantak_string,
+            dnum7_string,dnum8_string,genderSt,currentcityst;
     ProgressBar progressBar;
+    ImageView testImage;
+    StringRequest stringRequest;
+
     EditText usernameEt,passwordEt,firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
-            noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,
-            agerangeEt,height1Et,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et;
-    private StorageReference mStorageRef,storageReffront;
+            noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,avantakEt,
+            agerangeEt,height1Et,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et,current_cityet;
+
     Bitmap bitmap;
     byte[] imagebytes;
     String imagestring="";
-    TextView clearTxt;
+    TextView clearTxt,sizemessage;
     private final int PICK_IMAGE_REQUEST = 22;
     Button selectphotofromgalleryBtn;
     JSONObject jsonObject;
@@ -72,13 +79,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Uri filePath;
     Button submitbt;
-    RadioButton marriedRb,nevermarriedRb,genderMale,genderFemale;
+    RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale;
     ProgressBar progressBarimage;
     ByteArrayOutputStream bytearrayimage;
     // Write a message to the database
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("data");
-
 
 
     @Override
@@ -97,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         genderMale=(RadioButton)findViewById(R.id.male);
         genderFemale=(RadioButton)findViewById(R.id.female);
         progressBar=(ProgressBar)findViewById(R.id.imageprogress);
-
+        avantakEt=(EditText)findViewById(R.id.avantak);
         occupatioEt=(EditText)findViewById(R.id.occupation);
         aboutmeEt=(EditText)findViewById(R.id.aboutme);
         maritalstatusEt=(EditText)findViewById(R.id.maritalstatus);
@@ -134,8 +138,9 @@ public class MainActivity extends AppCompatActivity {
         submitbt=(Button)findViewById(R.id.submitbt);
         selectphotofromgalleryBtn=(Button)findViewById(R.id.selectphotofromgallery);
         usersImg=(ImageView)findViewById(R.id.imageView3) ;
-        ///
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        current_cityet=(EditText)findViewById(R.id.currentcity);
+
+
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
         dnum1_et=(EditText)findViewById(R.id.num1);
         dnum2_et=(EditText)findViewById(R.id.num2);
@@ -148,8 +153,18 @@ public class MainActivity extends AppCompatActivity {
         clearTxt=(TextView)findViewById(R.id.cleartxt);
         marriedRb=(RadioButton)findViewById(R.id.married);
         nevermarriedRb=(RadioButton)findViewById(R.id.nevermarried);
+        divorcedRb=(RadioButton)findViewById(R.id.divorced);
+        widowRb=(RadioButton)findViewById(R.id.widow);
+        testImage=(ImageView)findViewById(R.id.testdata) ;
         progressBar=(ProgressBar)findViewById(R.id.imageprogress);
+        sizemessage=(TextView)findViewById(R.id.sizemessage);
 
+        testImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testdata();
+            }
+        });
 
         dnum1_et.addTextChangedListener(new TextWatcher() {
             @Override
@@ -317,29 +332,42 @@ public class MainActivity extends AppCompatActivity {
         dnum8_string=dnum8_et.getText().toString();
         usernameSt=usernameEt.getText().toString();
         passwordSt=passwordEt.getText().toString();
+
+
+        if(genderMale.isChecked()){
+            genderSt="M";
+        }else{
+            genderSt="F";
+        }
+
         firstnameSt=firstnameEt.getText().toString();
         middlenameSt=middlenameEt.getText().toString();
         lastnameSt=lastnameEt.getText().toString();
+        avantak_string=avantakEt.getText().toString();
         dateofbirthSt=dnum1_string+dnum2_string+" - "+dnum3_string+dnum4_string+" - "+dnum5_string+dnum6_string+dnum7_string+dnum8_string;
         occupatioSt=occupatioEt.getText().toString();
         aboutmeSt=aboutmeEt.getText().toString();
-
-        firstgotraSt=firstgotraEt.getText().toString();
-        secondgotraSt=secondgotraEt.getText().toString();
+        if(nevermarriedRb.isChecked()){
+            maritalstatusSt="N";
+        }else if(marriedRb.isChecked()){
+             maritalstatusSt="M";
+        }else if(divorcedRb.isChecked()){
+             maritalstatusSt="D";
+         }else if(widowRb.isChecked()){
+             maritalstatusSt="W";
+         }
         emailidSt=emailidEt.getText().toString();
         resiaddSt=resiaddEt.getText().toString();
+        //Native address
         permaddSt=permaddEt.getText().toString();
+        currentcityst=current_cityet.getText().toString();
         contactnumberSt=contactnumberEt.getText().toString();
         heightSt=heightEt.getText().toString();
         bloodgroupSt=bloodgroupEt.getText().toString();
-        complexionSt=complexionEt.getText().toString();
         educationSt=educationEt.getText().toString();
         annualincomeSt=annualincomeEt.getText().toString();
-        mothertonugeSt=mothertonugeEt.getText().toString();
-        birthnameSt=birthnameEt.getText().toString();
-        birthtimeSt=birthtimeEt.getText().toString();
-        birthplaceSt=birthplaceEt.getText().toString();
-        fathersnameSt=fathersnameEt.getText().toString();
+        firstgotraSt=firstgotraEt.getText().toString();
+        //////////////Family info start
         occupation1St=occupation1Et.getText().toString();
         mothersnameSt=mothersnameEt.getText().toString();
         occupation2St=occupation2Et.getText().toString();
@@ -347,14 +375,15 @@ public class MainActivity extends AppCompatActivity {
         brotherdetailsSt=brotherdetailsEt.getText().toString();
         noofsistersSt=noofsistersEt.getText().toString();
         sisterdetailsSt=sisterdetailsEt.getText().toString();
+
         qualificationSt=qualificationEt.getText().toString();
         annualincome1St=annualincome1Et.getText().toString();
         agerangeSt=agerangeEt.getText().toString();
         height1St=height1Et.getText().toString();
         occupation3St=occupation3Et.getText().toString();
         preferredcitySt=preferredcityEt.getText().toString();
-        usersImg=(ImageView)findViewById(R.id.imageView3);
-        testdata();
+
+        addvalidations();
     }
 });
 
@@ -370,7 +399,49 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
     }
 
     public void testdata(){
-        Toast.makeText(this, imageString.length()+"", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, imageString.length()+"", Toast.LENGTH_SHORT).show();
+        dnum1_et.setText("1");
+        dnum2_et.setText("2");
+        dnum3_et.setText("0");
+        dnum4_et.setText("3");
+        dnum5_et.setText("1");
+        dnum6_et.setText("9");
+        dnum7_et.setText("9");
+        dnum8_et.setText("2");
+        usernameEt.setText("username");
+        passwordEt.setText("password");
+        genderMale.setChecked(true);
+        firstnameEt.setText("firstname");
+        middlenameEt.setText("1middlename");
+        lastnameEt.setText("lastname");
+        avantakEt.setText("avantak");
+        occupatioEt.setText("occupatio");
+        aboutmeEt.setText("aboutme");
+        nevermarriedRb.setChecked(true);
+        emailidEt.setText("emailid");
+        resiaddEt.setText("resiadd");
+        permaddEt.setText("permadd");
+        current_cityet.setText("current_city");
+        contactnumberEt.setText("contactnumber");
+        heightEt.setText("height");
+        bloodgroupEt.setText("bloodgroup");
+        educationEt.setText("education");
+        annualincomeEt.setText("annualincome");
+        firstgotraEt.setText("firstgotra");
+        occupation1Et.setText("occupation1");
+        mothersnameEt.setText("mothersname");
+        occupation2Et.setText("occupation");
+        noofbrothersEt.setText("noofbrothers");
+        brotherdetailsEt.setText("brotherdetails");
+        noofsistersEt.setText("noofsisters");
+        sisterdetailsEt.setText("sisterdetails");
+        qualificationEt.setText("qualification");
+        annualincome1Et.setText("annualincome1");
+        agerangeEt.setText("agerangeEt");
+        height1Et.setText("height1");
+        occupation3Et.setText("occupation");
+        preferredcityEt.setText("preferredcity");
+
     }
 
     public void addvalidations(){
@@ -381,7 +452,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             passwordEt.requestFocus();
             Toast.makeText(this, "Password can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(genderSt.trim().equals("")){
-            usernameEt.requestFocus();
+            passwordEt.requestFocus();
             Toast.makeText(this, "Please select Gender", Toast.LENGTH_SHORT).show();
         }else if(firstnameSt.trim().equals("")){
             firstnameEt.requestFocus();
@@ -392,15 +463,21 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         }else if(lastnameSt.trim().equals("")){
             lastnameEt.requestFocus();
             Toast.makeText(this, "Lastname can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(firstgotraSt.trim().equals("")){
-            firstgotraEt.requestFocus();
-            Toast.makeText(this, "First gotra can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(resiaddSt.trim().equals("")){
+        }else if(avantak_string.trim().equals("")){
+            avantakEt.requestFocus();
+            Toast.makeText(this, "Avantak can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(maritalstatusSt.trim().equals("")){
+            aboutmeEt.requestFocus();
+            Toast.makeText(this, "Please select marital status", Toast.LENGTH_SHORT).show();
+        } else if(resiaddSt.trim().equals("")){
             resiaddEt.requestFocus();
-            Toast.makeText(this, "Residance address can`t be left blank", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Residence address can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(permaddSt.trim().equals("")){
             permaddEt.requestFocus();
-            Toast.makeText(this, "Permanent address can`t be left blank", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Native village(Rajsthan) can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(currentcityst.trim().equals("")){
+            current_cityet.requestFocus();
+            Toast.makeText(this, "Current city can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(contactnumberSt.trim().equals("")){
             contactnumberEt.requestFocus();
             Toast.makeText(this, "Contact number can`t be left blank", Toast.LENGTH_SHORT).show();
@@ -410,43 +487,30 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         }else if(bloodgroupSt.trim().equals("")){
             bloodgroupEt.requestFocus();
             Toast.makeText(this, "Blood Group can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(complexionSt.trim().equals("")){
-            complexionEt.requestFocus();
-            Toast.makeText(this, "Complexion can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(educationSt.trim().equals("")){
-            educationEt.requestFocus();
-            Toast.makeText(this, "Education can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(annualincomeSt.trim().equals("")){
-            annualincome1Et.requestFocus();
-            Toast.makeText(this, "Annual Income can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(mothertonugeSt.trim().equals("")){
-            mothertonugeEt.requestFocus();
-            Toast.makeText(this, "Mother Tongue can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(fathersnameSt.trim().equals("")){
-            fathersnameEt.requestFocus();
-            Toast.makeText(this, "Father Name can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(mothersnameSt.trim().equals("")){
             mothersnameEt.requestFocus();
             Toast.makeText(this, "Mother Name can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(noofbrothersSt.trim().equals("")){
-            noofbrothersEt.requestFocus();
-            Toast.makeText(this, "No of brother can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(noofsistersSt.trim().equals("")){
-            noofsistersEt.requestFocus();
-            Toast.makeText(this, "No of sister can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(qualificationSt.trim().equals("")){
-            qualificationEt.requestFocus();
-            Toast.makeText(this, "Qualification can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(agerangeSt.trim().equals("")){
             agerangeEt.requestFocus();
             Toast.makeText(this, "Age range can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(dateofbirthSt.trim().equals("")){
+        }else if(height1St.trim().equals("")){
+            heightEt.requestFocus();
+            Toast.makeText(this, "Height can`t be left blank", Toast.LENGTH_SHORT).show();
+        }
+        else if(dateofbirthSt.trim().equals("")){
             lastnameEt.requestFocus();
             Toast.makeText(this, "Date of birth is not appropriate", Toast.LENGTH_SHORT).show();
         }else if(maritalstatusSt.trim().equals("")){
             firstgotraEt.requestFocus();
             Toast.makeText(this, "Select Marital status", Toast.LENGTH_SHORT).show();
-        }else {
+        }else if(firstgotraSt.trim().equals("")){
+            firstgotraEt.requestFocus();
+            Toast.makeText(this, "First gotra can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(imageString.trim().equals("")){
+            firstgotraEt.requestFocus();
+            Toast.makeText(this, "Please select image", Toast.LENGTH_SHORT).show();
+        }
+        else {
             createjsonobject();
         }
 
@@ -455,85 +519,107 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
     public void createjsonobject(){
         jsonObject=new JSONObject();
         try {
-            jsonObject.put("usernameSt",usernameSt);
+            jsonObject.put("username",usernameSt);
 
-            jsonObject.put("passwordSt",passwordSt);
+            jsonObject.put("password",passwordSt);
 
-            jsonObject.put("firstnameSt",firstnameSt);
+            jsonObject.put("type",genderSt);
 
-            jsonObject.put("middlenameSt",middlenameSt);
+            jsonObject.put("firstname",firstnameSt);
 
-            jsonObject.put("lastnameSt",lastnameSt);
+            jsonObject.put("middlename",middlenameSt);
 
-            jsonObject.put("dateofbirthSt",dateofbirthSt);
+            jsonObject.put("lastname",lastnameSt);
 
-            jsonObject.put("occupatioSt",occupatioSt);
+            jsonObject.put("dateofbirth",dateofbirthSt);
 
-            jsonObject.put("aboutmeSt",aboutmeSt);
+            jsonObject.put("occupatio",occupatioSt);
 
-            jsonObject.put("maritalstatusSt",maritalstatusSt);
+            jsonObject.put("aboutme",aboutmeSt);
 
-            jsonObject.put("firstgotraSt",firstgotraSt);
+            jsonObject.put("maritalstatus",maritalstatusSt);
 
-            jsonObject.put("secondgotraSt",secondgotraSt);
+           //
 
-            jsonObject.put("emailidSt",emailidSt);
+           // jsonObject.put("secondgotraSt",secondgotraSt);
 
-            jsonObject.put("resiaddSt",resiaddSt);
+            jsonObject.put("emailid",emailidSt);
 
-            jsonObject.put("permaddSt",permaddSt);
+            jsonObject.put("resiadd",resiaddSt);
 
-            jsonObject.put("contactnumberSt",contactnumberSt);
+            jsonObject.put("nativevillage",permaddSt);
 
-            jsonObject.put("heightSt",heightSt);
+            jsonObject.put("currentcity",currentcityst);
 
-            jsonObject.put("bloodgroupSt",bloodgroupSt);
+            jsonObject.put("contactnumber",contactnumberSt);
 
-            jsonObject.put("complexionSt",complexionSt);
+            jsonObject.put("height",heightSt);
 
-            jsonObject.put("educationSt",educationSt);
+            jsonObject.put("bloodgroup",bloodgroupSt);
 
-            jsonObject.put("annualincomeSt",annualincomeSt);
+            //jsonObject.put("complexionSt",complexionSt);
 
-            jsonObject.put("mothertonugeSt",mothertonugeSt);
+            jsonObject.put("education",educationSt);
 
-            jsonObject.put("birthnameSt",birthnameSt);
+            jsonObject.put("annualincome",annualincomeSt);
 
-            jsonObject.put("birthtimeSt",birthtimeSt);
+            jsonObject.put("firstgotra",firstgotraSt);
 
-            jsonObject.put("birthplaceSt",birthplaceSt);
+           // jsonObject.put("mothertonugeSt",mothertonugeSt);
 
-            jsonObject.put("fathersnameSt",fathersnameSt);
+           // jsonObject.put("birthnameSt",birthnameSt);
 
-            jsonObject.put("occupation1St",occupation1St);
+           // jsonObject.put("birthtimeSt",birthtimeSt);
 
-            jsonObject.put("mothersnameSt",mothersnameSt);
+         //   jsonObject.put("birthplaceSt",birthplaceSt);
 
-            jsonObject.put("noofbrothersSt",noofbrothersSt);
+         //   jsonObject.put("fathersnameSt",fathersnameSt);
 
-            jsonObject.put("brotherdetailsSt",brotherdetailsSt);
+            jsonObject.put("fathersoccupation",occupation1St);
 
-            jsonObject.put("noofsistersSt",noofsistersSt);
+            jsonObject.put("mothersname",mothersnameSt);
 
-            jsonObject.put("sisterdetailsSt",sisterdetailsSt);
+            jsonObject.put("mothersoccupation",occupation2St);
 
-            jsonObject.put("qualificationSt",qualificationSt);
+            jsonObject.put("noofbrothers",noofbrothersSt);
 
-            jsonObject.put("annualincome1St",annualincome1St);
+            jsonObject.put("brotherdetails",brotherdetailsSt);
 
-            jsonObject.put("agerangeSt",agerangeSt);
+            jsonObject.put("noofsisters",noofsistersSt);
 
-            jsonObject.put("height1St",height1St);
+            jsonObject.put("sisterdetails",sisterdetailsSt);
 
-            jsonObject.put("occupation3St",occupation3St);
+            jsonObject.put("qualification",qualificationSt);
+
+            jsonObject.put("annualincomeexpected",annualincome1St);
+
+            jsonObject.put("agerangeexpected",agerangeSt);
+
+            jsonObject.put("heightexpected",height1St);
+
+            jsonObject.put("occupationexpected",occupation3St);
 
             jsonObject.put("preferredcitySt",preferredcitySt);
 
-            myRef.child(genderSt).child(contactnumberSt).setValue(jsonObject.toString());
+            Log.e("Json Object",jsonObject.toString());
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void sendrequest(){
+        stringRequest=new StringRequest(Request.Method.POST, "", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
     }
 
     private void SelectImage()
@@ -559,7 +645,6 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         super.onActivityResult(requestCode,
                 resultCode,
                 data);
-
 
         if (requestCode == PICK_IMAGE_REQUEST
                 && resultCode == RESULT_OK
@@ -621,13 +706,23 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
 
             imageString = Base64.encodeToString(imagebytes,0);
 
+
+
             return null;
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            usersImg.setImageBitmap(bitmap);
+
+            if(imageString.length()<72000) {
+                usersImg.setImageBitmap(bitmap);
+                sizemessage.setText("Image Selected successfully !!");
+            }else{
+                usersImg.setImageResource(R.drawable.warning);
+
+                sizemessage.setText("Please select Image with smaller size !!");
+            };
             progressBar.setVisibility(View.GONE);
 
         }

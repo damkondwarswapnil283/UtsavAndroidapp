@@ -16,6 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -51,8 +55,10 @@ public class showlist extends AppCompatActivity {
     JSONObject jsonObject;
     String genderSt,imageurl,firstName;
     StorageReference storageRef;
-
+    String getgroomurl="greenleafpureveg.in/utsavapplication/getgroom.php",getbrideurl="greenleafpureveg.in/utsavapplication/getbride.php";
+    String urlrequest;
     int countofImageurl=0;
+    StringRequest stringRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,91 +67,63 @@ public class showlist extends AppCompatActivity {
         adapter = new CustomListAdapter(this, movieList);
         listView.setAdapter(adapter);
 
-        FirebaseStorage storage=FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
+
 
         genderSt=getIntent().getExtras().getString("gender");
-        myRef = database.getReference("data").child(genderSt);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        if(genderSt.equals("M")){
+            urlrequest=getgroomurl;
+        }else{
+            urlrequest=getbrideurl;
+        }
+
+      stringRequest=new StringRequest(Request.Method.GET, urlrequest, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(stringRequest);
+
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent gotologinscreen=new Intent(showlist.this,Showuser.class);
-                gotologinscreen.putExtra("gender",genderSt);
-                gotologinscreen.putExtra("id",movieList.get(position).getRating());
                 startActivity(gotologinscreen);
             }
-        });
-// Read from the database
+        });*/
 
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(final DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                movieList.clear();
+            /*try {
+                Movie movie = new Movie();
+                individualObject = new JSONObject("");
+
+                movie.setTitle(individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
+                Log.e("Title-", individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
+                movie.setGenre(individualObject.getString("occupation3St"));
+                Log.e("Occupation-", individualObject.getString("occupation3St"));
+                movie.setRating(individualObject.getString("contactnumberSt"));
+                Log.e("Rating-", individualObject.getString("contactnumberSt"));
+                movie.setYear(individualObject.getString("contactnumberSt"));
+                Log.e("uniqueid-", individualObject.getString("usernameSt"));
+                movie.setThumbnailUrl(uri.toString());
+                Log.e("Url-", uri.toString());
+                movieList.add(movie);
+
+                Log.e("Verify", movieList.get(0).getTitle());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
                 adapter.notifyDataSetChanged();
+            };*/
 
 
-                for(final DataSnapshot snapshot:dataSnapshot.getChildren())
-                {
-
-                    try {
-
-                        jsonObject=new JSONObject(snapshot.getValue().toString());
-
-                        storageRef.child(jsonObject.getString("contactnumberSt")).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                String keyString=uri.getLastPathSegment();
-                                    try {
-                                        Movie   movie=new Movie();
-                                    individualObject=new JSONObject(dataSnapshot.child(keyString).getValue().toString());
-                                    //Log.e("String-",individualObject.toString());
-                                    movie.setTitle(individualObject.getString("firstnameSt")+" "+individualObject.getString("middlenameSt")+" "+individualObject.getString("lastnameSt"));
-                                    Log.e("Title-",individualObject.getString("firstnameSt")+" "+individualObject.getString("middlenameSt")+" "+individualObject.getString("lastnameSt"));
-                                    movie.setGenre(individualObject.getString("occupation3St"));
-                                    Log.e("Occupation-",individualObject.getString("occupation3St"));
-                                    movie.setRating(individualObject.getString("contactnumberSt"));
-                                    Log.e("Rating-",individualObject.getString("contactnumberSt"));
-                                    movie.setYear(individualObject.getString("contactnumberSt"));
-                                    Log.e("uniqueid-",individualObject.getString("usernameSt"));
-                                    movie.setThumbnailUrl(uri.toString());
-                                    Log.e("Url-",uri.toString());
-                                    movieList.add(movie);
-
-                                    Log.e("Verify",movieList.get(0).getTitle());
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                adapter.notifyDataSetChanged();
-                            }
-
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-
-                            }
-                        });
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
 
 
 
