@@ -51,7 +51,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    String imageString="",usernameSt,passwordSt,firstnameSt,middlenameSt,lastnameSt,dateofbirthSt,occupatioSt,aboutmeSt,maritalstatusSt,
+    String imageString="",firstnameSt,middlenameSt,lastnameSt,dateofbirthSt,occupatioSt,aboutmeSt,maritalstatusSt,
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
             educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView testImage;
     StringRequest stringRequest;
 
-    EditText usernameEt,passwordEt,firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
+    EditText firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,avantakEt,
@@ -93,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
         /*
         Edittext mapping
          */
-        usernameEt=(EditText)findViewById(R.id.inputemail);
-        passwordEt=(EditText)findViewById(R.id.inputpassword);
+
         firstnameEt=(EditText)findViewById(R.id.firstname);
         middlenameEt=(EditText)findViewById(R.id.middlename);
         lastnameEt=(EditText)findViewById(R.id.lastname);
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         emailidEt=(EditText)findViewById(R.id.emailid);
         resiaddEt=(EditText)findViewById(R.id.resiadd);
         permaddEt=(EditText)findViewById(R.id.permadd);
-        usernameEt=(EditText)findViewById(R.id.inputemail);
+
         contactnumberEt=(EditText)findViewById(R.id.contact1);
         heightEt=(EditText)findViewById(R.id.height);
         bloodgroupEt=(EditText)findViewById(R.id.bloodgroup);
@@ -330,8 +329,6 @@ public class MainActivity extends AppCompatActivity {
         dnum6_string=dnum6_et.getText().toString();
         dnum7_string=dnum7_et.getText().toString();
         dnum8_string=dnum8_et.getText().toString();
-        usernameSt=usernameEt.getText().toString();
-        passwordSt=passwordEt.getText().toString();
 
 
         if(genderMale.isChecked()){
@@ -408,8 +405,6 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         dnum6_et.setText("9");
         dnum7_et.setText("9");
         dnum8_et.setText("2");
-        usernameEt.setText("username");
-        passwordEt.setText("password");
         genderMale.setChecked(true);
         firstnameEt.setText("firstname");
         middlenameEt.setText("1middlename");
@@ -445,14 +440,8 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
     }
 
     public void addvalidations(){
-        if(usernameSt.trim().equals("")){
-            usernameEt.requestFocus();
-            Toast.makeText(this, "Username can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(passwordSt.trim().equals("")){
-            passwordEt.requestFocus();
-            Toast.makeText(this, "Password can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(genderSt.trim().equals("")){
-            passwordEt.requestFocus();
+         if(genderSt.trim().equals("")){
+            firstnameEt.requestFocus();
             Toast.makeText(this, "Please select Gender", Toast.LENGTH_SHORT).show();
         }else if(firstnameSt.trim().equals("")){
             firstnameEt.requestFocus();
@@ -519,9 +508,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
     public void createjsonobject(){
         jsonObject=new JSONObject();
         try {
-            jsonObject.put("username",usernameSt);
 
-            jsonObject.put("password",passwordSt);
 
             jsonObject.put("type",genderSt);
 

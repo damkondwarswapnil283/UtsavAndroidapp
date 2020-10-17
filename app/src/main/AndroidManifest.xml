@@ -3,7 +3,8 @@
     package="com.example.swapnil.ekycapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".AppController"
         android:allowBackup="true"
@@ -12,30 +13,26 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Editmyprofile"></activity>
-        <activity android:name=".showlist" >
-
-        </activity>
-        <activity android:name=".Forgotpassword" />
-        <activity android:name=".Showuser" >
-
-        </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Helpandfundrising"></activity>
+        <activity android:name=".newschannel" />
+        <activity android:name=".Directory" />
+        <activity android:name=".Newregister" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Splashscreen">
+        <activity android:name=".Editmyprofile" />
+        <activity android:name=".showlist" />
+        <activity android:name=".Forgotpassword" />
+        <activity android:name=".Showuser" />
+        <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".Login" >
-
-        </activity>
-        <activity android:name=".Selectionactivity" >
-
-        </activity>
+        <activity android:name=".Splashscreen" />
+        <activity android:name=".Login" />
+        <activity android:name=".Selectionactivity" />
         <activity android:name=".Success" />
     </application>
 

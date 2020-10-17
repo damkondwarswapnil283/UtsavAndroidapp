@@ -61,7 +61,7 @@ public class Showuser extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         returnhomebutton=(Button)findViewById(R.id.retuenbtn);
-        usernameEt=(TextView)findViewById(R.id.inputemail);
+
         passwordEt=(TextView)findViewById(R.id.inputpassword);
         firstnameEt=(TextView)findViewById(R.id.firstname);
         middlenameEt=(TextView)findViewById(R.id.middlename);
@@ -75,7 +75,7 @@ public class Showuser extends AppCompatActivity {
         emailidEt=(TextView)findViewById(R.id.emailid);
         resiaddEt=(TextView)findViewById(R.id.resiadd);
         permaddEt=(TextView)findViewById(R.id.permadd);
-        usernameEt=(TextView)findViewById(R.id.inputemail);
+
         contactnumberEt=(TextView)findViewById(R.id.contact1);
         heightEt=(TextView)findViewById(R.id.height);
         bloodgroupEt=(TextView)findViewById(R.id.bloodgroup);
