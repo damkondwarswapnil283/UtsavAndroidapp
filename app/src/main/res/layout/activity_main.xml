@@ -770,16 +770,16 @@
                     android:textColor="#fff"
                     android:text="Select photo from gallery" />
 
-
-
                 <ProgressBar
                     android:id="@+id/mainprogressbar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    style="?android:attr/progressBarStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:padding="8dp"
                     android:layout_weight="1" />
+
+
+
 
                 <Button
                     android:id="@+id/submitbt"

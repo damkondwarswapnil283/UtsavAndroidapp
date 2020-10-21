@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:padding="16dp"
+    tools:context=".selectmode">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@drawable/edittextround"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="168dp"
+            android:layout_height="198dp"
+            app:srcCompat="@drawable/utsavlogo" />
+
+        <View
+            android:layout_width="400dp"
+            android:layout_height="2dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorAccent"
+            />
+
+        <Button
+            android:id="@+id/matrimony"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:textColor="#fff"
+            android:layout_margin="10dp"
+            android:text="Utsav Matrimony" />
+
+        <Button
+            android:id="@+id/community"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="#fff"
+            android:background="@drawable/button"
+            android:text="Utsav Community" />
+    </LinearLayout>
+</RelativeLayout>

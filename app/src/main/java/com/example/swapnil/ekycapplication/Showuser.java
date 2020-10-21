@@ -15,9 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +36,9 @@ import com.google.firebase.storage.StorageReference;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Showuser extends AppCompatActivity {
     String usernameSt,passwordSt,firstnameSt,middlenameSt,lastnameSt,dateofbirthSt,occupatioSt,aboutmeSt,maritalstatusSt,
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
@@ -44,22 +51,19 @@ public class Showuser extends AppCompatActivity {
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,
             agerangeEt,height1Et,occupation3Et,preferredcityEt;
     JSONObject jsonObject;
-    private DatabaseReference mDatabase;
-    private RequestQueue mRequestQueue;
+    private NetworkImageView mNetworkImageView;
     private ImageLoader mImageLoader;
-    DatabaseReference myRef;
-    StorageReference storageRef;
-    NetworkImageView networkImageView;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    String genderSt,keystring;
+    StringRequest stringRequest;
+    String genderSt,keystring,getdatabyidurl="http://greenleafpureveg.in/utsavapplication/getdatabyid.php";
     Button returnhomebutton;
+    ImageLoader imageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showuser);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         returnhomebutton=(Button)findViewById(R.id.retuenbtn);
 
         passwordEt=(TextView)findViewById(R.id.inputpassword);
@@ -75,7 +79,7 @@ public class Showuser extends AppCompatActivity {
         emailidEt=(TextView)findViewById(R.id.emailid);
         resiaddEt=(TextView)findViewById(R.id.resiadd);
         permaddEt=(TextView)findViewById(R.id.permadd);
-
+        mNetworkImageView=(NetworkImageView)findViewById(R.id.candidateimage);
         contactnumberEt=(TextView)findViewById(R.id.contact1);
         heightEt=(TextView)findViewById(R.id.height);
         bloodgroupEt=(TextView)findViewById(R.id.bloodgroup);
@@ -100,178 +104,173 @@ public class Showuser extends AppCompatActivity {
         height1Et=(TextView)findViewById(R.id.height1);
         occupation3Et=(TextView)findViewById(R.id.occupation3);
         preferredcityEt=(TextView)findViewById(R.id.preferredcity);
+      imageLoader = AppController.getInstance().getImageLoader();
 
-        networkImageView=(NetworkImageView)findViewById(R.id.candidateimage);
-        FirebaseStorage storage=FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
+
         keystring=getIntent().getExtras().getString("id");
-        genderSt=getIntent().getExtras().getString("gender");
-        myRef = database.getReference("data").child(genderSt).child(keystring);
-        mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
-            private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
-            public void putBitmap(String url, Bitmap bitmap) {
-                mCache.put(url, bitmap);
-            }
-            public Bitmap getBitmap(String url) {
-                return mCache.get(url);
-            }
-        });
 
-
-            storageRef.child(keystring).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-
-                    networkImageView.setImageUrl(uri.toString(),mImageLoader);
-
-                }
-
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-
-                }
-            });
-
-
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
+        stringRequest=new StringRequest(Request.Method.POST, getdatabyidurl, new Response.Listener<String>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue().toString();
+            public void onResponse(String response) {
+                //Toast.makeText(Login.this, response, Toast.LENGTH_LONG).show();
                 try {
-                    jsonObject=new JSONObject(value);
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONObject individualjsonobject;
+                    String flag=jsonObject.getString("success");
+                    if(flag.equals("1")){
 
-                    Toast.makeText(Showuser.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
-                    Log.e("Response",jsonObject.toString());
+                        try {
+                            jsonObject=new JSONObject(response);
 
-                    usernameSt=jsonObject.getString("usernameSt");
+                            Toast.makeText(Showuser.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                            Log.e("Response",jsonObject.toString());
 
-                    passwordSt=jsonObject.getString("passwordSt");
+                            individualjsonobject=new JSONObject(jsonObject.getString("jsondata"));
 
-                    firstnameSt=jsonObject.getString("firstnameSt");
+                            firstnameSt=individualjsonobject.getString("firstname");
 
-                    middlenameSt=jsonObject.getString("middlenameSt");
+                            middlenameSt=individualjsonobject.getString("middlename");
 
-                    lastnameSt=jsonObject.getString("lastnameSt");
+                            lastnameSt=individualjsonobject.getString("lastname");
 
-                    dateofbirthSt=jsonObject.getString("dateofbirthSt");
+                            dateofbirthSt=individualjsonobject.getString("dateofbirth");
 
-                    occupatioSt=jsonObject.getString("occupatioSt");
+                            occupatioSt=individualjsonobject.getString("occupatio");
 
-                    aboutmeSt=jsonObject.getString("aboutmeSt");
+                            aboutmeSt=individualjsonobject.getString("aboutme");
 
-               //     maritalstatusSt=jsonObject.getString("maritalstatusSt");
+                            maritalstatusSt=individualjsonobject.getString("maritalstatus");
 
-                    firstgotraSt=jsonObject.getString("firstgotraSt");
+                            firstgotraSt=individualjsonobject.getString("firstgotra");
 
-                    secondgotraSt=jsonObject.getString("secondgotraSt");
 
-                    emailidSt=jsonObject.getString("emailidSt");
 
-                    resiaddSt=jsonObject.getString("resiaddSt");
+                            emailidSt=individualjsonobject.getString("emailid");
 
-                    permaddSt=jsonObject.getString("permaddSt");
+                            resiaddSt=individualjsonobject.getString("resiadd");
 
-                    contactnumberSt=jsonObject.getString("contactnumberSt");
+                            permaddSt=individualjsonobject.getString("nativevillage");
 
-                    heightSt=jsonObject.getString("heightSt");
+                            contactnumberSt=individualjsonobject.getString("contactnumber");
 
-                    bloodgroupSt=jsonObject.getString("bloodgroupSt");
+                            heightSt=individualjsonobject.getString("height");
 
-                    complexionSt=jsonObject.getString("complexionSt");
+                            bloodgroupSt=individualjsonobject.getString("bloodgroup");
 
-                    educationSt=jsonObject.getString("educationSt");
+                            //complexionSt=individualjsonobject.getString("complexionSt");
 
-                    annualincomeSt=jsonObject.getString("annualincomeSt");
+                            educationSt=individualjsonobject.getString("education");
 
-                    mothertonugeSt=jsonObject.getString("mothertonugeSt");
+                            annualincomeSt=individualjsonobject.getString("annualincome");
 
-                    birthnameSt=jsonObject.getString("birthnameSt");
+                           // mothertonugeSt=individualjsonobject.getString("mothertonugeSt");
 
-                    birthtimeSt=jsonObject.getString("birthtimeSt");
+                          //  birthnameSt=individualjsonobject.getString("birthnameSt");
 
-                    birthplaceSt=jsonObject.getString("birthplaceSt");
+                         //   birthtimeSt=individualjsonobject.getString("birthtimeSt");
 
-                    fathersnameSt=jsonObject.getString("fathersnameSt");
+                          //  birthplaceSt=individualjsonobject.getString("birthplaceSt");
 
-                    occupation1St=jsonObject.getString("occupation1St");
+                            fathersnameSt=individualjsonobject.getString("middlename");
 
-                    mothersnameSt=jsonObject.getString("mothersnameSt");
+                            occupation1St=individualjsonobject.getString("fathersoccupation");
 
-                    noofbrothersSt=jsonObject.getString("noofbrothersSt");
+                            mothersnameSt=individualjsonobject.getString("mothersname");
 
-                    brotherdetailsSt=jsonObject.getString("brotherdetailsSt");
+                            noofbrothersSt=individualjsonobject.getString("noofbrothers");
 
-                    noofsistersSt=jsonObject.getString("noofsistersSt");
+                            brotherdetailsSt=individualjsonobject.getString("brotherdetails");
 
-                    sisterdetailsSt=jsonObject.getString("sisterdetailsSt");
+                            noofsistersSt=individualjsonobject.getString("noofsisters");
 
-                    qualificationSt=jsonObject.getString("qualificationSt");
+                            sisterdetailsSt=individualjsonobject.getString("sisterdetails");
 
-                    annualincome1St=jsonObject.getString("annualincome1St");
+                            qualificationSt=individualjsonobject.getString("qualification");
 
-                    agerangeSt=jsonObject.getString("agerangeSt");
+                            annualincome1St=individualjsonobject.getString("annualincome");
 
-                    height1St=jsonObject.getString("height1St");
+                            agerangeSt=individualjsonobject.getString("agerangeexpected");
 
-                    occupation3St=jsonObject.getString("occupation3St");
+                            height1St=individualjsonobject.getString("heightexpected");
 
-                    preferredcitySt=jsonObject.getString("preferredcitySt");
+                            occupation3St=individualjsonobject.getString("occupationexpected");
 
-                    //usernameEt.setText( usernameSt);
-                   // passwordEt.setText(passwordSt);
-                    firstnameEt.setText(firstnameSt);
-//                    middlenameEt.setText(middlenameSt);
- //                   lastnameEt.setText(lastnameSt);
-                    dateofbirthEt.setText(dateofbirthSt);
-                    occupatioEt.setText(occupatioSt);
-                    aboutmeEt.setText(aboutmeSt);
-                    maritalstatusEt.setText(maritalstatusSt);
-                    firstgotraEt.setText(firstgotraSt);
-                    secondgotraEt.setText(secondgotraSt);
-                    emailidEt.setText(emailidSt);
-                    resiaddEt.setText(resiaddSt);
-                    permaddEt.setText(permaddSt);
-                    contactnumberEt.setText(contactnumberSt);
-                    heightEt.setText(heightSt);
-                    bloodgroupEt.setText(bloodgroupSt);
-                    complexionEt.setText(complexionSt);
-                    educationEt.setText(educationSt);
-                    annualincomeEt.setText(annualincomeSt);
-                    mothertonugeEt.setText(mothertonugeSt);
-                    birthnameEt.setText(birthnameSt);
-                    birthtimeEt.setText(birthtimeSt);
-                    birthplaceEt.setText(birthplaceSt);
-                    fathersnameEt.setText(fathersnameSt);
-                    occupation1Et.setText(occupation1St);
-                    mothersnameEt.setText(mothersnameSt);
-                    occupation2Et.setText(occupation2St);
-                    noofbrothersEt.setText(noofbrothersSt);
-                    brotherdetailsEt.setText(brotherdetailsSt);
-                    noofsistersEt.setText(noofsistersSt);
-                    sisterdetailsEt.setText(sisterdetailsSt);
-                    qualificationEt.setText(qualificationSt);
-                    annualincome1Et.setText(annualincome1St);
-                    agerangeEt.setText(agerangeSt);
-                    height1Et.setText(height1St);
-                    occupation3Et.setText(occupation3St);
-                    preferredcityEt.setText(preferredcitySt);
+                            preferredcitySt=individualjsonobject.getString("preferredcitySt");
+
+                            String imageurl=jsonObject.getString("image");
+                            mNetworkImageView.setImageUrl(imageurl,imageLoader);
+
+
+                            firstnameEt.setText("Firstname:- "+firstnameSt);
+                            dateofbirthEt.setText("Date of birth:- "+dateofbirthSt);
+                            occupatioEt.setText("Occupation:- "+occupatioSt);
+                            aboutmeEt.setText("About Me:- "+aboutmeSt);
+                            maritalstatusEt.setText("Marital Status:- "+maritalstatusSt);
+                            firstgotraEt.setText("First Gotra:-"+firstgotraSt);
+//                            secondgotraEt.setText(secondgotraSt);
+                            emailidEt.setText("Email:- "+emailidSt);
+
+                            resiaddEt.setText("Ressidance Address:- "+resiaddSt);
+                            permaddEt.setText("Permanent Address:- "+permaddSt);
+                            contactnumberEt.setText("Contact Number:- "+contactnumberSt);
+                            heightEt.setText("Height:- "+heightSt);
+                            bloodgroupEt.setText("Blood Group:- "+bloodgroupSt);
+                            //complexionEt.setText(complexionSt);
+                            educationEt.setText("Education:- "+educationSt);
+                            annualincomeEt.setText("Annual Income:- "+annualincomeSt);
+
+
+                            fathersnameEt.setText("Father Name:- "+fathersnameSt);
+                            occupation1Et.setText("Occupation:- "+occupation1St);
+                            mothersnameEt.setText("Mother`s Name:- "+mothersnameSt);
+                            occupation2Et.setText("Occupation:- "+individualjsonobject.getString("mothersoccupation"));
+                            noofbrothersEt.setText("No of Brothers:- "+noofbrothersSt);
+                            brotherdetailsEt.setText("Brother Details:- "+brotherdetailsSt);
+                            noofsistersEt.setText("No of sisters:- "+noofsistersSt);
+                            sisterdetailsEt.setText("Sisters Details"+sisterdetailsSt);
+                            qualificationEt.setText("Qualification:- "+qualificationSt);
+                            annualincome1Et.setText("Annual Income:- "+annualincome1St);
+                            agerangeEt.setText("Age range:- "+agerangeSt);
+                            height1Et.setText("Height:- "+height1St);
+                            occupation3Et.setText("Occupation:- "+occupation3St);
+                            preferredcityEt.setText("Prefered City:- "+preferredcitySt);
+                        } catch (JSONException e) {
+                            Toast.makeText(Showuser.this, e.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    Log.e("Individual Resp",response);
+                    }else{
+
+                    }
                 } catch (JSONException e) {
-                    Toast.makeText(Showuser.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
                 }
+
+
             }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(Showuser.this, "Something went wrong. Please try again", Toast.LENGTH_LONG).show();
+            }
+        }){
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Toast.makeText(Showuser.this, error.toString(), Toast.LENGTH_SHORT).show();
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", keystring);
+                return params;
             }
-        });
+
+        };
+
+       /* */
+
+
+
+
+
+AppController.getInstance().addToRequestQueue(stringRequest);
 
 
         returnhomebutton.setOnClickListener(new View.OnClickListener() {

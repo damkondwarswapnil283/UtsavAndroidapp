@@ -31,9 +31,9 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/utsavlogo" />
 
                 <View
                     android:layout_width="match_parent"
@@ -155,16 +155,7 @@
                         android:hint="First Gotra" />
 
 
-                    <TextView
-                        android:id="@+id/secondgotra"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Second Gotra" />
+
 
 
                     <TextView
@@ -238,16 +229,7 @@
                         android:textSize="18sp"
                         android:hint="Blood Group" />
 
-                    <TextView
-                        android:id="@+id/complexion"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Complexion" />
+
 
                     <TextView
                         android:id="@+id/education"
@@ -272,63 +254,8 @@
                         android:textSize="18sp"
                         android:hint="Annual Income" />
 
-                    <TextView
-                        android:id="@+id/mothertonung"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Mother Tongue" />
 
 
-                <TextView
-                    android:id="@+id/kundalidetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:textSize="25sp"
-                    android:gravity="center"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/edittextround"
-                    android:text="Kundali Details" />
-
-
-
-                    <TextView
-                        android:id="@+id/birthname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Birth Name" />
-
-                    <TextView
-                        android:id="@+id/birthtime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Birth Time" />
-
-                    <TextView
-                        android:id="@+id/birthplace"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Birth Place" />
 
 
                 <TextView

@@ -59,7 +59,7 @@ TextView forgotpassword;
                     String flag=jsonObject.getString("success");
                     if(flag.equals("1")){
                         loginProgress.setVisibility(View.GONE);
-                        Intent gotodash=new Intent(Login.this,Selectionactivity.class);
+                        Intent gotodash=new Intent(Login.this,selectmode.class);
                         startActivity(gotodash);
 
                     }else{
@@ -113,7 +113,7 @@ TextView forgotpassword;
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotologinscreen=new Intent(Login.this,MainActivity.class);
+                Intent gotologinscreen=new Intent(Login.this,Newregister.class);
                 startActivity(gotologinscreen);
                 finish();
             }

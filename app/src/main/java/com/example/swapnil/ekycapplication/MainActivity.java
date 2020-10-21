@@ -48,6 +48,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
             dnum6_string,avantak_string,
             dnum7_string,dnum8_string,genderSt,currentcityst;
-    ProgressBar progressBar;
+    ProgressBar progressBar,mainProgress;
     ImageView testImage;
     StringRequest stringRequest;
 
@@ -82,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
     RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale;
     ProgressBar progressBarimage;
     ByteArrayOutputStream bytearrayimage;
+
+    String registerUrl="http://greenleafpureveg.in/utsavapplication/addperson.php";
     // Write a message to the database
 
 
@@ -141,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
+        mainProgress=(ProgressBar)findViewById(R.id.mainprogressbar);
         dnum1_et=(EditText)findViewById(R.id.num1);
         dnum2_et=(EditText)findViewById(R.id.num2);
         dnum3_et=(EditText)findViewById(R.id.num3);
@@ -589,6 +594,8 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             jsonObject.put("preferredcitySt",preferredcitySt);
 
             Log.e("Json Object",jsonObject.toString());
+            mainProgress.setVisibility(View.VISIBLE);
+            sendrequest();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -596,17 +603,52 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
     }
 
     public void sendrequest(){
-        stringRequest=new StringRequest(Request.Method.POST, "", new Response.Listener<String>() {
+        stringRequest=new StringRequest(Request.Method.POST, registerUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                try {
+                    Log.e("Response",response);
+                    if(new JSONObject(response).getString("success").equals("1")){
 
+                        Toast.makeText(MainActivity.this, "Registration Successfull", Toast.LENGTH_SHORT).show();
+                        Intent gotologin=new Intent(MainActivity.this,Selectionactivity.class);
+                        startActivity(gotologin);
+                    }else{
+
+                        Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+
+                    }
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+                }
+                mainProgress.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                mainProgress.setVisibility(View.GONE);
             }
-        });
+        }){
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("jsondata", String.valueOf(jsonObject));
+                params.put("mobilnumber",contactnumberSt );
+                params.put("type", genderSt);
+                params.put("image",imageString );
+                params.put("forsearching", firstnameSt+" "+middlenameSt+" "+lastnameSt+" "+contactnumberSt);
+                params.put("firstname",firstnameSt );
+                params.put("middlename", middlenameSt);
+                params.put("lastname",lastnameSt );
+                return params;
+            }
+
+        };
+
+        AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
     private void SelectImage()
@@ -687,7 +729,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         protected String doInBackground(Bitmap... bitmaps) {
 
 
-            bitmap.compress(Bitmap.CompressFormat.JPEG,5,bytearrayimage);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,20,bytearrayimage);
 
             imagebytes = bytearrayimage.toByteArray();
 

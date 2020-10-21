@@ -8,9 +8,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,11 +33,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class showlist extends AppCompatActivity {
     // Log tag
@@ -44,27 +51,32 @@ public class showlist extends AppCompatActivity {
 
     private ProgressDialog pDialog;
     private List<Movie> movieList = new ArrayList<Movie>();
-
+    JSONArray jsonArray;
+    JSONObject jsonObject;
     private List<String> imageurls = new ArrayList<String>();
     private ListView listView;
     private CustomListAdapter adapter;
     JSONObject individualObject;
     TextView response;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
-    JSONObject jsonObject;
+    EditText searching;
+
+
     String genderSt,imageurl,firstName;
-    StorageReference storageRef;
-    String getgroomurl="greenleafpureveg.in/utsavapplication/getgroom.php",getbrideurl="greenleafpureveg.in/utsavapplication/getbride.php";
+
+    String getgroomurl="http://greenleafpureveg.in/utsavapplication/getgroom.php",
+            getbrideurl="http://greenleafpureveg.in/utsavapplication/getbride.php",
+            getbysearchurl="http://greenleafpureveg.in/utsavapplication/getsearch.php";
+    ;
     String urlrequest;
-    int countofImageurl=0;
-    StringRequest stringRequest;
+
+    StringRequest stringRequest,searchstringRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showlist);
         listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, movieList);
+        searching=(EditText)findViewById(R.id.searching);
         listView.setAdapter(adapter);
 
 
@@ -77,51 +89,189 @@ public class showlist extends AppCompatActivity {
             urlrequest=getbrideurl;
         }
 
-      stringRequest=new StringRequest(Request.Method.GET, urlrequest, new Response.Listener<String>() {
+
+        stringRequest=new StringRequest(Request.Method.GET, urlrequest, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("Response",response);
 
+                try {
+
+                    movieList.clear();
+                    jsonArray =new JSONArray(response);
+                    for(int i=0;i<jsonArray.length();i++){
+                        try {
+                            jsonObject=jsonArray.getJSONObject(i);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        individualObject= new JSONObject(jsonObject.getString("jsondata"));
+
+                        try {
+                            Movie movie = new Movie();
+
+                            movie.setTitle(individualObject.getString("firstname")+" "+individualObject.getString("middlename")+" "+individualObject.getString("lastname"));
+                            //Log.e("Title-", individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
+                            movie.setGenre(individualObject.getString("occupatio"));
+                            // Log.e("Occupation-", jsonObject.getString("occupation3St"));
+                            movie.setRating(individualObject.getString("aboutme"));
+                            // Log.e("Rating-", individualObject.getString("gender"));
+                            movie.setYear(individualObject.getString("dateofbirth"));
+                            // Log.e("uniqueid-", individualObject.getString("usernameSt"));
+                            movie.setThumbnailUrl(jsonObject.getString("image"));
+                            //Log.e("Url-", uri.toString());
+                            movieList.add(movie);
+                            adapter.notifyDataSetChanged();
+                            Log.e("Verify", movieList.get(0).getTitle());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            adapter.notifyDataSetChanged();
+                        };
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    movieList.clear();
+                    adapter.notifyDataSetChanged();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.e("Error",error.toString());
+                movieList.clear();
+                adapter.notifyDataSetChanged();
             }
         });
 
-        AppController.getInstance().addToRequestQueue(stringRequest);
 
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent gotologinscreen=new Intent(showlist.this,Showuser.class);
-                startActivity(gotologinscreen);
+                Intent showuser=new Intent(showlist.this,Showuser.class);
+                String ID = null;
+                try {
+                   ID=jsonArray.getJSONObject(position).getString("id");
+                    Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                showuser.putExtra("id",ID);
+                startActivity(showuser);
             }
-        });*/
+        });
 
+      searchstringRequest=new StringRequest(Request.Method.POST, getbysearchurl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("Response",response);
 
-            /*try {
-                Movie movie = new Movie();
-                individualObject = new JSONObject("");
+                try {
 
-                movie.setTitle(individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
-                Log.e("Title-", individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
-                movie.setGenre(individualObject.getString("occupation3St"));
-                Log.e("Occupation-", individualObject.getString("occupation3St"));
-                movie.setRating(individualObject.getString("contactnumberSt"));
-                Log.e("Rating-", individualObject.getString("contactnumberSt"));
-                movie.setYear(individualObject.getString("contactnumberSt"));
-                Log.e("uniqueid-", individualObject.getString("usernameSt"));
-                movie.setThumbnailUrl(uri.toString());
-                Log.e("Url-", uri.toString());
-                movieList.add(movie);
+                    jsonArray =new JSONArray(response);
+                    for(int i=0;i<jsonArray.length();i++){
+                        try {
+                            jsonObject=jsonArray.getJSONObject(i);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                       individualObject= new JSONObject(jsonObject.getString("jsondata"));
 
-                Log.e("Verify", movieList.get(0).getTitle());
+                        try {
+                        Movie movie = new Movie();
+
+                        movieList.clear();
+
+                        movie.setTitle(individualObject.getString("firstname")+" "+individualObject.getString("middlename")+" "+individualObject.getString("lastname"));
+                        //Log.e("Title-", individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
+                        movie.setGenre(individualObject.getString("occupatio"));
+                        // Log.e("Occupation-", jsonObject.getString("occupation3St"));
+                        movie.setRating(individualObject.getString("aboutme"));
+                        // Log.e("Rating-", individualObject.getString("gender"));
+                        movie.setYear(individualObject.getString("dateofbirth"));
+                        // Log.e("uniqueid-", individualObject.getString("usernameSt"));
+                        movie.setThumbnailUrl(jsonObject.getString("image"));
+                        //Log.e("Url-", uri.toString());
+                        movieList.add(movie);
+                        adapter.notifyDataSetChanged();
+                        Log.e("Verify", movieList.get(0).getTitle());
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        adapter.notifyDataSetChanged();
+                    };
+                }
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                    e.printStackTrace();
+                    movieList.clear();
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error",error.toString());
+                movieList.clear();
                 adapter.notifyDataSetChanged();
-            };*/
+            }
+        }){
+
+          @Override
+          protected Map<String, String> getParams() {
+              Map<String, String> params = new HashMap<String, String>();
+              params.put("forsearching", searching.getText().toString());
+              params.put("type",genderSt);
+              return params;
+          }
+
+      };
+
+      searching.addTextChangedListener(new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+          }
+
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {
+              //AppController.getInstance().addToRequestQueue(searchstringRequest);
+          }
+
+          @Override
+          public void afterTextChanged(Editable s) {
+
+              if(searching.getText().toString().equals("")){
+                  AppController.getInstance().addToRequestQueue(stringRequest);
+              }else{
+                  AppController.getInstance().addToRequestQueue(searchstringRequest);
+              }
+              Toast.makeText(showlist.this, searching.getText().toString(), Toast.LENGTH_SHORT).show();
+          }
+      });
+
+        AppController.getInstance().addToRequestQueue(stringRequest);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               Intent showuser=new Intent(showlist.this,Showuser.class);
+                String ID="";
+                try {
+                    ID=jsonArray.getJSONObject(position).getString("id");
+                   Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                showuser.putExtra("id",ID);
+                startActivity(showuser);
+            }
+        });
+
+
+
 
 
 

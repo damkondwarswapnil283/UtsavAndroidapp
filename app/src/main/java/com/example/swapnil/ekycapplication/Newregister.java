@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,12 +30,14 @@ ProgressBar registerProcess;
 Button sendotpBtn,submitBtn;
     StringRequest stringRequest;
     String newregisterUrl="";
+    TextView usernametext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newregister);
 
         usernameEt=(EditText)findViewById(R.id.username);
+        usernametext=(TextView)findViewById(R.id.usernametext);
         passwordEt=(EditText)findViewById(R.id.inputpassword);
         mobilenumberEt=(EditText)findViewById(R.id.mobilenumber);
         otpEt=(EditText)findViewById(R.id.otp);
@@ -58,7 +62,18 @@ Button sendotpBtn,submitBtn;
                         Intent gotologin=new Intent(Newregister.this,Login.class);
                         startActivity(gotologin);
                         finish();
-                    }else{
+                    }else if(jsonObject.getString("success").equals("2")){
+                        registerProcess.setVisibility(View.GONE);
+                        usernametext.setVisibility(View.VISIBLE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                usernametext.setVisibility(View.GONE);
+                            }
+                        },6000);
+                        Toast.makeText(Newregister.this, "Username already exists,Please select something different", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
                         registerProcess.setVisibility(View.GONE);
                         Toast.makeText(Newregister.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                     }
