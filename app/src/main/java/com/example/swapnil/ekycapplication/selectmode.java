@@ -27,8 +27,8 @@ Button matrimonyBtn,communityBtn;
         communityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotologinscreen=new Intent(selectmode.this,Communitymainapp.class);
-                startActivity(gotologinscreen);
+                //Intent gotologinscreen=new Intent(selectmode.this,Communitymainapp.class);
+               // startActivity(gotologinscreen);
             }
         });
     }

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion 28
@@ -22,10 +22,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.firebase:firebase-database:19.3.0'
-    implementation 'com.google.firebase:firebase-auth:19.3.1'
-    implementation 'com.google.firebase:firebase-storage:19.1.1'
-    implementation 'com.google.firebase:firebase-messaging:20.1.7'
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })

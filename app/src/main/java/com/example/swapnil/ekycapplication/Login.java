@@ -18,11 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +29,7 @@ import java.util.Map;
 public class Login extends Activity {
 Button login ,signup;
 TextView forgotpassword;
-    private FirebaseAuth mAuth;
+
     EditText usernameEt,passwordEt;
     String usernameStr,passwordStr;
     ProgressBar loginProgress;

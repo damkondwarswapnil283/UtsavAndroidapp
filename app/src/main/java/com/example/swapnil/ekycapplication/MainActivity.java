@@ -28,20 +28,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -78,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     Button selectphotofromgalleryBtn;
     JSONObject jsonObject;
     private ImageView usersImg;
-    private FirebaseAuth mAuth;
+
     private Uri filePath;
     Button submitbt;
     RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale;

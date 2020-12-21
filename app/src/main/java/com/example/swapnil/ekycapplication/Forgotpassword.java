@@ -10,9 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class Forgotpassword extends AppCompatActivity {
 Button forgotPass;
@@ -32,17 +29,6 @@ EditText emailAddress;
     }
 
     public void resetpassword(final String emailStr){
-        FirebaseAuth.getInstance().sendPasswordResetEmail(emailStr)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(Forgotpassword.this, "If you are registered with us then you will receive mail at "+emailStr, Toast.LENGTH_SHORT).show();
-                            Intent gotologinscreen=new Intent(Forgotpassword.this,Login.class);
-                            startActivity(gotologinscreen);
 
-                        }
-                    }
-                });
     }
 }
