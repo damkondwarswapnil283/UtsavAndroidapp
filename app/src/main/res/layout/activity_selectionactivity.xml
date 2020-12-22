@@ -130,6 +130,7 @@
                     android:padding="10dp"
                     android:id="@+id/createmyprofile"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:layout_margin="10dp"
                     android:gravity="center"
                     android:orientation="vertical" >
@@ -150,13 +151,18 @@
                         android:text="Create My Profile" />
 
                 </LinearLayout>
-
+                <ProgressBar
+                    android:id="@+id/progresswidget"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
                 <LinearLayout
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:background="@drawable/edittextsharp"
                     android:padding="10dp"
-                    android:id="@+id/editmyprofile"
+                    android:visibility="gone"
+                    android:id="@+id/editmyprofilell"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
                     android:gravity="center"
@@ -179,7 +185,9 @@
 
                 </LinearLayout>
 
-        </LinearLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
 
 

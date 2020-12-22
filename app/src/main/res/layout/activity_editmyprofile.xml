@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Editmyprofile">
+    android:padding="1dp"
+    tools:context=".MainActivity">
+
 
 
     <ScrollView
@@ -31,11 +33,11 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/editimageView"
                     android:layout_width="match_parent"
                     android:layout_height="200px"
                     android:layout_weight="1"
-                    android:src="@drawable/upper" />
+                    android:src="@drawable/utsavlogo" />
 
 
 
@@ -49,8 +51,18 @@
                     android:layout_marginRight="20dp"
                     />
 
+                <ImageView
+                    android:id="@+id/edittestdata"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:background="@drawable/edittextround"
+                    android:src="@drawable/test" />
+
                 <TextView
-                    android:id="@+id/accountinformation"
+                    android:id="@+id/editaccountinformation"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:textSize="16sp"
@@ -60,33 +72,51 @@
                     android:background="@drawable/edittextround"
                     android:text="Account Information" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
 
 
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="400px"
-                    android:layout_height="400px"
-                    android:src="@drawable/image" />
-
-                <Button
-                    android:id="@+id/selectphotofromgallery"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button"
+                    android:textSize="20sp"
                     android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:textColor="#fff"
-                    android:text="Select photo from gallery" />
+                    android:gravity="center"
+                    android:layout_margin="16dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Gender *" />
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittextround"
+                    android:gravity="center"
+                    android:layout_weight="2" >
+                    <RadioButton
+                        android:id="@+id/editmale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/editfemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Female" />
+
+                </RadioGroup>
+
+
+
+
+                <ProgressBar
+                    android:id="@+id/editimageprogress"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_weight="1" />
+
+
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -94,11 +124,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/firstname"
+                        android:id="@+id/editfirstname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="First Name" />
+                        android:hint="First Name *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -107,11 +137,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/middlename"
+                        android:id="@+id/editmiddlename"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Middle Name" />
+                        android:hint="Middle Name *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -120,23 +150,35 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/lastname"
+                        android:id="@+id/editlastname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Last Name" />
+                        android:hint="Last Name * (For Ex. Mehta)" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/editavantak"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="Avantak * (For Ex. Todrawat)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/edittextView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:gravity="center"
                     android:layout_margin="12dp"
                     android:textColor="@color/colorPrimary"
-                    android:text="Data of birth" />
+                    android:text="Data of birth *" />
 
 
 
@@ -148,9 +190,9 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/num1"
+                        android:id="@+id/editnum1"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -160,9 +202,9 @@
                         android:inputType="number" />
 
                     <EditText
-                        android:id="@+id/num2"
+                        android:id="@+id/editnum2"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -172,7 +214,7 @@
                         android:inputType="number" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/edittextView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -180,9 +222,9 @@
                         android:text="-" />
 
                     <EditText
-                        android:id="@+id/num3"
+                        android:id="@+id/editnum3"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:hint="M"
                         android:gravity="center"
@@ -192,9 +234,9 @@
                         android:inputType="number" />
 
                     <EditText
-                        android:id="@+id/num4"
+                        android:id="@+id/editnum4"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:hint="M"
@@ -203,16 +245,16 @@
                         android:background="@drawable/edittextsharp"
                         android:inputType="number" />
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/edittextView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="-" />
                     <EditText
-                        android:id="@+id/num5"
+                        android:id="@+id/editnum5"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:hint="Y"
@@ -221,9 +263,9 @@
                         android:background="@drawable/edittextsharp"
                         android:inputType="number" />
                     <EditText
-                        android:id="@+id/num6"
+                        android:id="@+id/editnum6"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:hint="Y"
@@ -232,9 +274,9 @@
                         android:background="@drawable/edittextsharp"
                         android:inputType="number" />
                     <EditText
-                        android:id="@+id/num7"
+                        android:id="@+id/editnum7"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:layout_weight="1"
                         android:hint="Y"
@@ -243,9 +285,9 @@
                         android:background="@drawable/edittextsharp"
                         android:inputType="number" />
                     <EditText
-                        android:id="@+id/num8"
+                        android:id="@+id/editnum8"
                         android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_height="50dp"
                         android:maxLength="1"
                         android:hint="Y"
                         android:layout_weight="1"
@@ -259,11 +301,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cleartxt"
+                    android:id="@+id/editcleartxt"
                     android:textSize="20sp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:background="@drawable/edittextround"
                     android:textColor="@color/colorPrimary"
                     android:text="Clear" />
@@ -275,7 +317,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/occupation"
+                        android:id="@+id/editoccupation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -289,7 +331,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/aboutme"
+                        android:id="@+id/editaboutme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -299,7 +341,7 @@
 
 
                 <TextView
-                    android:id="@+id/personalinformation"
+                    android:id="@+id/editpersonalinformation"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:textSize="16sp"
@@ -318,7 +360,7 @@
                     android:gravity="center"
                     android:layout_margin="16dp"
                     android:textColor="@color/colorPrimary"
-                    android:text="Marital Status" />
+                    android:text="Marital Status *" />
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -326,33 +368,36 @@
                     android:gravity="center"
                     android:layout_weight="2" >
                     <RadioButton
-                        android:id="@+id/married"
+                        android:id="@+id/editmarried"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Never Married" />
 
                     <RadioButton
-                        android:id="@+id/nevermarried"
+                        android:id="@+id/editnevermarried"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Married" />
 
+                    <RadioButton
+                        android:id="@+id/editdivorced"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Divorced" />
+                    <RadioButton
+                        android:id="@+id/editwidow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Widow" />
+
                 </RadioGroup>
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/firstgotra"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="First Gotra" />
-                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -360,10 +405,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/secondgotra"
+                        android:id="@+id/editsecondgotra"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:visibility="gone"
                         android:hint="Second Gotra" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -373,7 +419,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/emailid"
+                        android:id="@+id/editemailid"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -386,11 +432,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/resiadd"
+                        android:id="@+id/editresiadd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Resi.Add" />
+                        android:hint="Residential Address *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -399,11 +445,23 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/permadd"
+                        android:id="@+id/editpermadd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Perm.Add" />
+                        android:hint="Native Village (Rajsthan) *" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/editcurrentcity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="Current City*" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -413,11 +471,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/contact1"
+                        android:id="@+id/editcontact1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Contact No:" />
+                        android:hint="Contact Number *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -427,11 +485,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/height"
+                        android:id="@+id/editheight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Height" />
+                        android:hint="Height * For example 5' 4&quot;" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -440,12 +498,14 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/bloodgroup"
+                        android:id="@+id/editbloodgroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Blood Group" />
+                        android:hint="Blood Group *" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -453,19 +513,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/complexion"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Complexion" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/education"
+                        android:id="@+id/editeducation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -478,12 +526,17 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/annualincome"
+                        android:id="@+id/editannualincome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Annual Income" />
+                        android:hint="Annual Income (In thousand)" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -491,70 +544,15 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/mothertonung"
+                        android:id="@+id/editfirstgotra"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Mother Tongue" />
+                        android:hint="Gotra *" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-
 
                 <TextView
-                    android:id="@+id/kundalidetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/edittextround"
-                    android:text="Kundali Details" />
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/birthname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Birth Name" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/birthtime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Birth Time" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/birthplace"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Birth Place" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <TextView
-                    android:id="@+id/familydetails"
+                    android:id="@+id/editfamilydetails"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:textSize="16sp"
@@ -565,28 +563,18 @@
                     android:text="Family Details" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/fathername"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Father Name" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/occupation1"
+                        android:id="@+id/editoccupation1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Occupation" />
+                        android:hint="Father`s Occupation" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -595,11 +583,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/mothername"
+                        android:id="@+id/editmothername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Mother's Name" />
+                        android:hint="Mother's Name *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -608,7 +596,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/occupation2"
+                        android:id="@+id/editoccupation2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -621,7 +609,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/noofbrothers"
+                        android:id="@+id/editnoofbrothers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
@@ -634,7 +622,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/brothersdetails"
+                        android:id="@+id/editbrothersdetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -647,7 +635,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/noofsisters"
+                        android:id="@+id/editnoofsisters"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
@@ -660,7 +648,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/sistersdetails"
+                        android:id="@+id/editsistersdetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -669,7 +657,7 @@
 
 
                 <TextView
-                    android:id="@+id/partnersexpectation"
+                    android:id="@+id/editpartnersexpectation"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:textSize="16sp"
@@ -684,7 +672,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/qualification"
+                        android:id="@+id/editqualification"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -697,11 +685,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/annualincome1"
+                        android:id="@+id/editannualincome1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Annual Income" />
+                        android:hint="Annual Income range. For example(3 - 5 LPA)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -710,11 +698,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/agerange"
+                        android:id="@+id/editagerange"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Age Range" />
+                        android:hint="Age Range * (For example 26-31)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -724,11 +712,11 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/height1"
+                        android:id="@+id/editheight1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:hint="Height" />
+                        android:hint="Height (For example 5' 4&quot; )" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -737,7 +725,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/occupation3"
+                        android:id="@+id/editoccupation3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -750,24 +738,52 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/preferredcity"
+                        android:id="@+id/editpreferredcity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:hint="Preferred City" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/editimageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="800px"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/edittextround"
+                    android:src="@drawable/image" />
+                <TextView
+                    android:id="@+id/editsizemessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"
+                    android:layout_weight="1"
+                    android:text="Image size must be less than 1000kb" />
+                <Button
+                    android:id="@+id/editselectphotofromgallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#fff"
+                    android:text="Select photo from gallery" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/editmainprogressbar"
+                    style="?android:attr/progressBarStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:padding="8dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_weight="1" />
 
+
+
+
                 <Button
-                    android:id="@+id/submitbt"
+                    android:id="@+id/editsubmitbt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button"

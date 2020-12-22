@@ -19,6 +19,6 @@ public class Splashscreen extends Activity {
                 startActivity(gotologinscreen);
                 finish();
             }
-        },6000);
+        },1000);
     }
 }

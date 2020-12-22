@@ -3,8 +3,10 @@ package com.example.swapnil.ekycapplication;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -20,18 +22,23 @@ import java.util.Map;
 
 public class Selectionactivity extends Activity {
     LinearLayout OldCustomerbtn,NewcustomerBtn,createmyprofile,editmyprofile;
+    String getid;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectionactivity);
         StringRequest stringRequest;
-        String isregisteredinMatrimony="";
+        String isregisteredinMatrimony="http://greenleafpureveg.in/utsavapplication/isexist.php";
         OldCustomerbtn = (LinearLayout) findViewById(R.id.oldcustomerll);
         NewcustomerBtn = (LinearLayout) findViewById(R.id.newcustomerll);
-
+        progressBar=(ProgressBar)findViewById(R.id.progresswidget);
         createmyprofile=(LinearLayout)findViewById(R.id.createmyprofile);
-        editmyprofile=(LinearLayout)findViewById(R.id.editmyprofile);
+        editmyprofile=(LinearLayout)findViewById(R.id.editmyprofilell);
+        getid=getIntent().getExtras().getString("id");
 
+
+        //Toast.makeText(this, getid+"", Toast.LENGTH_SHORT).show();
 
         stringRequest=new StringRequest(Request.Method.POST, isregisteredinMatrimony, new Response.Listener<String>() {
             @Override
@@ -40,10 +47,13 @@ public class Selectionactivity extends Activity {
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     String flag=jsonObject.getString("success");
-                    if(flag.equals("1")){
-
+                    Toast.makeText(Selectionactivity.this, flag, Toast.LENGTH_SHORT).show();
+                   if(flag.trim().equals("1")){
+                       progressBar.setVisibility(View.GONE);
+                       editmyprofile.setVisibility(View.VISIBLE);
                     }else{
-
+                       progressBar.setVisibility(View.GONE);
+                       createmyprofile.setVisibility(View.VISIBLE);
                                             }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -54,16 +64,16 @@ public class Selectionactivity extends Activity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("Error",error.toString());
 
-                Toast.makeText(Selectionactivity.this, "Something went wrong. Please try again", Toast.LENGTH_LONG).show();
+               // Toast.makeText(Selectionactivity.this, error.toString(), Toast.LENGTH_LONG).show();
             }
         }){
 
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", "");
-                params.put("password","" );
+                params.put("userid", getid);
                 return params;
             }
 
@@ -75,6 +85,7 @@ public class Selectionactivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent gotocreateprofile = new Intent(Selectionactivity.this, MainActivity.class);
+                gotocreateprofile.putExtra("id",getid);
                 startActivity(gotocreateprofile);
             }
         });
@@ -82,8 +93,9 @@ public class Selectionactivity extends Activity {
         editmyprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotocreateprofile = new Intent(Selectionactivity.this, Editmyprofile.class);
-                startActivity(gotocreateprofile);
+                Intent gotoeditprofile = new Intent(Selectionactivity.this, Editmyprofile.class);
+                gotoeditprofile.putExtra("id",getid);
+                startActivity(gotoeditprofile);
             }
         });
 

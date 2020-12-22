@@ -31,7 +31,7 @@ Button login ,signup;
 TextView forgotpassword;
 
     EditText usernameEt,passwordEt;
-    String usernameStr,passwordStr;
+    String usernameStr,passwordStr,getid;
     ProgressBar loginProgress;
     String loginurl="http://greenleafpureveg.in/utsavapplication/login.php";
     StringRequest stringRequest;
@@ -54,8 +54,11 @@ TextView forgotpassword;
                     JSONObject jsonObject=new JSONObject(response);
                     String flag=jsonObject.getString("success");
                     if(flag.equals("1")){
+
                         loginProgress.setVisibility(View.GONE);
                         Intent gotodash=new Intent(Login.this,selectmode.class);
+                        gotodash.putExtra("userid",jsonObject.getString("id"));
+                      //  Toast.makeText(Login.this, "Login:- "+ jsonObject.getString("id"), Toast.LENGTH_SHORT).show();
                         startActivity(gotodash);
 
                     }else{

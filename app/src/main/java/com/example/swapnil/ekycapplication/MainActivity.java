@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
             agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
             dnum6_string,avantak_string,
-            dnum7_string,dnum8_string,genderSt,currentcityst;
+            dnum7_string,dnum8_string,genderSt,currentcityst,getid;
     ProgressBar progressBar,mainProgress;
     ImageView testImage;
     StringRequest stringRequest;
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         current_cityet=(EditText)findViewById(R.id.currentcity);
 
 
-        progressBar=(ProgressBar)findViewById(R.id.progressBar);
+
         mainProgress=(ProgressBar)findViewById(R.id.mainprogressbar);
         dnum1_et=(EditText)findViewById(R.id.num1);
         dnum2_et=(EditText)findViewById(R.id.num2);
@@ -148,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
         testImage=(ImageView)findViewById(R.id.testdata) ;
         progressBar=(ProgressBar)findViewById(R.id.imageprogress);
         sizemessage=(TextView)findViewById(R.id.sizemessage);
+
+        getid=getIntent().getExtras().getString("id");
 
         testImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -501,6 +503,8 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         try {
 
 
+            jsonObject.put("id",getid);
+
             jsonObject.put("type",genderSt);
 
             jsonObject.put("firstname",firstnameSt);
@@ -596,8 +600,9 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
                     Log.e("Response",response);
                     if(new JSONObject(response).getString("success").equals("1")){
 
-                        Toast.makeText(MainActivity.this, "Registration Successfull", Toast.LENGTH_SHORT).show();
-                        Intent gotologin=new Intent(MainActivity.this,Selectionactivity.class);
+                        Toast.makeText(MainActivity.this, "Registration Successfull-Please Login again", Toast.LENGTH_SHORT).show();
+                        Intent gotologin=new Intent(MainActivity.this,Login.class);
+
                         startActivity(gotologin);
                     }else{
 
@@ -629,6 +634,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
                 params.put("firstname",firstnameSt );
                 params.put("middlename", middlenameSt);
                 params.put("lastname",lastnameSt );
+                params.put("userid",getid );
                 return params;
             }
 
