@@ -348,6 +348,7 @@ public class MainActivity extends AppCompatActivity {
          }
         emailidSt=emailidEt.getText().toString();
         resiaddSt=resiaddEt.getText().toString();
+        avantak_string=avantakEt.getText().toString();
         //Native address
         permaddSt=permaddEt.getText().toString();
         currentcityst=current_cityet.getText().toString();
@@ -521,6 +522,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
 
             jsonObject.put("maritalstatus",maritalstatusSt);
 
+
            //
 
            // jsonObject.put("secondgotraSt",secondgotraSt);
@@ -546,6 +548,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             jsonObject.put("annualincome",annualincomeSt);
 
             jsonObject.put("firstgotra",firstgotraSt);
+            jsonObject.put("avantak",avantak_string);
 
            // jsonObject.put("mothertonugeSt",mothertonugeSt);
 

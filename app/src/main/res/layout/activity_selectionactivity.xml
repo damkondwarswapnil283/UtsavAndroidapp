@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:src="@drawable/upper" />
+                android:src="@drawable/ic_launcher" />
 
             <View
                 android:layout_width="match_parent"
