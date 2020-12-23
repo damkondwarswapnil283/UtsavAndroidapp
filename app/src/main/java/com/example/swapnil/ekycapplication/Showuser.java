@@ -114,8 +114,7 @@ public class Showuser extends AppCompatActivity {
                         try {
                             jsonObject=new JSONObject(response);
 
-                            Toast.makeText(Showuser.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
-                            Log.e("Response",jsonObject.toString());
+
 
                             individualjsonobject=new JSONObject(jsonObject.getString("jsondata"));
 
@@ -250,7 +249,7 @@ public class Showuser extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id", keystring);
+                params.put("userid", keystring);
                 return params;
             }
 

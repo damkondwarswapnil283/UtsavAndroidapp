@@ -138,6 +138,55 @@ public class Editmyprofile extends AppCompatActivity {
         submitbt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(genderMale.isChecked()){
+                    genderSt="M";
+                }else{
+                    genderSt="F";
+                }
+
+                firstnameSt=firstnameEt.getText().toString();
+                middlenameSt=middlenameEt.getText().toString();
+                lastnameSt=lastnameEt.getText().toString();
+                avantak_string=avantakEt.getText().toString();
+                dateofbirthSt=dnum1_string+dnum2_string+" - "+dnum3_string+dnum4_string+" - "+dnum5_string+dnum6_string+dnum7_string+dnum8_string;
+                occupatioSt=occupatioEt.getText().toString();
+                aboutmeSt=aboutmeEt.getText().toString();
+                if(nevermarriedRb.isChecked()){
+                    maritalstatusSt="N";
+                }else if(marriedRb.isChecked()){
+                    maritalstatusSt="M";
+                }else if(divorcedRb.isChecked()){
+                    maritalstatusSt="D";
+                }else if(widowRb.isChecked()){
+                    maritalstatusSt="W";
+                }
+                emailidSt=emailidEt.getText().toString();
+                resiaddSt=resiaddEt.getText().toString();
+                avantak_string=avantakEt.getText().toString();
+                //Native address
+                permaddSt=permaddEt.getText().toString();
+                currentcityst=current_cityet.getText().toString();
+                contactnumberSt=contactnumberEt.getText().toString();
+                heightSt=heightEt.getText().toString();
+                bloodgroupSt=bloodgroupEt.getText().toString();
+                educationSt=educationEt.getText().toString();
+                annualincomeSt=annualincomeEt.getText().toString();
+                firstgotraSt=firstgotraEt.getText().toString();
+                //////////////Family info start
+                occupation1St=occupation1Et.getText().toString();
+                mothersnameSt=mothersnameEt.getText().toString();
+                occupation2St=occupation2Et.getText().toString();
+                noofbrothersSt=noofbrothersEt.getText().toString();
+                brotherdetailsSt=brotherdetailsEt.getText().toString();
+                noofsistersSt=noofsistersEt.getText().toString();
+                sisterdetailsSt=sisterdetailsEt.getText().toString();
+
+                qualificationSt=qualificationEt.getText().toString();
+                annualincome1St=annualincome1Et.getText().toString();
+                agerangeSt=agerangeEt.getText().toString();
+                height1St=height1Et.getText().toString();
+                occupation3St=occupation3Et.getText().toString();
+                preferredcitySt=preferredcityEt.getText().toString();
                 addvalidations();
             }
         });
@@ -145,6 +194,7 @@ public class Editmyprofile extends AppCompatActivity {
         selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 SelectImage();
             }
         });
@@ -170,9 +220,9 @@ public class Editmyprofile extends AppCompatActivity {
 
                     dnum7_et.setText("");
                     dnum8_et.setText("");*/
+                    genderSt=infojsondata.getString("type");
 
-
-        if(jsonObject.getString("jsondata").trim().equals("M")){
+        if(infojsondata.getString("type").equals("M")){
            genderMale.setChecked(true);
         }else{
             genderFemale.setChecked(true);
@@ -421,8 +471,8 @@ public class Editmyprofile extends AppCompatActivity {
                     if(new JSONObject(response).getString("success").equals("1")){
 
                         Toast.makeText(Editmyprofile.this, "Registration Successfull-Please Login again", Toast.LENGTH_SHORT).show();
-                        Intent gotologin=new Intent(Editmyprofile.this,Login.class);
-
+                        Intent gotologin=new Intent(Editmyprofile.this,Selectionactivity.class);
+                         gotologin.putExtra("id",getid);
                         startActivity(gotologin);
                     }else{
 
