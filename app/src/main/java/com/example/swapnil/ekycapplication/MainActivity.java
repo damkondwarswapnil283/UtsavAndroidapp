@@ -315,6 +315,8 @@ public class MainActivity extends AppCompatActivity {
         submitbt.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+
+        submitbt.setVisibility(View.GONE);
         dnum1_string=dnum1_et.getText().toString();
         dnum2_string=dnum2_et.getText().toString();
         dnum3_string=dnum3_et.getText().toString();
@@ -601,6 +603,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onResponse(String response) {
                 try {
+                    submitbt.setVisibility(View.VISIBLE);
                     Log.e("Response",response);
                     if(new JSONObject(response).getString("success").equals("1")){
 
@@ -614,7 +617,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
 
                     }
                 } catch (JSONException e) {
-
+                    submitbt.setVisibility(View.VISIBLE);
                     e.printStackTrace();
                 }
                 mainProgress.setVisibility(View.GONE);
@@ -622,7 +625,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                submitbt.setVisibility(View.VISIBLE);
                 mainProgress.setVisibility(View.GONE);
             }
         }){

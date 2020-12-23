@@ -294,6 +294,8 @@ public class Editmyprofile extends AppCompatActivity {
         submitbt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                submitbt.setVisibility(View.GONE);
                 if(genderMale.isChecked()){
                     genderSt="M";
                 }else{
@@ -627,6 +629,7 @@ public class Editmyprofile extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+                    submitbt.setVisibility(View.VISIBLE);
                     Log.e("Response",response);
                     if(new JSONObject(response).getString("success").equals("1")){
 
@@ -640,7 +643,7 @@ public class Editmyprofile extends AppCompatActivity {
 
                     }
                 } catch (JSONException e) {
-
+                    submitbt.setVisibility(View.VISIBLE);
                     e.printStackTrace();
                 }
                 mainProgress.setVisibility(View.GONE);
@@ -648,7 +651,7 @@ public class Editmyprofile extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                submitbt.setVisibility(View.VISIBLE);
                 mainProgress.setVisibility(View.GONE);
             }
         }){
