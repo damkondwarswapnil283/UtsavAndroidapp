@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -237,14 +238,26 @@ public class showlist extends AppCompatActivity {
           public void afterTextChanged(Editable s) {
 
               if(searching.getText().toString().equals("")){
+                  stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                          20000,
+                          0,
+                          DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                   AppController.getInstance().addToRequestQueue(stringRequest);
               }else{
+                  searchstringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                          20000,
+                          0,
+                          DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                   AppController.getInstance().addToRequestQueue(searchstringRequest);
               }
               Toast.makeText(showlist.this, searching.getText().toString(), Toast.LENGTH_SHORT).show();
           }
       });
 
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                20000,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         AppController.getInstance().addToRequestQueue(stringRequest);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

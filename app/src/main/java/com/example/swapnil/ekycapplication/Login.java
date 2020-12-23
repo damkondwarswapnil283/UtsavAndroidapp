@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -112,6 +113,10 @@ TextView forgotpassword;
                     Toast.makeText(Login.this, "Please Enter password", Toast.LENGTH_SHORT).show();
                 }else{
                     loginProgress.setVisibility(View.VISIBLE);
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                            20000,
+                            0,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                     AppController.getInstance().addToRequestQueue(stringRequest);
                 }
 
