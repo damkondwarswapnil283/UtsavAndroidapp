@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Selectionactivity extends Activity {
-    LinearLayout OldCustomerbtn,NewcustomerBtn,createmyprofile,editmyprofile;
+    LinearLayout OldCustomerbtn,NewcustomerBtn,createmyprofile,editmyprofile,removeprofile;
     String getid;
     ProgressBar progressBar;
     @Override
@@ -35,6 +35,7 @@ public class Selectionactivity extends Activity {
         progressBar=(ProgressBar)findViewById(R.id.progresswidget);
         createmyprofile=(LinearLayout)findViewById(R.id.createmyprofile);
         editmyprofile=(LinearLayout)findViewById(R.id.editmyprofilell);
+        removeprofile=(LinearLayout)findViewById(R.id.removemeforlistinll) ;
         getid=getIntent().getExtras().getString("id");
 
 
@@ -51,6 +52,7 @@ public class Selectionactivity extends Activity {
                    if(flag.trim().equals("1")){
                        progressBar.setVisibility(View.GONE);
                        editmyprofile.setVisibility(View.VISIBLE);
+                       removeprofile.setVisibility(View.VISIBLE);
                     }else{
                        progressBar.setVisibility(View.GONE);
                        createmyprofile.setVisibility(View.VISIBLE);
@@ -120,6 +122,14 @@ public class Selectionactivity extends Activity {
             }
         });
 
+        removeprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotoeditprofile = new Intent(Selectionactivity.this, Removemefromlisting.class);
+                gotoeditprofile.putExtra("id",getid);
+                startActivity(gotoeditprofile);
+            }
+        });
 
 
     }

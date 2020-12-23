@@ -50,30 +50,38 @@
                         android:layout_marginRight="20dp"
                         />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/input_layout_email"
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_weight="1" />
 
-                        <EditText
-                            android:id="@+id/input_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress"
-                            android:hint="Mobile Number" />
+                    <CheckBox
+                        android:id="@+id/removekistcheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Remove me from Utsav Listing" />
 
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <CheckBox
+                        android:id="@+id/addcheckbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Add me back to Utsav Listing" />
 
                     <Button
-                        android:id="@+id/resetpassword"
+                        android:id="@+id/removebtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:textColor="#fff"
-                        android:text="Reset Password" />
+                        android:text="Remove My Profile" />
 
                 </LinearLayout>
 
