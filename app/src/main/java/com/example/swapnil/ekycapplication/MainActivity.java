@@ -603,9 +603,9 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
                     Log.e("Response",response);
                     if(new JSONObject(response).getString("success").equals("1")){
 
-                        Toast.makeText(MainActivity.this, "Registration Successfull-Please Login again", Toast.LENGTH_SHORT).show();
-                        Intent gotologin=new Intent(MainActivity.this,Login.class);
-
+                        Toast.makeText(MainActivity.this, "Registration Successfull", Toast.LENGTH_SHORT).show();
+                        Intent gotologin=new Intent(MainActivity.this,Selectionactivity.class);
+                        gotologin.putExtra("id",getid);
                         startActivity(gotologin);
                     }else{
 

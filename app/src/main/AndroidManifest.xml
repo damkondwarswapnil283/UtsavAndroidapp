@@ -13,7 +13,10 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".checkforusername"></activity>
+        <activity android:name=".Usernamecheck">
+
+        </activity>
+        <activity android:name=".checkforusername" />
         <activity android:name=".Removemefromlisting" />
         <activity android:name=".selectmode" />
         <activity android:name=".Helpandfundrising" />

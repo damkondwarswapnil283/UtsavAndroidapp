@@ -44,11 +44,16 @@ Button removeBtn;
 
                 if(checkBox.isChecked()){
                     status="N";
-
+                    progressbar.setVisibility(View.VISIBLE);
+                    sendrequest();
                 }else if(addcheckbox.isChecked()){
                     status="Y";
+                    progressbar.setVisibility(View.VISIBLE);
+                    sendrequest();
+                }else{
+                    Toast.makeText(Removemefromlisting.this, "Please Select any one of the option", Toast.LENGTH_SHORT).show();
                 }
-                sendrequest();
+
             }
         });
     }
@@ -60,7 +65,7 @@ Button removeBtn;
                 try {
                     Log.e("Response",response);
                     if(new JSONObject(response).getString("success").equals("1")){
-
+                        progressbar.setVisibility(View.GONE);
                         Toast.makeText(Removemefromlisting.this, "You are successfully removed from listing", Toast.LENGTH_SHORT).show();
                         Intent gotologin=new Intent(Removemefromlisting.this,Login.class);
 
@@ -71,7 +76,7 @@ Button removeBtn;
 
                     }
                 } catch (JSONException e) {
-
+                    progressbar.setVisibility(View.GONE);
                     e.printStackTrace();
                 }
                 progressbar.setVisibility(View.GONE);

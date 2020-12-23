@@ -268,6 +268,7 @@ AppController.getInstance().addToRequestQueue(stringRequest);
             @Override
             public void onClick(View v) {
                 Intent gotologinscreen=new Intent(Showuser.this,Selectionactivity.class);
+                gotologinscreen.putExtra("id",keystring);
                 startActivity(gotologinscreen);
             }
         });

@@ -29,27 +29,25 @@ String usernameSt,passwordSt,mobilenumberSt,firstnameSt,middlenameSt,lastnameSt,
 ProgressBar registerProcess;
 Button sendotpBtn,submitBtn;
     StringRequest stringRequest;
-    String newregisterUrl="";
-    TextView usernametext;
+    String newregisterUrl="",namestring;
+    TextView usernametext,username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newregister);
 
-        usernameEt=(EditText)findViewById(R.id.username);
+        username=(TextView)findViewById(R.id.username);
         usernametext=(TextView)findViewById(R.id.usernametext);
         passwordEt=(EditText)findViewById(R.id.inputpassword);
         mobilenumberEt=(EditText)findViewById(R.id.mobilenumber);
-        otpEt=(EditText)findViewById(R.id.otp);
         firstnameEt=(EditText)findViewById(R.id.firstname);
         middlenameEt=(EditText)findViewById(R.id.middlename);
         lastnameEt=(EditText)findViewById(R.id.lastname);
         newregisterUrl= getString(R.string.newregister);
         registerProcess=(ProgressBar)findViewById(R.id.registerprogress);
-
-
         submitBtn=(Button)findViewById(R.id.submit);
-
+        namestring=getIntent().getExtras().getString("username");
+        username.setText(namestring);
         stringRequest=new StringRequest(Request.Method.POST, newregisterUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -106,14 +104,14 @@ Button sendotpBtn,submitBtn;
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usernameSt=usernameEt.getText().toString();
+                usernameSt=username.getText().toString();
                 passwordSt=passwordEt.getText().toString();
                 mobilenumberSt=mobilenumberEt.getText().toString();
-                otpSt=otpEt.getText().toString();
+               // otpSt=otpEt.getText().toString();
                 firstnameSt=firstnameEt.getText().toString();
                 middlenameSt=middlenameEt.getText().toString();
                 lastnameSt=lastnameEt.getText().toString();
-                registerProcess.setVisibility(View.VISIBLE);
+
                 checkvalidation();
             }
         });
@@ -122,27 +120,21 @@ Button sendotpBtn,submitBtn;
 
     public void checkvalidation(){
          if(firstnameSt.trim().equals("")){
-            firstnameEt.requestFocus();
-            Toast.makeText(this, "Firstname can`t be left blank", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Newregister.this, "Firstname can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(middlenameSt.trim().equals("")){
             middlenameEt.requestFocus();
-            Toast.makeText(this, "Middle Name can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(mobilenumberSt.trim().equals("")){
+            Toast.makeText(Newregister.this, "Middle Name can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(mobilenumberSt.length()!=10){
              mobilenumberEt.requestFocus();
-             Toast.makeText(this, "Mobilenumber can`t be left blank", Toast.LENGTH_SHORT).show();
+             Toast.makeText(Newregister.this, "Please check mobilenumber", Toast.LENGTH_SHORT).show();
          }else if(lastnameSt.trim().equals("")){
             lastnameEt.requestFocus();
-            Toast.makeText(this, "Lastname can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(usernameSt.trim().equals("")){
-            usernameEt.requestFocus();
-            Toast.makeText(this, "Username can`t be left blank", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Newregister.this, "Lastname can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(passwordSt.trim().equals("")){
             passwordEt.requestFocus();
-            Toast.makeText(this, "Password can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(otpSt.trim().equals("")){
-             passwordEt.requestFocus();
-             Toast.makeText(this, "OTP can`t be left blank", Toast.LENGTH_SHORT).show();
-         }else {
+            Toast.makeText(Newregister.this, "Password can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else {
+             registerProcess.setVisibility(View.VISIBLE);
              AppController.getInstance().addToRequestQueue(stringRequest);
          }
     }

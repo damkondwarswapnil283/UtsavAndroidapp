@@ -104,15 +104,25 @@ TextView forgotpassword;
 
                 usernameStr=usernameEt.getText().toString();
                 passwordStr=passwordEt.getText().toString();
-                loginProgress.setVisibility(View.VISIBLE);
-                AppController.getInstance().addToRequestQueue(stringRequest);
+                if(usernameStr.equals("")){
+                    usernameEt.requestFocus();
+                    Toast.makeText(Login.this, "Please Enter username", Toast.LENGTH_SHORT).show();
+                }else if(passwordStr.equals("")){
+                    passwordEt.requestFocus();
+                    Toast.makeText(Login.this, "Please Enter password", Toast.LENGTH_SHORT).show();
+                }else{
+                    loginProgress.setVisibility(View.VISIBLE);
+                    AppController.getInstance().addToRequestQueue(stringRequest);
+                }
+
+
             }
         });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotologinscreen=new Intent(Login.this,Newregister.class);
+                Intent gotologinscreen=new Intent(Login.this,Usernamecheck.class);
                 startActivity(gotologinscreen);
                 finish();
             }

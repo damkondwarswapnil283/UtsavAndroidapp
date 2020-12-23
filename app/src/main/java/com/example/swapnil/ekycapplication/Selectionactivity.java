@@ -48,7 +48,7 @@ public class Selectionactivity extends Activity {
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     String flag=jsonObject.getString("success");
-                    Toast.makeText(Selectionactivity.this, flag, Toast.LENGTH_SHORT).show();
+
                    if(flag.trim().equals("1")){
                        progressBar.setVisibility(View.GONE);
                        editmyprofile.setVisibility(View.VISIBLE);

@@ -50,20 +50,21 @@
         android:layout_marginRight="20dp"
         />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <EditText
+
+            <TextView
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Username *" />
+                android:inputType="text"
+                android:layout_margin="5dp"
+                android:textSize="16sp"
+                android:background="@drawable/edittextsharp"
+                android:padding="16dp"
+                android:hint="Username" />
 
 
-        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/usernametext"
@@ -100,26 +101,7 @@
                 android:maxLength="10"
                 android:hint="Mobile Number * For example 9999999999" />
         </com.google.android.material.textfield.TextInputLayout>
-        <Button
-            android:id="@+id/sendotp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:textColor="#fff"
-            android:text="Send me OTP" />
 
-        <EditText
-            android:id="@+id/otp"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:maxLength="4"
-            android:inputType="number"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:background="@drawable/edittextsharp"
-            android:hint="OTP" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
