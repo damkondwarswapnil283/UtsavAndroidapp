@@ -13,29 +13,59 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Usernamecheck">
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Usernamecheck">
 
         </activity>
-        <activity android:name=".checkforusername" />
-        <activity android:name=".Removemefromlisting" />
-        <activity android:name=".selectmode" />
-        <activity android:name=".Helpandfundrising" />
-        <activity android:name=".newschannel" />
-        <activity android:name=".Directory" />
-        <activity android:name=".Newregister" />
-        <activity android:name=".Editmyprofile" />
-        <activity android:name=".showlist" />
-        <activity android:name=".Forgotpassword" />
-        <activity android:name=".Showuser" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Splashscreen">
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".checkforusername" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Removemefromlisting" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".selectmode" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Helpandfundrising" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".newschannel" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Directory" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Newregister" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Editmyprofile" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".showlist" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Forgotpassword" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Showuser" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".MainActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Login" />
         <activity android:name=".Selectionactivity" />
         <activity android:name=".Success" />
     </application>

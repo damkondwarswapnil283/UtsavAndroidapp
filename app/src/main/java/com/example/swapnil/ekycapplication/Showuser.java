@@ -12,6 +12,7 @@ import android.util.LruCache;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,13 +50,14 @@ public class Showuser extends AppCompatActivity {
     String genderSt,keystring,getdatabyidurl="http://greenleafpureveg.in/utsavapplication/getdatabyid.php";
     Button returnhomebutton;
     ImageLoader imageLoader;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showuser);
 
-
+        progressBar=(ProgressBar)findViewById(R.id.showuserprogress);
         returnhomebutton=(Button)findViewById(R.id.retuenbtn);
 
         passwordEt=(TextView)findViewById(R.id.inputpassword);
@@ -106,6 +108,7 @@ public class Showuser extends AppCompatActivity {
             public void onResponse(String response) {
                 //Toast.makeText(Login.this, response, Toast.LENGTH_LONG).show();
                 try {
+                    progressBar.setVisibility(View.GONE);
                     JSONObject jsonObject=new JSONObject(response);
                     JSONObject individualjsonobject;
                     String flag=jsonObject.getString("success");
@@ -233,6 +236,7 @@ public class Showuser extends AppCompatActivity {
 
                     }
                 } catch (JSONException e) {
+                    progressBar.setVisibility(View.GONE);
                     e.printStackTrace();
                 }
 
@@ -241,7 +245,7 @@ public class Showuser extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(Showuser.this, "Something went wrong. Please try again", Toast.LENGTH_LONG).show();
             }
         }){

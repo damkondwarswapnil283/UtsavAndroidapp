@@ -56,6 +56,14 @@
                     android:background="@drawable/edittextround"
                     android:text="Account Information" />
 
+                <ProgressBar
+                    android:id="@+id/showuserprogress"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1" />
+
                 <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/candidateimage"
                     android:layout_width="400dp"
@@ -455,6 +463,8 @@
                     android:layout_weight="1"
                     android:textColor="#fff"
                     android:text="Return To Homepage" />
+
+
 
 
             </LinearLayout>

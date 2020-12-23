@@ -28,24 +28,31 @@ EditText emailAddress,passwordnew;
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PackageManager packageManager = getApplicationContext().getPackageManager();
-                Intent i = new Intent(Intent.ACTION_VIEW);
 
-                try {
-                    String url = "https://api.whatsapp.com/send?phone="+ "+918983401400" +"&text=" + URLEncoder.encode("Please Reset password for username "+emailAddress.getText().toString()+" with password "+ passwordnew.getText().toString(), "UTF-8");
-                    i.setPackage("com.whatsapp");
-                    i.setData(Uri.parse(url));
-                    if (i.resolveActivity(packageManager) != null) {
-                        getApplicationContext().startActivity(i);
+                if(emailAddress.equals("")){
+                    emailAddress.requestFocus();
+                    Toast.makeText(Forgotpassword.this, "Please Enter Email Address", Toast.LENGTH_SHORT).show();
+                }else if(passwordnew.equals("")){
+                    passwordnew.requestFocus();
+                    Toast.makeText(Forgotpassword.this, "Please Enter password", Toast.LENGTH_SHORT).show();
+                }else {
+                    PackageManager packageManager = getApplicationContext().getPackageManager();
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+
+                    try {
+                        String url = "https://api.whatsapp.com/send?phone=" + "+918983401400" + "&text=" + URLEncoder.encode("Please Reset password for username " + emailAddress.getText().toString() + " with password " + passwordnew.getText().toString(), "UTF-8");
+                        i.setPackage("com.whatsapp");
+                        i.setData(Uri.parse(url));
+                        if (i.resolveActivity(packageManager) != null) {
+                            getApplicationContext().startActivity(i);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e){
-                    e.printStackTrace();
                 }
             }
         });
     }
 
-    public void resetpassword(final String emailStr){
 
-    }
 }
