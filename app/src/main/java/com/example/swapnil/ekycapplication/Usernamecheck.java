@@ -89,6 +89,7 @@ String nameString,checkurl="http://greenleafpureveg.in/utsavapplication/username
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Usernamecheck.this, error.toString(), Toast.LENGTH_SHORT).show();
 
                 mainProgress.setVisibility(View.GONE);
             }
@@ -104,10 +105,7 @@ String nameString,checkurl="http://greenleafpureveg.in/utsavapplication/username
 
         };
 
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                20000,
-                0,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
 
         AppController.getInstance().addToRequestQueue(stringRequest);
     }

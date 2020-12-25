@@ -136,10 +136,7 @@ Button sendotpBtn,submitBtn;
             Toast.makeText(Newregister.this, "Password can`t be left blank", Toast.LENGTH_SHORT).show();
         }else {
              registerProcess.setVisibility(View.VISIBLE);
-             stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                     20000,
-                     0,
-                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
              AppController.getInstance().addToRequestQueue(stringRequest);
          }
     }

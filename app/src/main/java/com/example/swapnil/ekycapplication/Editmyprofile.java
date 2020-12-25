@@ -38,7 +38,7 @@ import java.util.Map;
 public class Editmyprofile extends AppCompatActivity {
     String imageString="",firstnameSt,middlenameSt,lastnameSt,dateofbirthSt,occupatioSt,aboutmeSt,maritalstatusSt,
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
-            educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,
+            educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,mamaavantakSt,
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
             agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
             dnum6_string,avantak_string,
@@ -51,7 +51,7 @@ public class Editmyprofile extends AppCompatActivity {
 
     EditText firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
-            annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
+            annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,mamavantakEt,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,avantakEt,
             agerangeEt,height1Et,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et,current_cityet;
 
@@ -90,7 +90,7 @@ public class Editmyprofile extends AppCompatActivity {
         emailidEt=(EditText)findViewById(R.id.editemailid);
         resiaddEt=(EditText)findViewById(R.id.editresiadd);
         permaddEt=(EditText)findViewById(R.id.editpermadd);
-
+        mamavantakEt=(EditText)findViewById(R.id.editmamaavantak);
         contactnumberEt=(EditText)findViewById(R.id.editcontact1);
         heightEt=(EditText)findViewById(R.id.editheight);
         bloodgroupEt=(EditText)findViewById(R.id.editbloodgroup);
@@ -296,19 +296,29 @@ public class Editmyprofile extends AppCompatActivity {
             public void onClick(View v) {
 
                 submitbt.setVisibility(View.GONE);
+                dnum1_string=dnum1_et.getText().toString();
+                dnum2_string=dnum2_et.getText().toString();
+                dnum3_string=dnum3_et.getText().toString();
+                dnum4_string=dnum4_et.getText().toString();
+                dnum5_string=dnum5_et.getText().toString();
+                dnum6_string=dnum6_et.getText().toString();
+                dnum7_string=dnum7_et.getText().toString();
+                dnum8_string=dnum8_et.getText().toString();
+
+
                 if(genderMale.isChecked()){
                     genderSt="M";
                 }else{
                     genderSt="F";
                 }
 
-                firstnameSt=firstnameEt.getText().toString();
-                middlenameSt=middlenameEt.getText().toString();
-                lastnameSt=lastnameEt.getText().toString();
-                avantak_string=avantakEt.getText().toString();
+                firstnameSt=firstnameEt.getText().toString().replace("\"","").replace("\'","");
+                middlenameSt=middlenameEt.getText().toString().replace("\"","").replace("\'","");
+                lastnameSt=lastnameEt.getText().toString().replace("\"","").replace("\'","");
+                avantak_string=avantakEt.getText().toString().replace("\"","").replace("\'","");
                 dateofbirthSt=dnum1_string+dnum2_string+" - "+dnum3_string+dnum4_string+" - "+dnum5_string+dnum6_string+dnum7_string+dnum8_string;
-                occupatioSt=occupatioEt.getText().toString();
-                aboutmeSt=aboutmeEt.getText().toString();
+                occupatioSt=occupatioEt.getText().toString().replace("\"","").replace("\'","");
+                aboutmeSt=aboutmeEt.getText().toString().replace("\"","").replace("\'","");
                 if(nevermarriedRb.isChecked()){
                     maritalstatusSt="N";
                 }else if(marriedRb.isChecked()){
@@ -318,33 +328,36 @@ public class Editmyprofile extends AppCompatActivity {
                 }else if(widowRb.isChecked()){
                     maritalstatusSt="W";
                 }
-                emailidSt=emailidEt.getText().toString();
-                resiaddSt=resiaddEt.getText().toString();
-                avantak_string=avantakEt.getText().toString();
-                //Native address
-                permaddSt=permaddEt.getText().toString();
-                currentcityst=current_cityet.getText().toString();
-                contactnumberSt=contactnumberEt.getText().toString();
-                heightSt=heightEt.getText().toString();
-                bloodgroupSt=bloodgroupEt.getText().toString();
-                educationSt=educationEt.getText().toString();
-                annualincomeSt=annualincomeEt.getText().toString();
-                firstgotraSt=firstgotraEt.getText().toString();
-                //////////////Family info start
-                occupation1St=occupation1Et.getText().toString();
-                mothersnameSt=mothersnameEt.getText().toString();
-                occupation2St=occupation2Et.getText().toString();
-                noofbrothersSt=noofbrothersEt.getText().toString();
-                brotherdetailsSt=brotherdetailsEt.getText().toString();
-                noofsistersSt=noofsistersEt.getText().toString();
-                sisterdetailsSt=sisterdetailsEt.getText().toString();
+                emailidSt=emailidEt.getText().toString().replace("\"","").replace("\'","");
+                resiaddSt=resiaddEt.getText().toString().replace("\"","").replace("\'","");
+                avantak_string=avantakEt.getText().toString().replace("\"","").replace("\'","");
+                mamaavantakSt=mamavantakEt.getText().toString().replace("\"","").replace("\'","");
 
-                qualificationSt=qualificationEt.getText().toString();
-                annualincome1St=annualincome1Et.getText().toString();
-                agerangeSt=agerangeEt.getText().toString();
-                height1St=height1Et.getText().toString();
-                occupation3St=occupation3Et.getText().toString();
-                preferredcitySt=preferredcityEt.getText().toString();
+                //Native address
+                permaddSt=permaddEt.getText().toString().replace("\"","").replace("\'","");
+                currentcityst=current_cityet.getText().toString().replace("\"","").replace("\'","");
+                contactnumberSt=contactnumberEt.getText().toString().replace("\"","").replace("\'","");
+                heightSt=heightEt.getText().toString().replace("\"","").replace("\'","");
+                bloodgroupSt=bloodgroupEt.getText().toString().replace("\"","").replace("\'","");
+                educationSt=educationEt.getText().toString().replace("\"","").replace("\'","");
+                annualincomeSt=annualincomeEt.getText().toString().replace("\"","").replace("\'","");
+                firstgotraSt=firstgotraEt.getText().toString().replace("\"","").replace("\'","");
+                //////////////Family info start
+                occupation1St=occupation1Et.getText().toString().replace("\"","").replace("\'","");
+                mothersnameSt=mothersnameEt.getText().toString().replace("\"","").replace("\'","");
+                occupation2St=occupation2Et.getText().toString().replace("\"","").replace("\'","");
+                noofbrothersSt=noofbrothersEt.getText().toString().replace("\"","").replace("\'","");
+                brotherdetailsSt=brotherdetailsEt.getText().toString().replace("\"","").replace("\'","");
+                noofsistersSt=noofsistersEt.getText().toString().replace("\"","").replace("\'","");
+                sisterdetailsSt=sisterdetailsEt.getText().toString().replace("\"","").replace("\'","");
+
+                qualificationSt=qualificationEt.getText().toString().replace("\"","").replace("\'","");
+                annualincome1St=annualincome1Et.getText().toString().replace("\"","").replace("\'","");
+                agerangeSt=agerangeEt.getText().toString().replace("\"","").replace("\'","");
+                height1St=height1Et.getText().toString().replace("\"","").replace("\'","");
+                occupation3St=occupation3Et.getText().toString().replace("\"","").replace("\'","");
+                preferredcitySt=preferredcityEt.getText().toString().replace("\"","").replace("\'","");
+
                 addvalidations();
             }
         });
@@ -478,6 +491,9 @@ public class Editmyprofile extends AppCompatActivity {
         }else if(avantak_string.trim().equals("")){
             avantakEt.requestFocus();
             Toast.makeText(this, "Avantak can`t be left blank", Toast.LENGTH_SHORT).show();
+        }else if(mamaavantakSt.trim().equals("")){
+            avantakEt.requestFocus();
+            Toast.makeText(this, "Mama Avantak can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(maritalstatusSt.trim().equals("")){
             aboutmeEt.requestFocus();
             Toast.makeText(this, "Please select marital status", Toast.LENGTH_SHORT).show();
@@ -525,6 +541,7 @@ public class Editmyprofile extends AppCompatActivity {
         else {
             createjsonobject();
         }
+        submitbt.setVisibility(View.VISIBLE);
 
     }
 
@@ -578,7 +595,7 @@ public class Editmyprofile extends AppCompatActivity {
 
             jsonObject.put("firstgotra",firstgotraSt);
             jsonObject.put("avantak",avantak_string);
-
+            jsonObject.put("mamavantak",mamaavantakSt);
             // jsonObject.put("mothertonugeSt",mothertonugeSt);
 
             // jsonObject.put("birthnameSt",birthnameSt);

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     String imageString="",firstnameSt,middlenameSt,lastnameSt,dateofbirthSt,occupatioSt,aboutmeSt,maritalstatusSt,
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
             educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,
-            occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
+            occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,mamaavantakSt,
             agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
             dnum6_string,avantak_string,
             dnum7_string,dnum8_string,genderSt,currentcityst,getid;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     EditText firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
-            noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,avantakEt,
+            noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,avantakEt,mamavantakEt,
             agerangeEt,height1Et,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et,current_cityet;
 
     Bitmap bitmap;
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         genderFemale=(RadioButton)findViewById(R.id.female);
         progressBar=(ProgressBar)findViewById(R.id.imageprogress);
         avantakEt=(EditText)findViewById(R.id.avantak);
+        mamavantakEt=(EditText)findViewById(R.id.mamaavantak);
         occupatioEt=(EditText)findViewById(R.id.occupation);
         aboutmeEt=(EditText)findViewById(R.id.aboutme);
         maritalstatusEt=(EditText)findViewById(R.id.maritalstatus);
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         emailidEt=(EditText)findViewById(R.id.emailid);
         resiaddEt=(EditText)findViewById(R.id.resiadd);
         permaddEt=(EditText)findViewById(R.id.permadd);
-
+        mamavantakEt=(EditText)findViewById(R.id.mamaavantak);
         contactnumberEt=(EditText)findViewById(R.id.contact1);
         heightEt=(EditText)findViewById(R.id.height);
         bloodgroupEt=(EditText)findViewById(R.id.bloodgroup);
@@ -333,13 +334,14 @@ public class MainActivity extends AppCompatActivity {
             genderSt="F";
         }
 
-        firstnameSt=firstnameEt.getText().toString();
-        middlenameSt=middlenameEt.getText().toString();
-        lastnameSt=lastnameEt.getText().toString();
-        avantak_string=avantakEt.getText().toString();
+        firstnameSt=firstnameEt.getText().toString().replace("\"","").replace("\'","");
+        middlenameSt=middlenameEt.getText().toString().replace("\"","").replace("\'","");
+        lastnameSt=lastnameEt.getText().toString().replace("\"","").replace("\'","");
+        avantak_string=avantakEt.getText().toString().replace("\"","").replace("\'","");
+        mamaavantakSt=mamavantakEt.getText().toString();
         dateofbirthSt=dnum1_string+dnum2_string+" - "+dnum3_string+dnum4_string+" - "+dnum5_string+dnum6_string+dnum7_string+dnum8_string;
-        occupatioSt=occupatioEt.getText().toString();
-        aboutmeSt=aboutmeEt.getText().toString();
+        occupatioSt=occupatioEt.getText().toString().replace("\"","").replace("\'","");
+        aboutmeSt=aboutmeEt.getText().toString().replace("\"","").replace("\'","");
         if(nevermarriedRb.isChecked()){
             maritalstatusSt="N";
         }else if(marriedRb.isChecked()){
@@ -349,33 +351,35 @@ public class MainActivity extends AppCompatActivity {
          }else if(widowRb.isChecked()){
              maritalstatusSt="W";
          }
-        emailidSt=emailidEt.getText().toString();
-        resiaddSt=resiaddEt.getText().toString();
-        avantak_string=avantakEt.getText().toString();
-        //Native address
-        permaddSt=permaddEt.getText().toString();
-        currentcityst=current_cityet.getText().toString();
-        contactnumberSt=contactnumberEt.getText().toString();
-        heightSt=heightEt.getText().toString();
-        bloodgroupSt=bloodgroupEt.getText().toString();
-        educationSt=educationEt.getText().toString();
-        annualincomeSt=annualincomeEt.getText().toString();
-        firstgotraSt=firstgotraEt.getText().toString();
-        //////////////Family info start
-        occupation1St=occupation1Et.getText().toString();
-        mothersnameSt=mothersnameEt.getText().toString();
-        occupation2St=occupation2Et.getText().toString();
-        noofbrothersSt=noofbrothersEt.getText().toString();
-        brotherdetailsSt=brotherdetailsEt.getText().toString();
-        noofsistersSt=noofsistersEt.getText().toString();
-        sisterdetailsSt=sisterdetailsEt.getText().toString();
+        emailidSt=emailidEt.getText().toString().replace("\"","").replace("\'","");
+        resiaddSt=resiaddEt.getText().toString().replace("\"","").replace("\'","");
+        avantak_string=avantakEt.getText().toString().replace("\"","").replace("\'","");
+        mamaavantakSt=mamavantakEt.getText().toString().replace("\"","").replace("\'","");
 
-        qualificationSt=qualificationEt.getText().toString();
-        annualincome1St=annualincome1Et.getText().toString();
-        agerangeSt=agerangeEt.getText().toString();
-        height1St=height1Et.getText().toString();
-        occupation3St=occupation3Et.getText().toString();
-        preferredcitySt=preferredcityEt.getText().toString();
+        //Native address
+        permaddSt=permaddEt.getText().toString().replace("\"","").replace("\'","");
+        currentcityst=current_cityet.getText().toString().replace("\"","").replace("\'","");
+        contactnumberSt=contactnumberEt.getText().toString().replace("\"","").replace("\'","");
+        heightSt=heightEt.getText().toString().replace("\"","").replace("\'","");
+        bloodgroupSt=bloodgroupEt.getText().toString().replace("\"","").replace("\'","");
+        educationSt=educationEt.getText().toString().replace("\"","").replace("\'","");
+        annualincomeSt=annualincomeEt.getText().toString().replace("\"","").replace("\'","");
+        firstgotraSt=firstgotraEt.getText().toString().replace("\"","").replace("\'","");
+        //////////////Family info start
+        occupation1St=occupation1Et.getText().toString().replace("\"","").replace("\'","");
+        mothersnameSt=mothersnameEt.getText().toString().replace("\"","").replace("\'","");
+        occupation2St=occupation2Et.getText().toString().replace("\"","").replace("\'","");
+        noofbrothersSt=noofbrothersEt.getText().toString().replace("\"","").replace("\'","");
+        brotherdetailsSt=brotherdetailsEt.getText().toString().replace("\"","").replace("\'","");
+        noofsistersSt=noofsistersEt.getText().toString().replace("\"","").replace("\'","");
+        sisterdetailsSt=sisterdetailsEt.getText().toString().replace("\"","").replace("\'","");
+
+        qualificationSt=qualificationEt.getText().toString().replace("\"","").replace("\'","");
+        annualincome1St=annualincome1Et.getText().toString().replace("\"","").replace("\'","");
+        agerangeSt=agerangeEt.getText().toString().replace("\"","").replace("\'","");
+        height1St=height1Et.getText().toString().replace("\"","").replace("\'","");
+        occupation3St=occupation3Et.getText().toString().replace("\"","").replace("\'","");
+        preferredcitySt=preferredcityEt.getText().toString().replace("\"","").replace("\'","");
 
         addvalidations();
     }
@@ -437,6 +441,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
     }
 
     public void addvalidations(){
+
          if(genderSt.trim().equals("")){
             firstnameEt.requestFocus();
             Toast.makeText(this, "Please select Gender", Toast.LENGTH_SHORT).show();
@@ -452,7 +457,11 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         }else if(avantak_string.trim().equals("")){
             avantakEt.requestFocus();
             Toast.makeText(this, "Avantak can`t be left blank", Toast.LENGTH_SHORT).show();
-        }else if(maritalstatusSt.trim().equals("")){
+        }else if(mamaavantakSt.trim().equals("")){
+             avantakEt.requestFocus();
+             Toast.makeText(this, "Mama Avantak can`t be left blank", Toast.LENGTH_SHORT).show();
+         }
+         else if(maritalstatusSt.trim().equals("")){
             aboutmeEt.requestFocus();
             Toast.makeText(this, "Please select marital status", Toast.LENGTH_SHORT).show();
         } else if(resiaddSt.trim().equals("")){
@@ -499,6 +508,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         else {
             createjsonobject();
         }
+        submitbt.setVisibility(View.VISIBLE);
 
     }
 
@@ -553,7 +563,9 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             jsonObject.put("firstgotra",firstgotraSt);
             jsonObject.put("avantak",avantak_string);
 
-           // jsonObject.put("mothertonugeSt",mothertonugeSt);
+            jsonObject.put("mamavantak",mamaavantakSt);
+
+            // jsonObject.put("mothertonugeSt",mothertonugeSt);
 
            // jsonObject.put("birthnameSt",birthnameSt);
 
@@ -612,7 +624,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
                         gotologin.putExtra("id",getid);
                         startActivity(gotologin);
                     }else{
-
+                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
                         Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
 
                     }

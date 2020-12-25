@@ -153,7 +153,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Last Name * (For Ex. Mehta)" />
+                        android:hint="Last Name * " />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -166,6 +166,19 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:hint="Avantak * (For Ex. Todrawat)" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/mamaavantak"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="Mama Avantak * (For Ex. Todrawat)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -489,7 +502,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Height * For example 5' 4&quot;" />
+                        android:hint="Height * For example 5 Foot 6 Inches" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -716,7 +729,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Height (For example 5' 4&quot; )" />
+                        android:hint="Height (For example 5 Foot 6 Inches )" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 

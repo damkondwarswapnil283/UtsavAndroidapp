@@ -18,13 +18,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:padding="10dp"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextsharp"
-                android:padding="10dp"
+
                 android:gravity="center"
                 android:orientation="vertical" >
 
@@ -51,6 +53,7 @@
                     android:layout_height="40dp"
                     android:textSize="25sp"
                     android:gravity="center"
+                    android:inputType="textMultiLine"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/edittextround"
@@ -61,7 +64,6 @@
                     style="?android:attr/progressBarStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_weight="1" />
 
                 <com.android.volley.toolbox.NetworkImageView
@@ -71,56 +73,80 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginRight="8dp" />
 
-                    <TextView
-                        android:id="@+id/firstname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Name" />
 
 
-                    <TextView
-                        android:id="@+id/dateofbirth"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Date Of Birth" />
+                <TextView
+                    android:id="@+id/firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Name" />
+
+                <TextView
+                    android:id="@+id/showavantak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Avantak" />
+
+                <TextView
+                    android:id="@+id/showmamaavantak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Mama Avantak" />
+
+
+                <TextView
+                    android:id="@+id/dateofbirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Date Of Birth" />
 
 
 
                 <TextView
-                        android:id="@+id/occupation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Occupation" />
+                    android:id="@+id/occupation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Occupation" />
 
 
 
 
 
-                    <TextView
-                        android:id="@+id/aboutme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="About Me/Hobbies" />
+                <TextView
+                    android:id="@+id/aboutme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="About Me/Hobbies" />
 
 
 
@@ -130,6 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:textSize="25sp"
+                    android:inputType="textMultiLine"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -139,128 +166,129 @@
 
 
 
-                    <TextView
-                        android:id="@+id/maritalstatus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Marital Status" />
+                <TextView
+                    android:id="@+id/maritalstatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Marital Status" />
 
 
-                    <TextView
-                        android:id="@+id/firstgotra"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="First Gotra" />
-
-
-
-
-
-                    <TextView
-                        android:id="@+id/emailid"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Email Id" />
-
-                    <TextView
-                        android:id="@+id/resiadd"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Resi.Add" />
-
-
-                    <TextView
-                        android:id="@+id/permadd"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Perm.Add" />
-
-                    <TextView
-                        android:id="@+id/contact1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Contact No:" />
+                <TextView
+                    android:id="@+id/firstgotra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="First Gotra" />
 
 
 
 
-                    <TextView
-                        android:id="@+id/height"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Height" />
+
+                <TextView
+                    android:id="@+id/emailid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Email Id" />
+
+                <TextView
+                    android:id="@+id/resiadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollHorizontally="false"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:inputType="textMultiLine"
+                    android:textSize="18sp"
+                    />
 
 
-                    <TextView
-                        android:id="@+id/bloodgroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Blood Group" />
+                <TextView
+                    android:id="@+id/permadd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Perm.Add" />
+
+                <TextView
+                    android:id="@+id/contact1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Contact No:" />
 
 
 
-                    <TextView
-                        android:id="@+id/education"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Education" />
+
+                <TextView
+                    android:id="@+id/height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Height" />
 
 
-                    <TextView
-                        android:id="@+id/annualincome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Annual Income" />
+                <TextView
+                    android:id="@+id/bloodgroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Blood Group" />
+
+
+
+                <TextView
+                    android:id="@+id/education"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Education" />
+
+
+                <TextView
+                    android:id="@+id/annualincome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Annual Income" />
 
 
 
@@ -272,6 +300,7 @@
                     android:layout_height="40dp"
                     android:textSize="25sp"
                     android:gravity="center"
+                    android:inputType="textMultiLine"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/edittextround"
@@ -280,98 +309,98 @@
 
 
 
-                    <TextView
-                        android:id="@+id/fathername"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Father Name" />
+                <TextView
+                    android:id="@+id/fathername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Father Name" />
 
-                    <TextView
-                        android:id="@+id/occupation1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Occupation" />
-
-
-                    <TextView
-                        android:id="@+id/mothername"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Mother's Name" />
-
-                    <TextView
-                        android:id="@+id/occupation2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Occupation" />
-
-                    <TextView
-                        android:id="@+id/noofbrothers"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="No. Of Brothers" />
+                <TextView
+                    android:id="@+id/occupation1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Occupation" />
 
 
-                    <TextView
-                        android:id="@+id/brothersdetails"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Brother Details" />
-               >
+                <TextView
+                    android:id="@+id/mothername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Mother's Name" />
 
-                    <TextView
-                        android:id="@+id/noofsisters"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="No. Of Sisters" />
+                <TextView
+                    android:id="@+id/occupation2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Occupation" />
+
+                <TextView
+                    android:id="@+id/noofbrothers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="No. Of Brothers" />
+
+
+                <TextView
+                    android:id="@+id/brothersdetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Brother Details" />
+                >
+
+                <TextView
+                    android:id="@+id/noofsisters"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="No. Of Sisters" />
 
 
 
-                    <TextView
-                        android:id="@+id/sistersdetails"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Sister Details" />
+                <TextView
+                    android:id="@+id/sistersdetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Sister Details" />
 
                 <TextView
                     android:id="@+id/partnersexpectation"
@@ -380,78 +409,79 @@
                     android:textSize="25sp"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"
+                    android:inputType="textMultiLine"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/edittextround"
                     android:text="Partner's Expectation" />
 
 
 
-                    <TextView
-                        android:id="@+id/qualification"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Qualification" />
+                <TextView
+                    android:id="@+id/qualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Qualification" />
 
-                    <TextView
-                        android:id="@+id/annualincome1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Annual Income" />
+                <TextView
+                    android:id="@+id/annualincome1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Annual Income" />
 
-                    <TextView
-                        android:id="@+id/agerange"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Age Range" />
+                <TextView
+                    android:id="@+id/agerange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Age Range" />
 
-                    <TextView
-                        android:id="@+id/height1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Height" />
+                <TextView
+                    android:id="@+id/height1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Height" />
 
 
-                    <TextView
-                        android:id="@+id/occupation3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Occupation" />
+                <TextView
+                    android:id="@+id/occupation3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Occupation" />
 
-                    <TextView
-                        android:id="@+id/preferredcity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/edittextsharp"
-                        android:textSize="18sp"
-                        android:hint="Preferred City" />
+                <TextView
+                    android:id="@+id/preferredcity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Preferred City" />
 
 
                 <Button

@@ -37,13 +37,13 @@ public class Showuser extends AppCompatActivity {
     String usernameSt,passwordSt,firstnameSt,middlenameSt,lastnameSt,dateofbirthSt,occupatioSt,aboutmeSt,maritalstatusSt,
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
             educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,
-            occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,
+            occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,avantakst,mamaavantakst,
             agerangeSt,height1St,occupation3St,preferredcitySt,individualData;
     TextView usernameEt,passwordEt,firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
-            noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,
-            agerangeEt,height1Et,occupation3Et,preferredcityEt;
+            noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,mamaavantek,
+            agerangeEt,height1Et,occupation3Et,preferredcityEt,avataltext;
     JSONObject jsonObject;
     private NetworkImageView mNetworkImageView;
     private ImageLoader mImageLoader;
@@ -99,6 +99,8 @@ public class Showuser extends AppCompatActivity {
         height1Et=(TextView)findViewById(R.id.height1);
         occupation3Et=(TextView)findViewById(R.id.occupation3);
         preferredcityEt=(TextView)findViewById(R.id.preferredcity);
+        avataltext=(TextView)findViewById(R.id.showavantak);
+        mamaavantek=(TextView)findViewById(R.id.showmamaavantak);
       imageLoader = AppController.getInstance().getImageLoader();
 
 
@@ -122,6 +124,7 @@ public class Showuser extends AppCompatActivity {
 
                             individualjsonobject=new JSONObject(jsonObject.getString("jsondata"));
 
+
                             firstnameSt=individualjsonobject.getString("firstname");
 
                             middlenameSt=individualjsonobject.getString("middlename");
@@ -135,6 +138,7 @@ public class Showuser extends AppCompatActivity {
                             aboutmeSt=individualjsonobject.getString("aboutme");
 
                             maritalstatusSt=individualjsonobject.getString("maritalstatus");
+
 
                             firstgotraSt=individualjsonobject.getString("firstgotra");
 
@@ -191,15 +195,30 @@ public class Showuser extends AppCompatActivity {
                             occupation3St=individualjsonobject.getString("occupationexpected");
 
                             preferredcitySt=individualjsonobject.getString("preferredcitySt");
+                            avantakst=individualjsonobject.getString("avantak");
+
+                            mamaavantakst=individualjsonobject.getString("mamavantak");
 
                             String imageurl=jsonObject.getString("image");
                             mNetworkImageView.setImageUrl(imageurl,imageLoader);
 
 
-                            firstnameEt.setText("Firstname:- "+firstnameSt);
+                            firstnameEt.setText("Firstname:- "+firstnameSt +" "+ middlenameSt + " "+ lastnameSt);
                             dateofbirthEt.setText("Date of birth:- "+dateofbirthSt);
                             occupatioEt.setText("Occupation:- "+occupatioSt);
                             aboutmeEt.setText("About Me:- "+aboutmeSt);
+
+                            mamaavantek.setText("Mama Avantak:- "+mamaavantakst);
+
+                            if(maritalstatusSt.equals("N")){
+                                maritalstatusSt="Not Married";
+                            }else if(maritalstatusSt.equals("M")){
+                                maritalstatusSt="Married";
+                            }else if(maritalstatusSt.equals("D")){
+                                maritalstatusSt="Divorced";
+                            }else if(maritalstatusSt.equals("W")){
+                                maritalstatusSt="Widow";
+                            }
                             maritalstatusEt.setText("Marital Status:- "+maritalstatusSt);
                             firstgotraEt.setText("First Gotra:-"+firstgotraSt);
 //                            secondgotraEt.setText(secondgotraSt);
@@ -213,7 +232,7 @@ public class Showuser extends AppCompatActivity {
                             //complexionEt.setText(complexionSt);
                             educationEt.setText("Education:- "+educationSt);
                             annualincomeEt.setText("Annual Income:- "+annualincomeSt);
-
+                            avataltext.setText("Avantak:- "+avantakst);
 
                             fathersnameEt.setText("Father Name:- "+fathersnameSt);
                             occupation1Et.setText("Occupation:- "+occupation1St);
@@ -222,7 +241,7 @@ public class Showuser extends AppCompatActivity {
                             noofbrothersEt.setText("No of Brothers:- "+noofbrothersSt);
                             brotherdetailsEt.setText("Brother Details:- "+brotherdetailsSt);
                             noofsistersEt.setText("No of sisters:- "+noofsistersSt);
-                            sisterdetailsEt.setText("Sisters Details"+sisterdetailsSt);
+                            sisterdetailsEt.setText("Sisters Details:- "+sisterdetailsSt);
                             qualificationEt.setText("Qualification:- "+qualificationSt);
                             annualincome1Et.setText("Annual Income:- "+annualincome1St);
                             agerangeEt.setText("Age range:- "+agerangeSt);

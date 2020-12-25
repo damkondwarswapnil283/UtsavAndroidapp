@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class showlist extends AppCompatActivity {
     JSONObject individualObject;
     TextView response;
     EditText searching;
+    ProgressBar showprogresslist;
 
 
     String genderSt,imageurl,firstName;
@@ -71,6 +73,7 @@ public class showlist extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, movieList);
         searching=(EditText)findViewById(R.id.searching);
+        showprogresslist=(ProgressBar)findViewById(R.id.showuserlistpro);
         listView.setAdapter(adapter);
 
 
@@ -92,6 +95,7 @@ public class showlist extends AppCompatActivity {
                 try {
 
                     movieList.clear();
+                    showprogresslist.setVisibility(View.GONE);
                     jsonArray =new JSONArray(response);
                     for(int i=0;i<jsonArray.length();i++){
                         try {
@@ -120,6 +124,8 @@ public class showlist extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            showprogresslist.setVisibility(View.GONE);
+
                             adapter.notifyDataSetChanged();
                         };
                     }
@@ -127,6 +133,8 @@ public class showlist extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     movieList.clear();
+                    showprogresslist.setVisibility(View.GONE);
+
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -135,6 +143,8 @@ public class showlist extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("Error",error.toString());
                 movieList.clear();
+                showprogresslist.setVisibility(View.GONE);
+
                 adapter.notifyDataSetChanged();
             }
         });
