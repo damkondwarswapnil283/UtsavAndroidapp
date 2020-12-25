@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Selectionactivity extends Activity {
-    LinearLayout OldCustomerbtn,NewcustomerBtn,createmyprofile,editmyprofile,removeprofile;
+    LinearLayout OldCustomerbtn,NewcustomerBtn,createmyprofile,editmyprofile,removeprofile,logoutll;
     String getid;
     ProgressBar progressBar;
     @Override
@@ -37,6 +37,7 @@ public class Selectionactivity extends Activity {
         createmyprofile=(LinearLayout)findViewById(R.id.createmyprofile);
         editmyprofile=(LinearLayout)findViewById(R.id.editmyprofilell);
         removeprofile=(LinearLayout)findViewById(R.id.removemeforlistinll) ;
+        logoutll=(LinearLayout)findViewById(R.id.logoutll) ;
         getid=getIntent().getExtras().getString("id");
 
 
@@ -88,6 +89,16 @@ public class Selectionactivity extends Activity {
 
         AppController.getInstance().addToRequestQueue(stringRequest);
 
+        logoutll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotocreateprofile = new Intent(Selectionactivity.this, Login.class);
+                gotocreateprofile.putExtra("id",getid);
+                startActivity(gotocreateprofile);
+                finish();
+            }
+        });
+
         createmyprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +123,7 @@ public class Selectionactivity extends Activity {
             public void onClick(View v) {
                 Intent GotoSelectionActivity = new Intent(Selectionactivity.this, showlist.class);
                 GotoSelectionActivity.putExtra("gender","M");
+                GotoSelectionActivity.putExtra("selfkey",getid);
                 startActivity(GotoSelectionActivity);
 
             }
@@ -122,6 +134,7 @@ public class Selectionactivity extends Activity {
             public void onClick(View v) {
                 Intent GotoSelectionActivity=new Intent(Selectionactivity.this,showlist.class);
                 GotoSelectionActivity.putExtra("gender","F");
+                GotoSelectionActivity.putExtra("selfkey",getid);
                 startActivity(GotoSelectionActivity);
 
             }

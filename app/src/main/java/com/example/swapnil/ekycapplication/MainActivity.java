@@ -16,11 +16,13 @@ import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,17 +48,18 @@ public class MainActivity extends AppCompatActivity {
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,mamaavantakSt,
             agerangeSt,height1St,occupation3St,preferredcitySt,dnum1_string,dnum2_string,dnum3_string,dnum4_string,dnum5_string,
             dnum6_string,avantak_string,
-            dnum7_string,dnum8_string,genderSt,currentcityst,getid;
+            dnum7_string,dnum8_string,genderSt,currentcityst,getid,chaukhalst;
     ProgressBar progressBar,mainProgress;
     ImageView testImage;
     StringRequest stringRequest;
 
     EditText firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
-            firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
+            firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,avantakEt,mamavantakEt,
-            agerangeEt,height1Et,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et,current_cityet;
+            agerangeEt,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et,current_cityet;
 
+    Spinner heightEt,height1Et;
     Bitmap bitmap;
     byte[] imagebytes;
     String imagestring="";
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri filePath;
     Button submitbt;
-    RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale;
+    RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb;
     ProgressBar progressBarimage;
     ByteArrayOutputStream bytearrayimage;
 
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         permaddEt=(EditText)findViewById(R.id.permadd);
         mamavantakEt=(EditText)findViewById(R.id.mamaavantak);
         contactnumberEt=(EditText)findViewById(R.id.contact1);
-        heightEt=(EditText)findViewById(R.id.height);
+        heightEt=(Spinner) findViewById(R.id.height);
         bloodgroupEt=(EditText)findViewById(R.id.bloodgroup);
         complexionEt=(EditText)findViewById(R.id.complexion);
         educationEt=(EditText)findViewById(R.id.education);
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         qualificationEt=(EditText)findViewById(R.id.qualification);
         annualincome1Et=(EditText)findViewById(R.id.annualincome1);
         agerangeEt=(EditText)findViewById(R.id.agerange);
-        height1Et=(EditText)findViewById(R.id.height1);
+        height1Et=(Spinner) findViewById(R.id.height1);
         occupation3Et=(EditText)findViewById(R.id.occupation3);
         preferredcityEt=(EditText)findViewById(R.id.preferredcity);
         submitbt=(Button)findViewById(R.id.submitbt);
@@ -147,11 +150,34 @@ public class MainActivity extends AppCompatActivity {
         nevermarriedRb=(RadioButton)findViewById(R.id.nevermarried);
         divorcedRb=(RadioButton)findViewById(R.id.divorced);
         widowRb=(RadioButton)findViewById(R.id.widow);
+
+        vagadRb=(RadioButton)findViewById(R.id.vagad);
+        chappanRb=(RadioButton)findViewById(R.id.chappan);
+        baranRb=(RadioButton)findViewById(R.id.baran);
+        chansathRb=(RadioButton)findViewById(R.id.chansath);
+
         testImage=(ImageView)findViewById(R.id.testdata) ;
         progressBar=(ProgressBar)findViewById(R.id.imageprogress);
         sizemessage=(TextView)findViewById(R.id.sizemessage);
 
         getid=getIntent().getExtras().getString("id");
+
+        String[] heights=new String[]{"100","101","102","103","104","105","106","107","108","109","110","111","112",
+                "113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129"
+                ,"130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146"
+                ,"147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163",
+                "164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180",
+                "181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197",
+                "198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214",
+                "215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231",
+                "232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248",
+                "249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265",
+                "266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282",
+                "283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300",};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, heights);
+        heightEt.setAdapter(adapter);
+        height1Et.setAdapter(adapter);
 
         testImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,6 +377,17 @@ public class MainActivity extends AppCompatActivity {
          }else if(widowRb.isChecked()){
              maritalstatusSt="W";
          }
+
+        if(vagadRb.isChecked()){
+            chaukhalst="V";
+        }else if(chappanRb.isChecked()){
+            chaukhalst="C";
+        }else if(baranRb.isChecked()){
+            chaukhalst="B";
+        }else if(chansathRb.isChecked()){
+            chaukhalst="CH";
+        }
+
         emailidSt=emailidEt.getText().toString().replace("\"","").replace("\'","");
         resiaddSt=resiaddEt.getText().toString().replace("\"","").replace("\'","");
         avantak_string=avantakEt.getText().toString().replace("\"","").replace("\'","");
@@ -360,7 +397,7 @@ public class MainActivity extends AppCompatActivity {
         permaddSt=permaddEt.getText().toString().replace("\"","").replace("\'","");
         currentcityst=current_cityet.getText().toString().replace("\"","").replace("\'","");
         contactnumberSt=contactnumberEt.getText().toString().replace("\"","").replace("\'","");
-        heightSt=heightEt.getText().toString().replace("\"","").replace("\'","");
+        heightSt=heightEt.getSelectedItem().toString().replace("\"","").replace("\'","");
         bloodgroupSt=bloodgroupEt.getText().toString().replace("\"","").replace("\'","");
         educationSt=educationEt.getText().toString().replace("\"","").replace("\'","");
         annualincomeSt=annualincomeEt.getText().toString().replace("\"","").replace("\'","");
@@ -377,7 +414,7 @@ public class MainActivity extends AppCompatActivity {
         qualificationSt=qualificationEt.getText().toString().replace("\"","").replace("\'","");
         annualincome1St=annualincome1Et.getText().toString().replace("\"","").replace("\'","");
         agerangeSt=agerangeEt.getText().toString().replace("\"","").replace("\'","");
-        height1St=height1Et.getText().toString().replace("\"","").replace("\'","");
+        height1St=height1Et.getSelectedItem().toString().replace("\"","").replace("\'","");
         occupation3St=occupation3Et.getText().toString().replace("\"","").replace("\'","");
         preferredcitySt=preferredcityEt.getText().toString().replace("\"","").replace("\'","");
 
@@ -419,7 +456,6 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         permaddEt.setText("permadd");
         current_cityet.setText("current_city");
         contactnumberEt.setText("contactnumber");
-        heightEt.setText("height");
         bloodgroupEt.setText("bloodgroup");
         educationEt.setText("education");
         annualincomeEt.setText("annualincome");
@@ -434,7 +470,6 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         qualificationEt.setText("qualification");
         annualincome1Et.setText("annualincome1");
         agerangeEt.setText("agerangeEt");
-        height1Et.setText("height1");
         occupation3Et.setText("occupation");
         preferredcityEt.setText("preferredcity");
 
@@ -460,6 +495,9 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         }else if(mamaavantakSt.trim().equals("")){
              avantakEt.requestFocus();
              Toast.makeText(this, "Mama Avantak can`t be left blank", Toast.LENGTH_SHORT).show();
+         }else if(chaukhalst.trim().equals("")){
+             mamavantakEt.requestFocus();
+             Toast.makeText(this, "Appropriate Chaukhala must be selected", Toast.LENGTH_SHORT).show();
          }
          else if(maritalstatusSt.trim().equals("")){
             aboutmeEt.requestFocus();
@@ -477,7 +515,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             contactnumberEt.requestFocus();
             Toast.makeText(this, "Contact number can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(heightSt.trim().equals("")){
-            heightEt.requestFocus();
+             contactnumberEt.requestFocus();
             Toast.makeText(this, "Height can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(bloodgroupSt.trim().equals("")){
             bloodgroupEt.requestFocus();
@@ -489,7 +527,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             agerangeEt.requestFocus();
             Toast.makeText(this, "Age range can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(height1St.trim().equals("")){
-            heightEt.requestFocus();
+            agerangeEt.requestFocus();
             Toast.makeText(this, "Height can`t be left blank", Toast.LENGTH_SHORT).show();
         }
         else if(dateofbirthSt.trim().equals("")){
@@ -534,9 +572,9 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             jsonObject.put("aboutme",aboutmeSt);
 
             jsonObject.put("maritalstatus",maritalstatusSt);
+            jsonObject.put("chaukhala",chaukhalst);
 
-
-           //
+            //
 
            // jsonObject.put("secondgotraSt",secondgotraSt);
 

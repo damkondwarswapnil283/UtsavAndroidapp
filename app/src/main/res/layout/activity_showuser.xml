@@ -108,6 +108,17 @@
                     android:textSize="18sp"
                     android:hint="Mama Avantak" />
 
+                <TextView
+                    android:id="@+id/chauphalashow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextsharp"
+                    android:textSize="18sp"
+                    android:hint="Chauphala" />
+
 
                 <TextView
                     android:id="@+id/dateofbirth"

@@ -57,7 +57,7 @@ public class showlist extends AppCompatActivity {
     ProgressBar showprogresslist;
 
 
-    String genderSt,imageurl,firstName;
+    String genderSt,imageurl,firstName,selfkey;
 
     String getgroomurl="http://greenleafpureveg.in/utsavapplication/getgroom.php",
             getbrideurl="http://greenleafpureveg.in/utsavapplication/getbride.php",
@@ -79,6 +79,7 @@ public class showlist extends AppCompatActivity {
 
 
         genderSt=getIntent().getExtras().getString("gender");
+        selfkey=getIntent().getExtras().getString("selfkey");
 
         if(genderSt.equals("M")){
             urlrequest=getgroomurl;
@@ -282,6 +283,8 @@ public class showlist extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 showuser.putExtra("id",ID);
+                showuser.putExtra("selfkey",selfkey);
+
                 startActivity(showuser);
             }
         });

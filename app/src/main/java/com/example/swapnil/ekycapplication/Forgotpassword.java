@@ -36,23 +36,41 @@ EditText emailAddress,passwordnew;
                     passwordnew.requestFocus();
                     Toast.makeText(Forgotpassword.this, "Please Enter password", Toast.LENGTH_SHORT).show();
                 }else {
-                    PackageManager packageManager = getApplicationContext().getPackageManager();
-                    Intent i = new Intent(Intent.ACTION_VIEW);
 
-                    try {
-                        String url = "https://api.whatsapp.com/send?phone=" + "+918983401400" + "&text=" + URLEncoder.encode("Please Reset password for username " + emailAddress.getText().toString() + " with password " + passwordnew.getText().toString(), "UTF-8");
-                        i.setPackage("com.whatsapp");
-                        i.setData(Uri.parse(url));
-                        if (i.resolveActivity(packageManager) != null) {
-                            getApplicationContext().startActivity(i);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    // from edit text
+                    String message
+                            = "Please reset password for username for"+emailAddress.getText()
+                            .toString() +" with password as "+passwordnew.getText()
+                            .toString()
+                            ;
+
+                    // Calling the function
+                    // to send message
+                    sendMessage(message);
+
                 }
             }
         });
+
+
     }
+
+    private void sendMessage(String message)
+    {
+
+        String toNumber = "+919834179216"; // contains spaces.
+        toNumber = toNumber.replace("+", "").replace(" ", "");
+
+        Intent sendIntent = new Intent("android.intent.action.MAIN");
+        sendIntent.putExtra("jid", toNumber + "@s.whatsapp.net");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.setPackage("com.whatsapp");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+
+    }
+
 
 
 }

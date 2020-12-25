@@ -26,9 +26,9 @@ public class selectmode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotologinscreen=new Intent(selectmode.this,Selectionactivity.class);
-
                 gotologinscreen.putExtra("id",getid);
                 startActivity(gotologinscreen);
+                finish();
             }
         });
 

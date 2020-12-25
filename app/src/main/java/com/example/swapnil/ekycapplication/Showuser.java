@@ -38,17 +38,17 @@ public class Showuser extends AppCompatActivity {
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
             educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,avantakst,mamaavantakst,
-            agerangeSt,height1St,occupation3St,preferredcitySt,individualData;
+            agerangeSt,height1St,occupation3St,preferredcitySt,chauphalst;
     TextView usernameEt,passwordEt,firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,mamaavantek,
-            agerangeEt,height1Et,occupation3Et,preferredcityEt,avataltext;
+            agerangeEt,height1Et,occupation3Et,preferredcityEt,avataltext,chauphalaTxt;
     JSONObject jsonObject;
     private NetworkImageView mNetworkImageView;
     private ImageLoader mImageLoader;
     StringRequest stringRequest;
-    String genderSt,keystring,getdatabyidurl="http://greenleafpureveg.in/utsavapplication/getdatabyid.php";
+    String genderSt,keystring,getdatabyidurl="http://greenleafpureveg.in/utsavapplication/getdatabyid.php",selfkey;
     Button returnhomebutton;
     ImageLoader imageLoader;
     ProgressBar progressBar;
@@ -60,7 +60,7 @@ public class Showuser extends AppCompatActivity {
 
         progressBar=(ProgressBar)findViewById(R.id.showuserprogress);
         returnhomebutton=(Button)findViewById(R.id.retuenbtn);
-
+        chauphalaTxt=(TextView)findViewById(R.id.chauphalashow);
         passwordEt=(TextView)findViewById(R.id.inputpassword);
         firstnameEt=(TextView)findViewById(R.id.firstname);
         middlenameEt=(TextView)findViewById(R.id.middlename);
@@ -105,6 +105,7 @@ public class Showuser extends AppCompatActivity {
 
 
         keystring=getIntent().getExtras().getString("id");
+        selfkey=getIntent().getExtras().getString("selfkey");
 
         stringRequest=new StringRequest(Request.Method.POST, getdatabyidurl, new Response.Listener<String>() {
             @Override
@@ -196,14 +197,15 @@ public class Showuser extends AppCompatActivity {
 
                             preferredcitySt=individualjsonobject.getString("preferredcitySt");
                             avantakst=individualjsonobject.getString("avantak");
-
+                            chauphalst=individualjsonobject.getString("chaukhala");
                             mamaavantakst=individualjsonobject.getString("mamavantak");
+
 
                             String imageurl=jsonObject.getString("image");
                             mNetworkImageView.setImageUrl(imageurl,imageLoader);
 
 
-                            firstnameEt.setText("Firstname:- "+firstnameSt +" "+ middlenameSt + " "+ lastnameSt);
+                            firstnameEt.setText("Full Name:- "+firstnameSt +" "+ middlenameSt + " "+ lastnameSt);
                             dateofbirthEt.setText("Date of birth:- "+dateofbirthSt);
                             occupatioEt.setText("Occupation:- "+occupatioSt);
                             aboutmeEt.setText("About Me:- "+aboutmeSt);
@@ -219,11 +221,24 @@ public class Showuser extends AppCompatActivity {
                             }else if(maritalstatusSt.equals("W")){
                                 maritalstatusSt="Widow";
                             }
+
+
+
+
+                            if(chauphalst.equals("V")){
+                                chauphalst="Vagad";
+                            }else if(chauphalst.equals("C")){
+                                chauphalst="Chappan";
+                            }else if(chauphalst.equals("B")){
+                                chauphalst="Baran";
+                            }else if(chauphalst.equals("CH")){
+                                chauphalst="Chansath";
+                            }
                             maritalstatusEt.setText("Marital Status:- "+maritalstatusSt);
                             firstgotraEt.setText("First Gotra:-"+firstgotraSt);
 //                            secondgotraEt.setText(secondgotraSt);
                             emailidEt.setText("Email:- "+emailidSt);
-
+                            chauphalaTxt.setText("Chauphala:-"+chauphalst);
                             resiaddEt.setText("Ressidance Address:- "+resiaddSt);
                             permaddEt.setText("Permanent Address:- "+permaddSt);
                             contactnumberEt.setText("Contact Number:- "+contactnumberSt);
@@ -233,7 +248,6 @@ public class Showuser extends AppCompatActivity {
                             educationEt.setText("Education:- "+educationSt);
                             annualincomeEt.setText("Annual Income:- "+annualincomeSt);
                             avataltext.setText("Avantak:- "+avantakst);
-
                             fathersnameEt.setText("Father Name:- "+fathersnameSt);
                             occupation1Et.setText("Occupation:- "+occupation1St);
                             mothersnameEt.setText("Mother`s Name:- "+mothersnameSt);
@@ -295,7 +309,7 @@ AppController.getInstance().addToRequestQueue(stringRequest);
             @Override
             public void onClick(View v) {
                 Intent gotologinscreen=new Intent(Showuser.this,Selectionactivity.class);
-                gotologinscreen.putExtra("id",keystring);
+                gotologinscreen.putExtra("id",selfkey);
                 startActivity(gotologinscreen);
             }
         });

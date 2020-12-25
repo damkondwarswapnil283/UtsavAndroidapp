@@ -181,6 +181,49 @@
                         android:hint="Mama Avantak * (For Ex. Todrawat)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_margin="16dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Chaukhala *" />
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edittextround"
+                    android:gravity="center"
+                    android:layout_weight="2" >
+                    <RadioButton
+                        android:id="@+id/vagad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Vagad" />
+
+                    <RadioButton
+                        android:id="@+id/chappan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Chappan" />
+
+                    <RadioButton
+                        android:id="@+id/baran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Baran" />
+                    <RadioButton
+                        android:id="@+id/chansath"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Chansath" />
+
+                </RadioGroup>
 
                 <TextView
                     android:id="@+id/textView3"
@@ -491,19 +534,24 @@
                         android:hint="Contact Number *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:padding="10dp"
 
-                <com.google.android.material.textfield.TextInputLayout
+                    android:textColor="@color/colorPrimary"
+                    android:text="Height In CM" />
+
+                <Spinner
+                    android:id="@+id/height"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/height"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Height * For example 5 Foot 6 Inches" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"/>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -718,19 +766,24 @@
                         android:hint="Age Range * (For example 26-31)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:padding="10dp"
 
-                <com.google.android.material.textfield.TextInputLayout
+                    android:textColor="@color/colorPrimary"
+                    android:text="Expected Height above (CM)" />
+
+                <Spinner
+                    android:id="@+id/height1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/height1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Height (For example 5 Foot 6 Inches )" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"/>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -772,7 +825,7 @@
                     android:gravity="center"
                     android:textColor="@color/colorAccent"
                     android:layout_weight="1"
-                    android:text="Image size must be less than 1000kb" />
+                    android:text="Image size must be less than 150kb" />
                 <Button
                     android:id="@+id/selectphotofromgallery"
                     android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,6 +62,7 @@ TextView forgotpassword;
                         gotodash.putExtra("userid",jsonObject.getString("id"));
                       //  Toast.makeText(Login.this, "Login:- "+ jsonObject.getString("id"), Toast.LENGTH_SHORT).show();
                         startActivity(gotodash);
+                        finish();
 
                     }else{
                         loginProgress.setVisibility(View.GONE);
@@ -124,6 +126,8 @@ TextView forgotpassword;
             }
         });
 
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +140,11 @@ TextView forgotpassword;
 
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 
 

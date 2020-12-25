@@ -27,10 +27,10 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="168dp"
+                android:layout_height="198dp"
                 android:padding="20dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/utsavlogo" />
 
             <View
                 android:layout_width="match_parent"
@@ -124,8 +124,8 @@
                     android:layout_marginRight="20dp"
                     />
                 <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/edittextsharp"
                     android:padding="10dp"
                     android:id="@+id/createmyprofile"
@@ -137,16 +137,16 @@
 
                     <ImageView
                         android:id="@+id/gotomyprofile"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:src="@drawable/myprofile" />
+                        android:src="@drawable/newuser" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textColor="@color/colorPrimary"
                         android:text="Create My Profile" />
 
@@ -156,9 +156,16 @@
                     style="?android:attr/progressBarStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
                 <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:weightSum="2"
+                    android:orientation="horizontal" >
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/edittextsharp"
                     android:padding="10dp"
                     android:visibility="gone"
@@ -170,24 +177,24 @@
 
                     <ImageView
                         android:id="@+id/editmyprofile"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:src="@drawable/myprofile" />
+                        android:src="@drawable/newuser" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textColor="@color/colorPrimary"
-                        android:text="Edit My Profile" />
+                        android:text="Edit Profile" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/edittextsharp"
                     android:padding="10dp"
                     android:visibility="gone"
@@ -199,18 +206,46 @@
 
                     <ImageView
                         android:id="@+id/removeprofile"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:src="@drawable/myprofile" />
+                        android:src="@drawable/remove" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textColor="@color/colorPrimary"
-                        android:text="Remove My Profile" />
+                        android:text="Remove/Add Me" />
+
+                </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/logoutll"
+                    android:background="@drawable/edittextsharp"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/logout"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/logout" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Logout" />
 
                 </LinearLayout>
 
