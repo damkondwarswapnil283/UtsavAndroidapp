@@ -53,22 +53,25 @@ TextView forgotpassword;
             public void onResponse(String response) {
                 //Toast.makeText(Login.this, response, Toast.LENGTH_LONG).show();
                 try {
+                    loginProgress.setVisibility(View.GONE);
+
+                    login.setVisibility(View.VISIBLE);
                     JSONObject jsonObject=new JSONObject(response);
                     String flag=jsonObject.getString("success");
                     if(flag.equals("1")){
-
                         loginProgress.setVisibility(View.GONE);
                         Intent gotodash=new Intent(Login.this,selectmode.class);
                         gotodash.putExtra("userid",jsonObject.getString("id"));
                       //  Toast.makeText(Login.this, "Login:- "+ jsonObject.getString("id"), Toast.LENGTH_SHORT).show();
                         startActivity(gotodash);
                         finish();
-
                     }else{
                         loginProgress.setVisibility(View.GONE);
                         Toast.makeText(Login.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
+
+                    login.setVisibility(View.VISIBLE);
                     e.printStackTrace();
                 }
 
@@ -78,6 +81,7 @@ TextView forgotpassword;
             @Override
             public void onErrorResponse(VolleyError error) {
                 loginProgress.setVisibility(View.GONE);
+                login.setVisibility(View.VISIBLE);
                 Toast.makeText(Login.this, "Something went wrong. Please try again", Toast.LENGTH_LONG).show();
             }
         }){
@@ -115,6 +119,7 @@ TextView forgotpassword;
                     Toast.makeText(Login.this, "Please Enter password", Toast.LENGTH_SHORT).show();
                 }else{
                     loginProgress.setVisibility(View.VISIBLE);
+                    login.setVisibility(View.GONE);
                     stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                             20000,
                             0,
@@ -143,8 +148,9 @@ TextView forgotpassword;
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        this.finish();
+        Intent gotologinscreen=new Intent(Login.this,Login.class);
+        startActivity(gotologinscreen);
+        finish();
     }
 
 

@@ -586,7 +586,7 @@ public class Editmyprofile extends AppCompatActivity {
         else {
             createjsonobject();
         }
-        submitbt.setVisibility(View.VISIBLE);
+       // submitbt.setVisibility(View.VISIBLE);
 
     }
 
@@ -814,13 +814,13 @@ public class Editmyprofile extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            if(imageString.length()<72000) {
+            if(imageString.length()<92000) {
                 usersImg.setImageBitmap(bitmap);
                 sizemessage.setText("Image Selected successfully !!");
             }else{
                 usersImg.setImageResource(R.drawable.warning);
 
-                sizemessage.setText("Please select Image with smaller size !!");
+                sizemessage.setText("Please select Image with smaller size (150KB) !!");
             };
             progressBar.setVisibility(View.GONE);
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -28,15 +29,16 @@ Button removeBtn;
     StringRequest stringRequest;
     String removelistingurl="http://greenleafpureveg.in/utsavapplication/removelisting.php",getid,status;
     ProgressBar progressbar;
-    CheckBox checkBox,addcheckbox;
+    RadioButton checkBox,addcheckbox,deletebutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_removemefromlisting);
         removeBtn=(Button)findViewById(R.id.removebtn);
         progressbar=(ProgressBar)findViewById(R.id.progressBar);
-        checkBox=(CheckBox)findViewById(R.id.removekistcheckbox);
-        addcheckbox=(CheckBox)findViewById(R.id.addcheckbox);
+        checkBox=(RadioButton)findViewById(R.id.removekistcheckbox);
+        addcheckbox=(RadioButton)findViewById(R.id.addcheckbox);
+        deletebutton=(RadioButton)findViewById(R.id.deleterb);
 
         getid=getIntent().getExtras().getString("id");
         removeBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +53,13 @@ Button removeBtn;
                     status="Y";
                     progressbar.setVisibility(View.VISIBLE);
                     sendrequest();
-                }else{
+                } else if(deletebutton.isChecked()){
+                    status="D";
+                    progressbar.setVisibility(View.VISIBLE);
+                    sendrequest();
+                }
+
+                else{
                     Toast.makeText(Removemefromlisting.this, "Please Select any one of the option", Toast.LENGTH_SHORT).show();
                 }
 

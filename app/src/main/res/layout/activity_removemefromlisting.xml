@@ -59,19 +59,34 @@
                         android:visibility="gone"
                         android:layout_weight="1" />
 
-                    <CheckBox
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        >
+
+                    <RadioButton
                         android:id="@+id/removekistcheckbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Remove me from Utsav Listing" />
 
-                    <CheckBox
+                    <RadioButton
                         android:id="@+id/addcheckbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Add me back to Utsav Listing" />
+
+                    <RadioButton
+                        android:id="@+id/deleterb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Completely delete my profile " />
+
+                    </RadioGroup>
 
                     <Button
                         android:id="@+id/removebtn"

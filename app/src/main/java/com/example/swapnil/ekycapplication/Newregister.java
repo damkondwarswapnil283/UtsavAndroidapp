@@ -137,6 +137,11 @@ Button sendotpBtn,submitBtn;
         }else {
              registerProcess.setVisibility(View.VISIBLE);
 
+             stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                     20000,
+                     0,
+                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
              AppController.getInstance().addToRequestQueue(stringRequest);
          }
     }
