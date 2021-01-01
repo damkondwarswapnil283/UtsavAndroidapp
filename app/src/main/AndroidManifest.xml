@@ -12,13 +12,14 @@
         android:label="Utsav"
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-
-
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Viewactivity"></activity>
+        <activity android:name=".Editcommunity" />
+        <activity android:name=".Createcommunity" />
         <activity
             android:name=".Usernamecheck"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".checkforusername"
             android:screenOrientation="portrait" />
