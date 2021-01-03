@@ -220,6 +220,8 @@ public class Showuser extends AppCompatActivity {
                                 maritalstatusSt="Divorced";
                             }else if(maritalstatusSt.equals("W")){
                                 maritalstatusSt="Widow";
+                            }else{
+                                maritalstatusSt="Widower";
                             }
 
 

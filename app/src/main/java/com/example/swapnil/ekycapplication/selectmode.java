@@ -35,8 +35,9 @@ public class selectmode extends AppCompatActivity {
         communityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent gotologinscreen=new Intent(selectmode.this,Communitymainapp.class);
-               // startActivity(gotologinscreen);
+                Intent gotologinscreen=new Intent(selectmode.this,CommunityMode.class);
+                gotologinscreen.putExtra("id",getid);
+               startActivity(gotologinscreen);
             }
         });
     }

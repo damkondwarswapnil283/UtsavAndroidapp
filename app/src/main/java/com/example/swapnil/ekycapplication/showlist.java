@@ -61,8 +61,9 @@ public class showlist extends AppCompatActivity {
 
     String getgroomurl="http://greenleafpureveg.in/utsavapplication/getgroom.php",
             getbrideurl="http://greenleafpureveg.in/utsavapplication/getbride.php",
-            getbysearchurl="http://greenleafpureveg.in/utsavapplication/getsearch.php";
-    ;
+            getbysearchurl="http://greenleafpureveg.in/utsavapplication/getsearch.php",
+           getcommunitydata="http://greenleafpureveg.in/utsavapplication/getcommunity.php";
+
     String urlrequest;
 
     StringRequest stringRequest,searchstringRequest;
@@ -83,8 +84,10 @@ public class showlist extends AppCompatActivity {
 
         if(genderSt.equals("M")){
             urlrequest=getgroomurl;
-        }else{
+        }else if(genderSt.equals("F")) {
             urlrequest=getbrideurl;
+        }else{
+            urlrequest=getcommunitydata;
         }
 
 
@@ -117,8 +120,20 @@ public class showlist extends AppCompatActivity {
                             // Log.e("Rating-", individualObject.getString("gender"));
                             movie.setYear(individualObject.getString("dateofbirth"));
                             // Log.e("uniqueid-", individualObject.getString("usernameSt"));
-                            movie.setThumbnailUrl(jsonObject.getString("image"));
-                            //Log.e("Url-", uri.toString());
+
+                            if(genderSt.equals("X")){
+
+                                if(individualObject.getString("type").equals("M")){
+                                    movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/newmale.png");
+                                }else{
+                                    movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/newfemale.png");
+                                }
+
+                            }else{
+                                movie.setThumbnailUrl(jsonObject.getString("image"));
+                            }
+
+
                             movieList.add(movie);
                             adapter.notifyDataSetChanged();
                             Log.e("Verify", movieList.get(0).getTitle());

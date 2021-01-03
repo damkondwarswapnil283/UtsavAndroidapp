@@ -106,13 +106,7 @@
 
 
 
-                    <ProgressBar
-                        android:id="@+id/imageprogress"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:layout_weight="1" />
+
 
 
 
@@ -225,58 +219,64 @@
                         android:gravity="center"
                         android:layout_margin="16dp"
                         android:textColor="@color/colorPrimary"
-                        android:text="Bloodgroup" />
-                    <RadioGroup
+                        android:text="Blood Group" />
+
+                    <Spinner
+                        android:id="@+id/bloodgroup"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/edittextround"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="bloodgroup" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorPrimary"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:layout_weight="2" >
-                        <RadioButton
-                            android:id="@+id/agroup"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="A " />
+                        android:layout_margin="16dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Business" />
 
-                        <RadioButton
-                            android:id="@+id/bgroup"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="B" />
-
-                        <RadioButton
-                            android:id="@+id/abgroup"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="AB" />
-                        <RadioButton
-                            android:id="@+id/ogroup"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="O" />
-
-                    </RadioGroup>
-
-
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/occupation"
+                        <Spinner
+                            android:id="@+id/business"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
-                            android:hint="Occupation" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:hint="Business" />
 
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorPrimary"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Profession" />
+
+                    <Spinner
+                        android:id="@+id/profession"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:hint="Profession" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -370,4 +370,3 @@
 
     </RelativeLayout>
 
-</RelativeLayout>

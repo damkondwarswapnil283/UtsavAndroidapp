@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri filePath;
     Button submitbt;
-    RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb;
+    RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb,widowerRb;
     ProgressBar progressBarimage;
     ByteArrayOutputStream bytearrayimage;
 
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         nevermarriedRb=(RadioButton)findViewById(R.id.nevermarried);
         divorcedRb=(RadioButton)findViewById(R.id.divorced);
         widowRb=(RadioButton)findViewById(R.id.widow);
+        widowerRb=(RadioButton)findViewById(R.id.widower);
 
         vagadRb=(RadioButton)findViewById(R.id.vagad);
         chappanRb=(RadioButton)findViewById(R.id.chappan);
@@ -376,7 +377,9 @@ public class MainActivity extends AppCompatActivity {
              maritalstatusSt="D";
          }else if(widowRb.isChecked()){
              maritalstatusSt="W";
-         }
+         }else if(widowerRb.isChecked()){
+            maritalstatusSt="Wi";
+        }
 
         if(vagadRb.isChecked()){
             chaukhalst="V";

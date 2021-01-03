@@ -178,7 +178,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Mama Avantak * (For Ex. Todrawat)" />
+                        android:hint="Mama Avantak * (For Ex. Juavat)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -427,7 +427,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Never Married" />
+                        android:text="Unmarried" />
 
                     <RadioButton
                         android:id="@+id/nevermarried"
@@ -448,6 +448,12 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Widow" />
+                    <RadioButton
+                        android:id="@+id/widower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Widower" />
 
                 </RadioGroup>
 

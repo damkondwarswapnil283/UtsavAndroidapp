@@ -68,7 +68,7 @@ public class Editmyprofile extends AppCompatActivity {
 
     private Uri filePath;
     Button submitbt;
-    RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb;
+    RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,widowerRb,genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb;
     ProgressBar progressBarimage;
     ByteArrayOutputStream bytearrayimage;
 
@@ -134,6 +134,7 @@ public class Editmyprofile extends AppCompatActivity {
         nevermarriedRb=(RadioButton)findViewById(R.id.editnevermarried);
         divorcedRb=(RadioButton)findViewById(R.id.editdivorced);
         widowRb=(RadioButton)findViewById(R.id.editwidow);
+        widowerRb=(RadioButton)findViewById(R.id.widower) ;
         testImage=(ImageView)findViewById(R.id.edittestdata) ;
         progressBar=(ProgressBar)findViewById(R.id.editimageprogress);
         sizemessage=(TextView)findViewById(R.id.editsizemessage);
@@ -351,6 +352,8 @@ public class Editmyprofile extends AppCompatActivity {
                     maritalstatusSt="D";
                 }else if(widowRb.isChecked()){
                     maritalstatusSt="W";
+                }else {
+                    maritalstatusSt="Wi";
                 }
 
                 if(vagadRb.isChecked()){
@@ -448,6 +451,9 @@ public class Editmyprofile extends AppCompatActivity {
          }else if(infojsondata.getString("maritalstatus").equals("W")){
              widowRb.setChecked(true);
          }
+        else if(infojsondata.getString("maritalstatus").equals("WI")){
+            widowerRb.setChecked(true);
+        }
                     if(infojsondata.getString("chaukhala").equals("V")){
                         vagadRb.setChecked(true);
                     }else if(infojsondata.getString("chaukhala").equals("C")){
