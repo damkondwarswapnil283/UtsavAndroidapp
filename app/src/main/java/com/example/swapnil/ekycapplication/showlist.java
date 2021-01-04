@@ -167,21 +167,7 @@ public class showlist extends AppCompatActivity {
 
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent showuser=new Intent(showlist.this,Showuser.class);
-                String ID = null;
-                try {
-                   ID=jsonArray.getJSONObject(position).getString("id");
-                    Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                showuser.putExtra("id",ID);
-                startActivity(showuser);
-            }
-        });
+
 
       searchstringRequest=new StringRequest(Request.Method.POST, getbysearchurl, new Response.Listener<String>() {
             @Override
@@ -289,18 +275,33 @@ public class showlist extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Intent showuser=new Intent(showlist.this,Showuser.class);
-                String ID="";
-                try {
-                    ID=jsonArray.getJSONObject(position).getString("id");
-                   Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                showuser.putExtra("id",ID);
-                showuser.putExtra("selfkey",selfkey);
+                if(genderSt.equals("X")){
+                    Intent showuser=null;
+                    showuser =new Intent(showlist.this,Viewactivity.class);
+                    String ID = null;
 
-                startActivity(showuser);
+                    try {
+                        ID=jsonArray.getJSONObject(position).getString("id");
+                        Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    showuser.putExtra("id",ID);
+                    startActivity(showuser);
+                }else{
+                    Intent showuser=null;
+                    showuser =new Intent(showlist.this,Showuser.class);
+                    String ID = null;
+
+                    try {
+                        ID=jsonArray.getJSONObject(position).getString("id");
+                        Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    showuser.putExtra("id",ID);
+                    startActivity(showuser);
+                }
             }
         });
 

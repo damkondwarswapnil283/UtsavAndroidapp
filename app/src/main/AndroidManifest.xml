@@ -15,7 +15,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".CommunityMode"></activity>
-        <activity android:name=".Viewactivity" />
+        <activity android:name=".Viewactivity" >
+
+        </activity>
         <activity android:name=".Editcommunity"
             android:screenOrientation="portrait"
             >

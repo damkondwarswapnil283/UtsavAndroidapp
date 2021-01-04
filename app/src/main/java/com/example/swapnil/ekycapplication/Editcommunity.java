@@ -120,7 +120,7 @@ public class Editcommunity extends AppCompatActivity {
                     businessSpin.setSelection(spinnerPositionbu);
 
                     int spinnerPosition = professionadapter.getPosition(infojsondata.getString("dateofbirth"));
-                    bloodgroupSpin.setSelection(spinnerPosition);
+                    professionSpin.setSelection(spinnerPosition);
 
                     qualificationEt.setText(infojsondata.getString("qualification"));
                     ressiEt.setText(infojsondata.getString("aboutme"));

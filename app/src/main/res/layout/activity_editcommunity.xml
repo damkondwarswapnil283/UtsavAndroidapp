@@ -58,14 +58,7 @@
                     android:layout_marginRight="20dp"
                     />
 
-                <ImageView
-                    android:id="@+id/testdata"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:background="@drawable/edittextround"
-                    android:src="@drawable/test" />
+
 
                 <TextView
                     android:id="@+id/accountinformation"
