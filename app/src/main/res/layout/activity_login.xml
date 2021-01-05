@@ -124,7 +124,7 @@
                 android:paddingTop="5dp"
                 android:gravity="center"
                 android:layout_margin="15dp"
-                android:text=" Version - Basic Test 0.9" />
+                android:text=" Version - Basic Test 1.0" />
 
 
         </LinearLayout>

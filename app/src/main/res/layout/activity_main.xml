@@ -178,7 +178,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:hint="Mama Avantak * (For Ex. Juavat)" />
+                        android:hint="Mama Avantak * (For Ex. Juawat)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -560,17 +560,22 @@
                     android:spinnerMode="dropdown"/>
 
 
-                <com.google.android.material.textfield.TextInputLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_margin="16dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Blood Group" />
 
-                    <EditText
-                        android:id="@+id/bloodgroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:hint="Blood Group *" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <Spinner
+                    android:id="@+id/bloodgroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="bloodgroup" />
 
 
 

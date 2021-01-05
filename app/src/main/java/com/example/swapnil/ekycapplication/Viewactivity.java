@@ -30,10 +30,11 @@ public class Viewactivity extends AppCompatActivity {
             bussinessStr,professionStr,ressiStr,nativeaddStr,contactnumStr,qualificationStr,genderStr,addcommunityurl="http://greenleafpureveg.in/utsavapplication/updatecomdata.php";
 
     JSONObject jsonObject,infojsondata;
-    TextView professionSpin,businessSpin,bloodgroupSpin;
+    TextView professionSpin,businessSpin,bloodgroupSpin,ageText,maritalText,childText;
+
 
     StringRequest stringRequest;
-    EditText firstnameEt,middlenameEt,lastnameEt,avantakEt,chaukhalaEt,bloodgrEt,occuptEt,ressiEt,nativeaddEt,
+    TextView firstnameEt,middlenameEt,lastnameEt,avantakEt,chaukhalaEt,bloodgrEt,occuptEt,ressiEt,nativeaddEt,
             contactnumEt,qualificationEt;
     String[] business=new String[]{"None","Restaurant","Daily needs","Kirana","Automobile","Others"};
     String[] profession=new String[]{"Teacher","Professor","Doctor","Engineer","Goverment Job","Lawyer","Others"};
@@ -45,19 +46,26 @@ public class Viewactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewactivity);
 
-        firstnameEt=(EditText)findViewById(R.id.firstname);
-        middlenameEt=(EditText)findViewById(R.id.middlename);
-        lastnameEt=(EditText)findViewById(R.id.lastname);
-        avantakEt=(EditText)findViewById(R.id.avantak);
+        firstnameEt=(TextView)findViewById(R.id.firstname);
+        middlenameEt=(TextView)findViewById(R.id.middlename);
+        lastnameEt=(TextView)findViewById(R.id.lastname);
+        avantakEt=(TextView)findViewById(R.id.avantak);
 
-        ressiEt=(EditText)findViewById(R.id.resiadd);
-        nativeaddEt=(EditText)findViewById(R.id.permadd);
-        contactnumEt=(EditText)findViewById(R.id.contact1);
-        qualificationEt=(EditText)findViewById(R.id.qualification);
+        ressiEt=(TextView)findViewById(R.id.resiadd);
+        nativeaddEt=(TextView)findViewById(R.id.permadd);
+        contactnumEt=(TextView)findViewById(R.id.contact1);
+        qualificationEt=(TextView)findViewById(R.id.qualification);
         businessSpin=(TextView) findViewById(R.id.business);
         professionSpin=(TextView)findViewById(R.id.profession);
         bloodgroupSpin=(TextView)findViewById(R.id.bloodgroup);
 
+        ageText=(TextView)findViewById(R.id.agetext);
+
+        maritalText=(TextView)findViewById(R.id.statustext);
+
+        childText=(TextView)findViewById(R.id.childstatus) ;
+
+        bloodgroupSpin=(TextView)findViewById(R.id.bloodgroup);
 
         vagadRb=(RadioButton)findViewById(R.id.vagad);
         chappanRb=(RadioButton)findViewById(R.id.chappan);
@@ -92,10 +100,10 @@ public class Viewactivity extends AppCompatActivity {
                         genderFemale.setChecked(true);
                     }
 
-                    firstnameEt.setText(infojsondata.getString("firstname"));
-                    middlenameEt.setText(infojsondata.getString("middlename"));
-                    lastnameEt.setText(infojsondata.getString("lastname"));
-                    avantakEt.setText(infojsondata.getString("avantak"));
+                    firstnameEt.setText("Firstname:- "+infojsondata.getString("firstname"));
+                    middlenameEt.setText("Middlename:- "+infojsondata.getString("middlename"));
+                    lastnameEt.setText("Lastname:- "+infojsondata.getString("lastname"));
+                    avantakEt.setText("Avantak:- "+infojsondata.getString("avantak"));
 
 
                     if(infojsondata.getString("chaukhala").equals("V")){
@@ -114,10 +122,14 @@ public class Viewactivity extends AppCompatActivity {
                     professionSpin.setText("Occupation:-"+infojsondata.getString("occupatio"));
                     businessSpin.setText("Business:- "+infojsondata.getString("dateofbirth"));
 
-                    qualificationEt.setText(infojsondata.getString("qualification"));
-                    ressiEt.setText(infojsondata.getString("aboutme"));
-                    nativeaddEt.setText(infojsondata.getString("nativeaddress"));
-                    contactnumEt.setText(infojsondata.getString("contactnumber"));
+                    qualificationEt.setText("Qualification:- "+infojsondata.getString("qualification"));
+                    ressiEt.setText("About Me:- "+infojsondata.getString("aboutme"));
+                    nativeaddEt.setText("Native address:- "+infojsondata.getString("nativeaddress"));
+                    contactnumEt.setText("Contact number:- "+infojsondata.getString("contactnumber"));
+
+                    ageText.setText("Age:- "+infojsondata.getString("ageofuser"));
+                    maritalText.setText("Marital Status:- "+infojsondata.getString("maritalstatus"));
+                    childText.setText("Boy :- "+infojsondata.getString("boynum")+", Girl:- "+infojsondata.getString("girnum"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();

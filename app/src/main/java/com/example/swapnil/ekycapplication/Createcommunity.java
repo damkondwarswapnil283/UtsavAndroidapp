@@ -10,9 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -28,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Createcommunity extends AppCompatActivity {
-    String firstnameSt,middlenameSt,lastnameSt,avantak_string,chaukhalst,bloodgrSt,getid,imageurl,
+    String firstnameSt,middlenameSt,lastnameSt,avantak_string,chaukhalst,bloodgrSt,getid,imageurl,agestr,maritalstatusstr,boystr,girlstr,
             bussinessStr,professionStr,ressiStr,nativeaddStr,contactnumStr,qualificationStr,genderStr,addcommunityurl="http://greenleafpureveg.in/utsavapplication/addcomperson.php";
 
     JSONObject jsonObject;
@@ -40,9 +43,15 @@ public class Createcommunity extends AppCompatActivity {
     String[] business=new String[]{"None","Restaurant","Daily needs","Kirana","Automobile","Others"};
     String[] profession=new String[]{"Teacher","Professor","Doctor","Engineer","Goverment Job","Lawyer","Others"};
     String[] bloodgroup=new String[]{"A+","A-","B+","B-","AB+","AB-","o+","o-"};
-    RadioButton marriedRb,nevermarriedRb,divorcedRb,widowRb,genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb,widowerRb;
-
+    String[] childrenaccount=new String[]{"0","1","2","3"};
+    String[] agerange=new String[]{"18 or leass than 18 years","Above 18 years"};
+    RadioButton divorcedRb,widowRb,genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb,widowerRb;
     ProgressBar mainProgress;
+    TextView childtext;
+    LinearLayout childlayout;
+    Spinner boyspin,girlspin,agespin;
+    RadioGroup maritalstatus;
+    RadioButton marriedRb,nevermarriedRb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,17 +83,48 @@ public class Createcommunity extends AppCompatActivity {
         genderFemale=(RadioButton)findViewById(R.id.female);
         mainProgress=(ProgressBar)findViewById(R.id.mainprogressbar);
 
+
+        boyspin=(Spinner)findViewById(R.id.boycount);
+        girlspin=(Spinner)findViewById(R.id.girlcount);
+        agespin=(Spinner)findViewById(R.id.ageofuser);
+        maritalstatus=(RadioGroup)findViewById(R.id.maritalstatusgroup);
+        childtext=(TextView)findViewById(R.id.childtext);
+        childlayout=(LinearLayout)findViewById(R.id.childlayout);
+
+
         ArrayAdapter<String> businessadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, business);
         ArrayAdapter<String> professionadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, profession);
         ArrayAdapter<String> bloodgrouoadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, bloodgroup);
+        ArrayAdapter<String> childrenadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, childrenaccount);
+        ArrayAdapter<String> ageadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, agerange);
 
 
         businessSpin.setAdapter(businessadapter);
         professionSpin.setAdapter(professionadapter);
         bloodgroupSpin.setAdapter(bloodgrouoadapter);
+        boyspin.setAdapter(childrenadapter);
+        girlspin.setAdapter(childrenadapter);
+        agespin.setAdapter(ageadapter);
 
         getid=getIntent().getExtras().getString("id","0");
 
+        //maritalstatus.setOnCheckedChangeListener();
+
+        maritalstatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Toast.makeText(Createcommunity.this, checkedId+"", Toast.LENGTH_SHORT).show();
+                if(marriedRb.isChecked()==true){
+                    childtext.setVisibility(View.VISIBLE);
+                    childlayout.setVisibility(View.VISIBLE);
+                }else{
+                    childtext.setVisibility(View.GONE);
+                    childlayout.setVisibility(View.GONE);
+                }
+                Log.e("Id",checkedId+"");
+            }
+        });
 
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +158,16 @@ public class Createcommunity extends AppCompatActivity {
                 nativeaddStr=nativeaddEt.getText().toString();
                 contactnumStr=contactnumEt.getText().toString();
                 qualificationStr=qualificationEt.getText().toString();
+                agestr=agespin.getSelectedItem().toString();
+                if(marriedRb.isChecked()){
+                    maritalstatusstr="Married";
+                }else{
+                    maritalstatusstr="Unmarried";
+                }
+
+                boystr=boyspin.getSelectedItem().toString();
+                girlstr=girlspin.getSelectedItem().toString();
+
                 addvalidations();
 
             }
@@ -205,6 +255,11 @@ public class Createcommunity extends AppCompatActivity {
             jsonObject.put("contactnumber",contactnumStr);
 
             jsonObject.put("qualification",qualificationStr);
+
+            jsonObject.put("ageofuser",agestr);
+            jsonObject.put("maritalstatus",maritalstatusstr);
+            jsonObject.put("boynum",boystr);
+            jsonObject.put("girnum",girlstr);
 
             jsonObject.put("image",imageurl);
 

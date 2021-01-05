@@ -52,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar,mainProgress;
     ImageView testImage;
     StringRequest stringRequest;
+    Spinner professionSpin,businessSpin,bloodgroupSpin;
 
     EditText firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
-            firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,bloodgroupEt,complexionEt,educationEt,
+            firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
             noofbrothersEt,brotherdetailsEt,noofsistersEt,sisterdetailsEt,qualificationEt,annualincome1Et,avantakEt,mamavantakEt,
             agerangeEt,occupation3Et,preferredcityEt,dnum1_et,dnum2_et,dnum3_et,dnum4_et,dnum5_et,dnum6_et,dnum7_et,dnum8_et,current_cityet;
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         mamavantakEt=(EditText)findViewById(R.id.mamaavantak);
         contactnumberEt=(EditText)findViewById(R.id.contact1);
         heightEt=(Spinner) findViewById(R.id.height);
-        bloodgroupEt=(EditText)findViewById(R.id.bloodgroup);
+        bloodgroupSpin=(Spinner)findViewById(R.id.bloodgroup);
         complexionEt=(EditText)findViewById(R.id.complexion);
         educationEt=(EditText)findViewById(R.id.education);
         annualincomeEt=(EditText)findViewById(R.id.annualincome);
@@ -175,6 +176,12 @@ public class MainActivity extends AppCompatActivity {
                 "249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265",
                 "266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282",
                 "283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300",};
+
+        String[] bloodgroup=new String[]{"A+","A-","B+","B-","AB+","AB-","o+","o-"};
+
+        ArrayAdapter<String> bloodgrouoadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, bloodgroup);
+
+        bloodgroupSpin.setAdapter(bloodgrouoadapter);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, heights);
         heightEt.setAdapter(adapter);
@@ -401,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
         currentcityst=current_cityet.getText().toString().replace("\"","").replace("\'","");
         contactnumberSt=contactnumberEt.getText().toString().replace("\"","").replace("\'","");
         heightSt=heightEt.getSelectedItem().toString().replace("\"","").replace("\'","");
-        bloodgroupSt=bloodgroupEt.getText().toString().replace("\"","").replace("\'","");
+        bloodgroupSt=bloodgroupSpin.getSelectedItem().toString().replace("\"","").replace("\'","");
         educationSt=educationEt.getText().toString().replace("\"","").replace("\'","");
         annualincomeSt=annualincomeEt.getText().toString().replace("\"","").replace("\'","");
         firstgotraSt=firstgotraEt.getText().toString().replace("\"","").replace("\'","");
@@ -459,7 +466,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         permaddEt.setText("permadd");
         current_cityet.setText("current_city");
         contactnumberEt.setText("contactnumber");
-        bloodgroupEt.setText("bloodgroup");
+
         educationEt.setText("education");
         annualincomeEt.setText("annualincome");
         firstgotraEt.setText("firstgotra");
@@ -481,70 +488,93 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
     public void addvalidations(){
 
          if(genderSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             firstnameEt.requestFocus();
             Toast.makeText(this, "Please select Gender", Toast.LENGTH_SHORT).show();
         }else if(firstnameSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             firstnameEt.requestFocus();
             Toast.makeText(this, "Firstname can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(middlenameSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             middlenameEt.requestFocus();
             Toast.makeText(this, "Middle Name can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(lastnameSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             lastnameEt.requestFocus();
             Toast.makeText(this, "Lastname can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(avantak_string.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             avantakEt.requestFocus();
             Toast.makeText(this, "Avantak can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(mamaavantakSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
              avantakEt.requestFocus();
              Toast.makeText(this, "Mama Avantak can`t be left blank", Toast.LENGTH_SHORT).show();
          }else if(chaukhalst.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
              mamavantakEt.requestFocus();
              Toast.makeText(this, "Appropriate Chaukhala must be selected", Toast.LENGTH_SHORT).show();
          }
          else if(maritalstatusSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             aboutmeEt.requestFocus();
             Toast.makeText(this, "Please select marital status", Toast.LENGTH_SHORT).show();
         } else if(resiaddSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             resiaddEt.requestFocus();
             Toast.makeText(this, "Residence address can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(permaddSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             permaddEt.requestFocus();
             Toast.makeText(this, "Native village(Rajsthan) can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(currentcityst.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             current_cityet.requestFocus();
             Toast.makeText(this, "Current city can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(contactnumberSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             contactnumberEt.requestFocus();
             Toast.makeText(this, "Contact number can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(heightSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
              contactnumberEt.requestFocus();
             Toast.makeText(this, "Height can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(bloodgroupSt.trim().equals("")){
-            bloodgroupEt.requestFocus();
+             submitbt.setVisibility(View.VISIBLE);
+            contactnumberEt.requestFocus();
             Toast.makeText(this, "Blood Group can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(mothersnameSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             mothersnameEt.requestFocus();
             Toast.makeText(this, "Mother Name can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(agerangeSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             agerangeEt.requestFocus();
             Toast.makeText(this, "Age range can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(height1St.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             agerangeEt.requestFocus();
             Toast.makeText(this, "Height can`t be left blank", Toast.LENGTH_SHORT).show();
         }
         else if(dateofbirthSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             lastnameEt.requestFocus();
             Toast.makeText(this, "Date of birth is not appropriate", Toast.LENGTH_SHORT).show();
+             submitbt.setVisibility(View.VISIBLE);
         }else if(maritalstatusSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             firstgotraEt.requestFocus();
             Toast.makeText(this, "Select Marital status", Toast.LENGTH_SHORT).show();
         }else if(firstgotraSt.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             firstgotraEt.requestFocus();
             Toast.makeText(this, "First gotra can`t be left blank", Toast.LENGTH_SHORT).show();
         }else if(imageString.trim().equals("")){
+             submitbt.setVisibility(View.VISIBLE);
             firstgotraEt.requestFocus();
             Toast.makeText(this, "Please select image", Toast.LENGTH_SHORT).show();
+             submitbt.setVisibility(View.VISIBLE);
         }
         else {
             createjsonobject();
@@ -656,7 +686,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onResponse(String response) {
                 try {
-                    submitbt.setVisibility(View.VISIBLE);
+
                     Log.e("Response",response);
                     if(new JSONObject(response).getString("success").equals("1")){
 
@@ -665,6 +695,7 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
                         gotologin.putExtra("id",getid);
                         startActivity(gotologin);
                     }else{
+                        submitbt.setVisibility(View.VISIBLE);
                         Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
                         Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
 

@@ -36,6 +36,7 @@ Button removeBtn;
         setContentView(R.layout.activity_removemefromlisting);
         removeBtn=(Button)findViewById(R.id.removebtn);
         progressbar=(ProgressBar)findViewById(R.id.progressBar);
+
         checkBox=(RadioButton)findViewById(R.id.removekistcheckbox);
         addcheckbox=(RadioButton)findViewById(R.id.addcheckbox);
         deletebutton=(RadioButton)findViewById(R.id.deleterb);
@@ -75,7 +76,7 @@ Button removeBtn;
                     Log.e("Response",response);
                     if(new JSONObject(response).getString("success").equals("1")){
                         progressbar.setVisibility(View.GONE);
-                        Toast.makeText(Removemefromlisting.this, "You are successfully removed from listing", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Removemefromlisting.this, "Changes applied successfully", Toast.LENGTH_SHORT).show();
                         Intent gotologin=new Intent(Removemefromlisting.this,Login.class);
 
                         startActivity(gotologin);

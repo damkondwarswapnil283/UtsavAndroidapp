@@ -335,8 +335,145 @@
                             android:inputType="text"
                             android:hint="Qualification" />
                     </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Please select your Age" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:weightSum="2"
+                        android:padding="10dp"
+                        android:layout_margin="7dp"
+                        android:background="@drawable/edittextround"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/ageofuser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:layout_weight="1"
+                            />
+                    </LinearLayout>
 
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Marital Status" />
+
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/maritalstatusgroup"
+
+                        android:background="@drawable/edittextround"
+                        android:gravity="center"
+                        android:layout_weight="2" >
+                        <RadioButton
+                            android:id="@+id/married"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Married" />
+
+                        <RadioButton
+                            android:id="@+id/unmarried"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Unmarried" />
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/childtext"
+                        android:visibility="gone"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Children`s Count" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/childlayout"
+                        android:weightSum="2"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:weightSum="2"
+                            android:layout_margin="7dp"
+                            android:background="@drawable/edittextround"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="13sp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:layout_margin="16dp"
+                                android:textColor="@color/colorPrimary"
+                                android:text="Boy`s count" />
+                        <Spinner
+                            android:id="@+id/boycount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:layout_weight="1"
+                            />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:weightSum="2"
+                            android:layout_margin="7dp"
+                            android:background="@drawable/edittextround"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="13sp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:layout_margin="16dp"
+                                android:textColor="@color/colorPrimary"
+                                android:text="Girl`s count" />
+                        <Spinner
+                            android:id="@+id/girlcount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:layout_weight="1"
+                            />
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <ProgressBar
                         android:id="@+id/mainprogressbar"
@@ -345,9 +482,6 @@
                         android:layout_height="wrap_content"
                         android:visibility="gone"
                         android:layout_weight="1" />
-
-
-
 
                     <Button
                         android:id="@+id/submitbt"

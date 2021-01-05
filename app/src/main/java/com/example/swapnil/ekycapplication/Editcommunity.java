@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -29,7 +32,7 @@ import java.util.Map;
 public class Editcommunity extends AppCompatActivity {
     String firstnameSt,middlenameSt,lastnameSt,avantak_string,chaukhalst,bloodgrSt,getid,getdataurl="http://greenleafpureveg.in/utsavapplication/getdatabyidcomm.php",
             bussinessStr,professionStr,ressiStr,nativeaddStr,contactnumStr,qualificationStr,genderStr,addcommunityurl="http://greenleafpureveg.in/utsavapplication/updatecomdata.php";
-
+  String agestr,maritalstatusstr,boystr,girlstr,imageurl;
     JSONObject jsonObject,infojsondata;
     Spinner professionSpin,businessSpin,bloodgroupSpin;
     Button submitbtn;
@@ -39,8 +42,15 @@ public class Editcommunity extends AppCompatActivity {
     String[] business=new String[]{"None","Restaurant","Daily needs","Kirana","Automobile","Others"};
     String[] profession=new String[]{"Teacher","Professor","Doctor","Engineer","Goverment Job","Lawyer","Others"};
     String[] bloodgroup=new String[]{"A+","A-","B+","B-","AB+","AB-","o+","o-"};
+    String[] childrenaccount=new String[]{"0","1","2","3"};
+    String[] agerange=new String[]{"18 or leass than 18 years","Above 18 years"};
     RadioButton genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb,widowerRb;
     ProgressBar mainProgress,getdataprogress;
+    TextView childtext;
+    LinearLayout childlayout;
+    Spinner boyspin,girlspin,agespin;
+    RadioGroup maritalstatus;
+    RadioButton marriedRb,nevermarriedRb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +68,8 @@ public class Editcommunity extends AppCompatActivity {
         professionSpin=(Spinner)findViewById(R.id.profession);
         bloodgroupSpin=(Spinner)findViewById(R.id.bloodgroup);
         submitbtn=(Button)findViewById(R.id.submitbt);
-
+        marriedRb=(RadioButton)findViewById(R.id.married);
+        nevermarriedRb=(RadioButton)findViewById(R.id.nevermarried);
 
         vagadRb=(RadioButton)findViewById(R.id.vagad);
         chappanRb=(RadioButton)findViewById(R.id.chappan);
@@ -68,16 +79,45 @@ public class Editcommunity extends AppCompatActivity {
         genderFemale=(RadioButton)findViewById(R.id.female);
         mainProgress=(ProgressBar)findViewById(R.id.mainprogressbar);
         getdataprogress=(ProgressBar)findViewById(R.id.waitingprogress);
+        boyspin=(Spinner)findViewById(R.id.boycount);
+        girlspin=(Spinner)findViewById(R.id.girlcount);
+        agespin=(Spinner)findViewById(R.id.ageofuser);
+        maritalstatus=(RadioGroup)findViewById(R.id.maritalstatusgroup);
+        childtext=(TextView)findViewById(R.id.childtext);
+        childlayout=(LinearLayout)findViewById(R.id.childlayout);
+
+        getid=getIntent().getExtras().getString("id","0");
+
 
         final ArrayAdapter<String> businessadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, business);
         final ArrayAdapter<String> professionadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, profession);
         final ArrayAdapter<String> bloodgrouoadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, bloodgroup);
+        final ArrayAdapter<String> childrenadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, childrenaccount);
+        final ArrayAdapter<String> ageadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, agerange);
 
-
+        boyspin.setAdapter(childrenadapter);
+        girlspin.setAdapter(childrenadapter);
+        agespin.setAdapter(ageadapter);
         businessSpin.setAdapter(businessadapter);
         professionSpin.setAdapter(professionadapter);
         bloodgroupSpin.setAdapter(bloodgrouoadapter);
-        getid=getIntent().getExtras().getString("id","0");
+
+        maritalstatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Toast.makeText(Editcommunity.this, checkedId+"", Toast.LENGTH_SHORT).show();
+                if(marriedRb.isChecked()==true){
+                    childtext.setVisibility(View.VISIBLE);
+                    childlayout.setVisibility(View.VISIBLE);
+                }else{
+                    childtext.setVisibility(View.GONE);
+                    childlayout.setVisibility(View.GONE);
+                }
+                Log.e("Id",checkedId+"");
+            }
+        });
+
 
 
         stringRequest=new StringRequest(Request.Method.POST, getdataurl, new Response.Listener<String>() {
@@ -121,6 +161,21 @@ public class Editcommunity extends AppCompatActivity {
 
                     int spinnerPosition = professionadapter.getPosition(infojsondata.getString("dateofbirth"));
                     professionSpin.setSelection(spinnerPosition);
+
+                    int spinnerPositionage = ageadapter.getPosition(infojsondata.getString("ageofuser"));
+                    agespin.setSelection(spinnerPositionage);
+
+                    int spinnerPositionboy = childrenadapter.getPosition(infojsondata.getString("boynum"));
+                    boyspin.setSelection(spinnerPositionboy);
+
+                    int spinnerPositiongirl = childrenadapter.getPosition(infojsondata.getString("girnum"));
+                    girlspin.setSelection(spinnerPositiongirl);
+
+                    if(infojsondata.getString("maritalstatus").equals("Married")){
+                        marriedRb.setChecked(true);
+                    }else {
+                        nevermarriedRb.setChecked(true);
+                    }
 
                     qualificationEt.setText(infojsondata.getString("qualification"));
                     ressiEt.setText(infojsondata.getString("aboutme"));
@@ -167,8 +222,10 @@ public class Editcommunity extends AppCompatActivity {
                 submitbtn.setVisibility(View.GONE);
                 if(genderMale.isChecked()){
                     genderStr="M";
+                    imageurl="http://greenleafpureveg.in/utsavapplication/newmale.png";
                 }else{
                     genderStr="F";
+                    imageurl="http://greenleafpureveg.in/utsavapplication/newfemale.png";
                 }
                 firstnameSt=firstnameEt.getText().toString().replace("\"","").replace("\'","");
                 middlenameSt=middlenameEt.getText().toString().replace("\"","").replace("\'","");
@@ -190,6 +247,16 @@ public class Editcommunity extends AppCompatActivity {
                 nativeaddStr=nativeaddEt.getText().toString();
                 contactnumStr=contactnumEt.getText().toString();
                 qualificationStr=qualificationEt.getText().toString();
+
+                agestr=agespin.getSelectedItem().toString();
+                if(marriedRb.isChecked()){
+                    maritalstatusstr="Married";
+                }else{
+                    maritalstatusstr="Unmarried";
+                }
+
+                boystr=boyspin.getSelectedItem().toString();
+                girlstr=girlspin.getSelectedItem().toString();
                 addvalidations();
 
             }
@@ -277,6 +344,14 @@ public class Editcommunity extends AppCompatActivity {
             jsonObject.put("contactnumber",contactnumStr);
 
             jsonObject.put("qualification",qualificationStr);
+
+            jsonObject.put("ageofuser",agestr);
+            jsonObject.put("maritalstatus",maritalstatusstr);
+            jsonObject.put("boynum",boystr);
+            jsonObject.put("girnum",girlstr);
+
+            jsonObject.put("image",imageurl);
+
 
 
 

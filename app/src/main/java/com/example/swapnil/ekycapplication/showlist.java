@@ -94,7 +94,7 @@ public class showlist extends AppCompatActivity {
         stringRequest=new StringRequest(Request.Method.GET, urlrequest, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("Response",response);
+               // Log.e("Response",response);
 
                 try {
 
@@ -124,9 +124,20 @@ public class showlist extends AppCompatActivity {
                             if(genderSt.equals("X")){
 
                                 if(individualObject.getString("type").equals("M")){
-                                    movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/newmale.png");
-                                }else{
-                                    movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/newfemale.png");
+                                    if(individualObject.getString("ageofuser").equals("Above 18 years")){
+                                        movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/newmale.png");
+                                    }else{
+                                        movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/smallboy.png");
+                                    }
+
+                                } else{
+
+                                    if(individualObject.getString("ageofuser").equals("Above 18 years")){
+                                        movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/newfemale.png");
+                                    }else{
+                                        movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/smallgirl.png");
+                                    }
+
                                 }
 
                             }else{
@@ -136,10 +147,11 @@ public class showlist extends AppCompatActivity {
 
                             movieList.add(movie);
                             adapter.notifyDataSetChanged();
-                            Log.e("Verify", movieList.get(0).getTitle());
+                           // Log.e("Verify", movieList.get(0).getTitle());
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(showlist.this, "Except:- "+e.toString(), Toast.LENGTH_SHORT).show();
                             showprogresslist.setVisibility(View.GONE);
 
                             adapter.notifyDataSetChanged();
@@ -172,12 +184,14 @@ public class showlist extends AppCompatActivity {
       searchstringRequest=new StringRequest(Request.Method.POST, getbysearchurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("Response",response);
+               // Log.e("Response for search:- ",response);
 
                 try {
 
                     jsonArray =new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++){
+
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
                         try {
                             jsonObject=jsonArray.getJSONObject(i);
                         } catch (JSONException e) {
@@ -186,12 +200,13 @@ public class showlist extends AppCompatActivity {
                        individualObject= new JSONObject(jsonObject.getString("jsondata"));
 
                         try {
-                        Movie movie = new Movie();
 
-                        movieList.clear();
+                            Movie movie = new Movie();
+                            movieList.clear();
+
 
                         movie.setTitle(individualObject.getString("firstname")+" "+individualObject.getString("middlename")+" "+individualObject.getString("lastname"));
-                        //Log.e("Title-", individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
+                        Log.e("Title-", individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
                         movie.setGenre(individualObject.getString("occupatio"));
                         // Log.e("Occupation-", jsonObject.getString("occupation3St"));
                         movie.setRating(individualObject.getString("aboutme"));
@@ -202,14 +217,14 @@ public class showlist extends AppCompatActivity {
                         //Log.e("Url-", uri.toString());
                         movieList.add(movie);
                         adapter.notifyDataSetChanged();
-                        Log.e("Verify", movieList.get(0).getTitle());
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                         adapter.notifyDataSetChanged();
                     };
                 }
-
+                    adapter.notifyDataSetChanged();
             } catch (JSONException e) {
                     e.printStackTrace();
                     movieList.clear();
