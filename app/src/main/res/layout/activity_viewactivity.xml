@@ -42,7 +42,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittextsharp"
-                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
                     android:id="@+id/mainlayout"
                     android:gravity="center"
                     android:orientation="vertical" >
@@ -57,55 +58,41 @@
 
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/accountinformation"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:textSize="16sp"
                         android:gravity="center"
                         android:layout_marginBottom="16dp"
                         android:layout_marginTop="16dp"
-                        android:background="@drawable/edittextround"
                         android:text="Account Information" />
 
 
 
+
+
                     <TextView
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/gendertxt"
+                        android:textSize="18sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:layout_margin="16dp"
-                        android:textColor="@color/colorPrimary"
-                        android:text="Gender *" />
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/edittextround"
-                        android:gravity="center"
-                        android:layout_weight="2" >
-                        <RadioButton
-                            android:id="@+id/male"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Male" />
-
-                        <RadioButton
-                            android:id="@+id/female"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Female" />
-
-                    </RadioGroup>
+                        android:inputType="text"
+                        />
 
 
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/firstname"
                         android:textSize="18sp"
@@ -116,7 +103,9 @@
 
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/middlename"
                         android:textSize="18sp"
@@ -127,7 +116,9 @@
 
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/lastname"
                         android:textSize="18sp"
@@ -138,7 +129,9 @@
 
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/avantak"
                         android:textSize="18sp"
@@ -149,86 +142,58 @@
 
 
                     <TextView
-
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/chauphalatext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:layout_margin="16dp"
-                        android:textColor="@color/colorPrimary"
-                        android:text="Chaukhala *" />
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/edittextround"
-                        android:gravity="center"
-                        android:layout_weight="2" >
-                        <RadioButton
-                            android:id="@+id/vagad"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Vagad" />
-
-                        <RadioButton
-                            android:id="@+id/chappan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Chappan" />
-
-                        <RadioButton
-                            android:id="@+id/baran"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Baran" />
-                        <RadioButton
-                            android:id="@+id/chansath"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Chansath" />
-
-                    </RadioGroup>
+                        android:clickable="false"
+                        android:textSize="18sp"
+                        android:inputType="text"
+                        android:hint="bloodgroup" />
 
 
 
 
                     <TextView
-
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/bloodgroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="false"
-                        android:layout_margin="20dp"
                         android:textSize="18sp"
                         android:inputType="text"
                         android:hint="bloodgroup" />
 
 
                     <TextView
-
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/business"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="false"
-                        android:layout_margin="20dp"
+
                         android:textSize="18sp"
                         android:inputType="text"
                         android:hint="Business" />
 
                     <TextView
-
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/profession"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="false"
-                        android:layout_margin="20dp"
                         android:textSize="18sp"
                         android:inputType="text"
                         android:hint="Profession" />
@@ -236,39 +201,46 @@
 
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/resiadd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
-                        android:inputType="text"
+                        android:inputType="textMultiLine"
                         android:hint="Residential Address *" />
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/permadd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
-                        android:inputType="text"
+                        android:inputType="textMultiLine"
                         android:hint="Native Address (Rajsthan) *" />
 
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/contact1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:inputType="number"
-                        android:maxLength="10"
                         android:hint="Contact Number *" />
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/agetext"
                         android:layout_width="match_parent"
@@ -278,7 +250,9 @@
                         />
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/statustext"
                         android:layout_width="match_parent"
@@ -288,7 +262,9 @@
                         />
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/childstatus"
                         android:layout_width="match_parent"
@@ -301,7 +277,9 @@
 
 
                     <TextView
-                        android:layout_margin="15dp"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
                         android:id="@+id/qualification"
                         android:layout_width="match_parent"

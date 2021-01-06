@@ -1,6 +1,5 @@
 package com.example.swapnil.ekycapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -62,7 +61,8 @@ public class showlist extends AppCompatActivity {
     String getgroomurl="http://greenleafpureveg.in/utsavapplication/getgroom.php",
             getbrideurl="http://greenleafpureveg.in/utsavapplication/getbride.php",
             getbysearchurl="http://greenleafpureveg.in/utsavapplication/getsearch.php",
-           getcommunitydata="http://greenleafpureveg.in/utsavapplication/getcommunity.php";
+           getcommunitydata="http://greenleafpureveg.in/utsavapplication/getcommunity.php",
+          getcommunnitysearch="http://greenleafpureveg.in/utsavapplication/getcommsearch.php";
 
     String urlrequest;
 
@@ -81,6 +81,10 @@ public class showlist extends AppCompatActivity {
 
         genderSt=getIntent().getExtras().getString("gender");
         selfkey=getIntent().getExtras().getString("selfkey");
+
+        if(genderSt.equals("X")){
+            getbysearchurl=getcommunnitysearch;
+        }
 
         if(genderSt.equals("M")){
             urlrequest=getgroomurl;
@@ -120,6 +124,8 @@ public class showlist extends AppCompatActivity {
                             // Log.e("Rating-", individualObject.getString("gender"));
                             movie.setYear(individualObject.getString("dateofbirth"));
                             // Log.e("uniqueid-", individualObject.getString("usernameSt"));
+
+                            movie.setMaritalstatus(individualObject.getString("maritalstatus"));
 
                             if(genderSt.equals("X")){
 
@@ -184,52 +190,80 @@ public class showlist extends AppCompatActivity {
       searchstringRequest=new StringRequest(Request.Method.POST, getbysearchurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-               // Log.e("Response for search:- ",response);
-
+                Log.e("search Url:- ",getbysearchurl+" "+genderSt+" "+searching.getText().toString());
+                Log.e("Response",response);
                 try {
 
+                    movieList.clear();
+                    showprogresslist.setVisibility(View.GONE);
                     jsonArray =new JSONArray(response);
-
-                    for(int i=0;i<jsonArray.length();i++)
-                    {
+                    for(int i=0;i<jsonArray.length();i++){
                         try {
                             jsonObject=jsonArray.getJSONObject(i);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                       individualObject= new JSONObject(jsonObject.getString("jsondata"));
+                        individualObject= new JSONObject(jsonObject.getString("jsondata"));
 
                         try {
-
                             Movie movie = new Movie();
-                            movieList.clear();
+
+                            movie.setTitle(individualObject.getString("firstname")+" "+individualObject.getString("middlename")+" "+individualObject.getString("lastname"));
+                            //Log.e("Title-", individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
+                            movie.setGenre(individualObject.getString("occupatio"));
+                            // Log.e("Occupation-", jsonObject.getString("occupation3St"));
+                            movie.setRating(individualObject.getString("aboutme"));
+                            // Log.e("Rating-", individualObject.getString("gender"));
+                            movie.setYear(individualObject.getString("dateofbirth"));
+                            // Log.e("uniqueid-", individualObject.getString("usernameSt"));
+
+                            movie.setMaritalstatus(individualObject.getString("maritalstatus"));
+
+                            if(genderSt.equals("X")){
+
+                                if(individualObject.getString("type").equals("M")){
+                                    if(individualObject.getString("ageofuser").equals("Above 18 years")){
+                                        movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/newmale.png");
+                                    }else{
+                                        movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/smallboy.png");
+                                    }
+
+                                } else{
+
+                                    if(individualObject.getString("ageofuser").equals("Above 18 years")){
+                                        movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/newfemale.png");
+                                    }else{
+                                        movie.setThumbnailUrl("http://greenleafpureveg.in/utsavapplication/smallgirl.png");
+                                    }
+
+                                }
+
+                            }else{
+                                movie.setThumbnailUrl(jsonObject.getString("image"));
+                            }
 
 
-                        movie.setTitle(individualObject.getString("firstname")+" "+individualObject.getString("middlename")+" "+individualObject.getString("lastname"));
-                        Log.e("Title-", individualObject.getString("firstnameSt") + " " + individualObject.getString("middlenameSt") + " " + individualObject.getString("lastnameSt"));
-                        movie.setGenre(individualObject.getString("occupatio"));
-                        // Log.e("Occupation-", jsonObject.getString("occupation3St"));
-                        movie.setRating(individualObject.getString("aboutme"));
-                        // Log.e("Rating-", individualObject.getString("gender"));
-                        movie.setYear(individualObject.getString("dateofbirth"));
-                        // Log.e("uniqueid-", individualObject.getString("usernameSt"));
-                        movie.setThumbnailUrl(jsonObject.getString("image"));
-                        //Log.e("Url-", uri.toString());
-                        movieList.add(movie);
-                        adapter.notifyDataSetChanged();
+                            movieList.add(movie);
+                            adapter.notifyDataSetChanged();
+                            // Log.e("Verify", movieList.get(0).getTitle());
 
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(showlist.this, "Except:- "+e.toString(), Toast.LENGTH_SHORT).show();
+                            showprogresslist.setVisibility(View.GONE);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        adapter.notifyDataSetChanged();
-                    };
-                }
-                    adapter.notifyDataSetChanged();
-            } catch (JSONException e) {
+                            adapter.notifyDataSetChanged();
+                        };
+                    }
+
+                } catch (JSONException e) {
                     e.printStackTrace();
                     movieList.clear();
+                    showprogresslist.setVisibility(View.GONE);
+
                     adapter.notifyDataSetChanged();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -265,19 +299,24 @@ public class showlist extends AppCompatActivity {
           public void afterTextChanged(Editable s) {
 
               if(searching.getText().toString().equals("")){
+                  if(genderSt.equals("X")){
+                      getbysearchurl=getcommunnitysearch;
+                  }
                   stringRequest.setRetryPolicy(new DefaultRetryPolicy(
                           20000,
                           0,
                           DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                   AppController.getInstance().addToRequestQueue(stringRequest);
               }else{
+
                   searchstringRequest.setRetryPolicy(new DefaultRetryPolicy(
                           20000,
                           0,
                           DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
                   AppController.getInstance().addToRequestQueue(searchstringRequest);
               }
-              Toast.makeText(showlist.this, searching.getText().toString(), Toast.LENGTH_SHORT).show();
+             // Toast.makeText(showlist.this, searching.getText().toString(), Toast.LENGTH_SHORT).show();
           }
       });
 
@@ -297,7 +336,7 @@ public class showlist extends AppCompatActivity {
 
                     try {
                         ID=jsonArray.getJSONObject(position).getString("id");
-                        Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -310,7 +349,7 @@ public class showlist extends AppCompatActivity {
 
                     try {
                         ID=jsonArray.getJSONObject(position).getString("id");
-                        Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(showlist.this, ID, Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

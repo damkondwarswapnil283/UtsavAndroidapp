@@ -1,23 +1,23 @@
 package com.example.swapnil.ekycapplication;
 
-import java.util.ArrayList;
-
 public class Movie {
 	private String title, thumbnailUrl;
 	private String year;
 	private String rating;
 	private String genre;
+	private String maritalstatus;
 
 	public Movie() {
 	}
 
 	public Movie(String name, String thumbnailUrl, String year, String rating,
-			String genre) {
+				 String genre, String maritalstatus) {
 		this.title = name;
 		this.thumbnailUrl = thumbnailUrl;
 		this.year = year;
 		this.rating = rating;
 		this.genre = genre;
+		this.maritalstatus = maritalstatus;
 	}
 
 	public String getTitle() {
@@ -60,4 +60,11 @@ public class Movie {
 		this.genre = genre;
 	}
 
+	public String getMaritalstatus() {
+		return maritalstatus;
+	}
+
+	public void setMaritalstatus(String maritalstatus) {
+		this.maritalstatus = maritalstatus;
+	}
 }

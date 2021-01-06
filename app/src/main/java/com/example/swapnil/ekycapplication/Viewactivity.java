@@ -30,7 +30,8 @@ public class Viewactivity extends AppCompatActivity {
             bussinessStr,professionStr,ressiStr,nativeaddStr,contactnumStr,qualificationStr,genderStr,addcommunityurl="http://greenleafpureveg.in/utsavapplication/updatecomdata.php";
 
     JSONObject jsonObject,infojsondata;
-    TextView professionSpin,businessSpin,bloodgroupSpin,ageText,maritalText,childText;
+    TextView professionSpin,businessSpin,bloodgroupSpin,ageText,maritalText,childText,gendertxt,chauphalatxt;
+
 
 
     StringRequest stringRequest;
@@ -67,15 +68,11 @@ public class Viewactivity extends AppCompatActivity {
 
         bloodgroupSpin=(TextView)findViewById(R.id.bloodgroup);
 
-        vagadRb=(RadioButton)findViewById(R.id.vagad);
-        chappanRb=(RadioButton)findViewById(R.id.chappan);
-        baranRb=(RadioButton)findViewById(R.id.baran);
-        chansathRb=(RadioButton)findViewById(R.id.chansath);
-        genderMale=(RadioButton)findViewById(R.id.male);
-        genderFemale=(RadioButton)findViewById(R.id.female);
+
         mainProgress=(ProgressBar)findViewById(R.id.mainprogressbar);
         getdataprogress=(ProgressBar)findViewById(R.id.waitingprogress);
-
+        gendertxt=(TextView)findViewById(R.id.gendertxt);
+        chauphalatxt=(TextView)findViewById(R.id.chauphalatext);
 
 
 
@@ -95,9 +92,11 @@ public class Viewactivity extends AppCompatActivity {
                     infojsondata=new JSONObject(jsonObject.getString("jsondata"));
 
                     if(infojsondata.getString("type").equals("M")){
-                        genderMale.setChecked(true);
+
+                        gendertxt.setText("Gender:- Male ");
                     }else{
-                        genderFemale.setChecked(true);
+
+                        gendertxt.setText("Gender:- Female ");
                     }
 
                     firstnameEt.setText("Firstname:- "+infojsondata.getString("firstname"));
@@ -107,13 +106,17 @@ public class Viewactivity extends AppCompatActivity {
 
 
                     if(infojsondata.getString("chaukhala").equals("V")){
-                        vagadRb.setChecked(true);
+
+                        chauphalatxt.setText("Chaukhala:- Vagad ");
                     }else if(infojsondata.getString("chaukhala").equals("C")){
-                        chappanRb.setChecked(true);
+
+                        chauphalatxt.setText("Chaukhala:- Chappan ");
                     }else if(infojsondata.getString("chaukhala").equals("B")){
-                        baranRb.setChecked(true);
+
+                        chauphalatxt.setText("Chaukhala:- Baran");
                     }else {
-                        chansathRb.setChecked(true);
+
+                        chauphalatxt.setText("Chaukhala:- Chansath ");
                     }
 
 
@@ -123,7 +126,7 @@ public class Viewactivity extends AppCompatActivity {
                     businessSpin.setText("Business:- "+infojsondata.getString("dateofbirth"));
 
                     qualificationEt.setText("Qualification:- "+infojsondata.getString("qualification"));
-                    ressiEt.setText("About Me:- "+infojsondata.getString("aboutme"));
+                    ressiEt.setText("Resindential Address:- "+infojsondata.getString("aboutme"));
                     nativeaddEt.setText("Native address:- "+infojsondata.getString("nativeaddress"));
                     contactnumEt.setText("Contact number:- "+infojsondata.getString("contactnumber"));
 

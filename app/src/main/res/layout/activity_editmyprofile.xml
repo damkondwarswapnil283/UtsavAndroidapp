@@ -540,16 +540,20 @@
                         android:hint="Contact Number *" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/edittextround"
+                    >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:textSize="20sp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:padding="10dp"
-
+                    android:layout_margin="16dp"
                     android:textColor="@color/colorPrimary"
                     android:text="Height In CM" />
 
@@ -557,9 +561,16 @@
                     android:id="@+id/editheight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/btn_dropdown"
                     android:spinnerMode="dropdown"/>
 
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/edittextround"
+                    android:layout_marginTop="15dp"
+                    >
 
                 <TextView
                     android:layout_width="match_parent"
@@ -578,7 +589,7 @@
                     android:inputType="text"
                     android:hint="bloodgroup" />
 
-
+                </LinearLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -778,15 +789,20 @@
                         android:hint="Age Range * (For example 26-31)" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/edittextround"
+                    >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textSize="20sp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:padding="10dp"
-
                     android:textColor="@color/colorPrimary"
                     android:text="Expected Height above (CM)" />
 
@@ -795,9 +811,8 @@
                     android:id="@+id/editheight1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:drawable/btn_dropdown"
                     android:spinnerMode="dropdown"/>
-
+                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"

@@ -55,7 +55,7 @@ TextView forgotpassword;
                 try {
                     loginProgress.setVisibility(View.GONE);
 
-                    login.setVisibility(View.VISIBLE);
+                    //login.setVisibility(View.VISIBLE);
                     JSONObject jsonObject=new JSONObject(response);
                     String flag=jsonObject.getString("success");
                     if(flag.equals("1")){

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -56,6 +57,8 @@ public class CustomListAdapter extends BaseAdapter {
 		TextView rating = (TextView) convertView.findViewById(R.id.rating);
 		TextView genre = (TextView) convertView.findViewById(R.id.genre);
 		TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
+		TextView maritalstatus=(TextView) convertView.findViewById(R.id.marriedtxt);
+		ImageView iconimage=(ImageView) convertView.findViewById(R.id.marriedicon);
 
 		// getting movie data for the row
 		Movie m = movieItems.get(position);
@@ -67,7 +70,7 @@ public class CustomListAdapter extends BaseAdapter {
 		title.setText(m.getTitle());
 		
 		// rating
-		rating.setText("About Me: " + String.valueOf(m.getRating()));
+		rating.setText(String.valueOf(m.getRating()));
 		
 		// genre
 		String genreStr = "";
@@ -77,6 +80,14 @@ public class CustomListAdapter extends BaseAdapter {
 		
 		// release year
 		year.setText(String.valueOf(m.getYear()));
+
+		maritalstatus.setText(String.valueOf(m.getMaritalstatus()));
+
+		if(m.getMaritalstatus().equals("Married")){
+			iconimage.setVisibility(View.VISIBLE);
+		}else{
+			iconimage.setVisibility(View.GONE);
+		}
 
 		return convertView;
 	}

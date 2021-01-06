@@ -43,7 +43,7 @@ public class Editcommunity extends AppCompatActivity {
     String[] profession=new String[]{"Teacher","Professor","Doctor","Engineer","Goverment Job","Lawyer","Others"};
     String[] bloodgroup=new String[]{"A+","A-","B+","B-","AB+","AB-","o+","o-"};
     String[] childrenaccount=new String[]{"0","1","2","3"};
-    String[] agerange=new String[]{"18 or leass than 18 years","Above 18 years"};
+    String[] agerange=new String[]{"18 or less than 18 years","Above 18 years"};
     RadioButton genderMale,genderFemale,vagadRb,chappanRb,baranRb,chansathRb,widowerRb;
     ProgressBar mainProgress,getdataprogress;
     TextView childtext;
@@ -69,7 +69,7 @@ public class Editcommunity extends AppCompatActivity {
         bloodgroupSpin=(Spinner)findViewById(R.id.bloodgroup);
         submitbtn=(Button)findViewById(R.id.submitbt);
         marriedRb=(RadioButton)findViewById(R.id.married);
-        nevermarriedRb=(RadioButton)findViewById(R.id.nevermarried);
+        nevermarriedRb=(RadioButton)findViewById(R.id.unmarried);
 
         vagadRb=(RadioButton)findViewById(R.id.vagad);
         chappanRb=(RadioButton)findViewById(R.id.chappan);
@@ -106,13 +106,15 @@ public class Editcommunity extends AppCompatActivity {
         {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                Toast.makeText(Editcommunity.this, checkedId+"", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Editcommunity.this, checkedId+"", Toast.LENGTH_SHORT).show();
                 if(marriedRb.isChecked()==true){
                     childtext.setVisibility(View.VISIBLE);
                     childlayout.setVisibility(View.VISIBLE);
                 }else{
                     childtext.setVisibility(View.GONE);
                     childlayout.setVisibility(View.GONE);
+                    boystr="0";
+                    girlstr="0";
                 }
                 Log.e("Id",checkedId+"");
             }

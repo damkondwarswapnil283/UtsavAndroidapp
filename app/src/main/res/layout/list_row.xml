@@ -54,4 +54,28 @@
         android:textColor="@color/year"
         android:textSize="@dimen/year" />
 
+    <TextView
+        android:id="@+id/marriedtxt"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/year"
+        android:textSize="@dimen/year" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        >
+    <ImageView
+        android:id="@+id/marriedicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+       android:layout_marginTop="80dp"
+        android:layout_weight="1"
+        android:src="@drawable/marriageic" />
+    </LinearLayout>
+
 </RelativeLayout>

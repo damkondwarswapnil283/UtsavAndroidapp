@@ -18,15 +18,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="6dp"
-            android:padding="10dp"
+
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittextsharp"
-
+                android:background="@drawable/edittextround"
+                android:layout_margin="10dp"
+                android:padding="6dp"
                 android:gravity="center"
                 android:orientation="vertical" >
 
@@ -50,7 +50,7 @@
                 <TextView
                     android:id="@+id/accountinformation"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:textSize="25sp"
                     android:gravity="center"
                     android:inputType="textMultiLine"
@@ -82,7 +82,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Name" />
 
@@ -93,7 +93,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Avantak" />
 
@@ -104,7 +104,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Mama Avantak" />
 
@@ -115,7 +115,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Chauphala" />
 
@@ -127,7 +127,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Date Of Birth" />
 
@@ -140,7 +140,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Occupation" />
 
@@ -155,7 +155,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="About Me/Hobbies" />
 
@@ -165,7 +165,7 @@
                 <TextView
                     android:id="@+id/personalinformation"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:textSize="25sp"
                     android:inputType="textMultiLine"
                     android:gravity="center"
@@ -184,7 +184,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Marital Status" />
 
@@ -196,7 +196,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="First Gotra" />
 
@@ -211,7 +211,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Email Id" />
 
@@ -222,7 +222,7 @@
                     android:scrollHorizontally="false"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:inputType="textMultiLine"
                     android:textSize="18sp"
                     />
@@ -235,7 +235,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Perm.Add" />
 
@@ -246,7 +246,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Contact No:" />
 
@@ -260,7 +260,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Height" />
 
@@ -272,7 +272,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Blood Group" />
 
@@ -285,7 +285,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Education" />
 
@@ -297,7 +297,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Annual Income" />
 
@@ -308,7 +308,7 @@
                 <TextView
                     android:id="@+id/familydetails"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:textSize="25sp"
                     android:gravity="center"
                     android:inputType="textMultiLine"
@@ -327,7 +327,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Father Name" />
 
@@ -338,7 +338,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Occupation" />
 
@@ -350,7 +350,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Mother's Name" />
 
@@ -361,7 +361,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Occupation" />
 
@@ -372,7 +372,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="No. Of Brothers" />
 
@@ -384,7 +384,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Brother Details" />
                 >
@@ -396,7 +396,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="No. Of Sisters" />
 
@@ -409,14 +409,14 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Sister Details" />
 
                 <TextView
                     android:id="@+id/partnersexpectation"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:textSize="25sp"
                     android:gravity="center"
                     android:layout_marginBottom="16dp"
@@ -434,7 +434,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Qualification" />
 
@@ -445,7 +445,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Annual Income" />
 
@@ -456,7 +456,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Age Range" />
 
@@ -467,7 +467,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Height" />
 
@@ -479,7 +479,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Occupation" />
 
@@ -490,7 +490,7 @@
                     android:inputType="textMultiLine"
                     android:padding="5dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/edittextsharp"
+                    android:background="@drawable/edittextround"
                     android:textSize="18sp"
                     android:hint="Preferred City" />
 
@@ -502,6 +502,7 @@
                     android:background="@drawable/button"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:textColor="#fff"
                     android:text="Return To Homepage" />
 

@@ -747,7 +747,7 @@ public class Editmyprofile extends AppCompatActivity {
                 params.put("mobilnumber",contactnumberSt );
                 params.put("type", genderSt);
                 params.put("image",imageString );
-                params.put("forsearching", firstnameSt+" "+middlenameSt+" "+lastnameSt+" "+contactnumberSt);
+                params.put("forsearching", firstnameSt+" "+middlenameSt+" "+lastnameSt+" "+contactnumberSt+" "+avantak_string);
                 params.put("firstname",firstnameSt );
                 params.put("middlename", middlenameSt);
                 params.put("lastname",lastnameSt );
