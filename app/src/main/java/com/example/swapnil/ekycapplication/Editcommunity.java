@@ -30,14 +30,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Editcommunity extends AppCompatActivity {
-    String firstnameSt,middlenameSt,lastnameSt,avantak_string,chaukhalst,bloodgrSt,getid,getdataurl="http://greenleafpureveg.in/utsavapplication/getdatabyidcomm.php",
+    String firstnameSt,middlenameSt,lastnameSt,avantak_string,chaukhalst,bloodgrSt,getid,getdataurl="http://greenleafpureveg.in/utsavapplication/getdatabyidcomm.php",moreCommentsstr,
             bussinessStr,professionStr,ressiStr,nativeaddStr,contactnumStr,qualificationStr,genderStr,addcommunityurl="http://greenleafpureveg.in/utsavapplication/updatecomdata.php";
   String agestr,maritalstatusstr,boystr,girlstr,imageurl;
     JSONObject jsonObject,infojsondata;
     Spinner professionSpin,businessSpin,bloodgroupSpin;
     Button submitbtn;
     StringRequest stringRequest;
-    EditText firstnameEt,middlenameEt,lastnameEt,avantakEt,chaukhalaEt,bloodgrEt,occuptEt,ressiEt,nativeaddEt,
+    EditText firstnameEt,middlenameEt,lastnameEt,avantakEt,chaukhalaEt,bloodgrEt,occuptEt,moreComments,ressiEt,nativeaddEt,
             contactnumEt,qualificationEt;
     String[] business=new String[]{"None","Restaurant","Daily needs","Kirana","Automobile","Others"};
     String[] profession=new String[]{"Teacher","Professor","Doctor","Engineer","Goverment Job","Lawyer","Others"};
@@ -70,6 +70,7 @@ public class Editcommunity extends AppCompatActivity {
         submitbtn=(Button)findViewById(R.id.submitbt);
         marriedRb=(RadioButton)findViewById(R.id.married);
         nevermarriedRb=(RadioButton)findViewById(R.id.unmarried);
+        moreComments=(EditText)findViewById(R.id.morecomments);
 
         vagadRb=(RadioButton)findViewById(R.id.vagad);
         chappanRb=(RadioButton)findViewById(R.id.chappan);
@@ -85,6 +86,7 @@ public class Editcommunity extends AppCompatActivity {
         maritalstatus=(RadioGroup)findViewById(R.id.maritalstatusgroup);
         childtext=(TextView)findViewById(R.id.childtext);
         childlayout=(LinearLayout)findViewById(R.id.childlayout);
+        moreComments=(EditText)findViewById(R.id.morecomments);
 
         getid=getIntent().getExtras().getString("id","0");
 
@@ -183,6 +185,7 @@ public class Editcommunity extends AppCompatActivity {
                     ressiEt.setText(infojsondata.getString("aboutme"));
                     nativeaddEt.setText(infojsondata.getString("nativeaddress"));
                     contactnumEt.setText(infojsondata.getString("contactnumber"));
+                    moreComments.setText(infojsondata.getString("morecommenst"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -259,6 +262,7 @@ public class Editcommunity extends AppCompatActivity {
 
                 boystr=boyspin.getSelectedItem().toString();
                 girlstr=girlspin.getSelectedItem().toString();
+                moreCommentsstr=moreComments.getText().toString();
                 addvalidations();
 
             }
@@ -351,6 +355,8 @@ public class Editcommunity extends AppCompatActivity {
             jsonObject.put("maritalstatus",maritalstatusstr);
             jsonObject.put("boynum",boystr);
             jsonObject.put("girnum",girlstr);
+            jsonObject.put("morecommenst",moreCommentsstr);
+
 
             jsonObject.put("image",imageurl);
 

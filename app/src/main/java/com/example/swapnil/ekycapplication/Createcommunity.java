@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Createcommunity extends AppCompatActivity {
-    String firstnameSt,middlenameSt,lastnameSt,avantak_string,chaukhalst,bloodgrSt,getid,imageurl,agestr,maritalstatusstr,boystr,girlstr,
+    String firstnameSt,middlenameSt,lastnameSt,avantak_string,chaukhalst,bloodgrSt,getid,imageurl,agestr,maritalstatusstr,boystr,girlstr,morecomments,
             bussinessStr,professionStr,ressiStr,nativeaddStr,contactnumStr,qualificationStr,genderStr,addcommunityurl="http://greenleafpureveg.in/utsavapplication/addcomperson.php";
 
     JSONObject jsonObject;
@@ -39,7 +39,7 @@ public class Createcommunity extends AppCompatActivity {
     Button submitbtn;
     StringRequest stringRequest;
     EditText firstnameEt,middlenameEt,lastnameEt,avantakEt,chaukhalaEt,bloodgrEt,occuptEt,ressiEt,nativeaddEt,
-            contactnumEt,qualificationEt;
+            contactnumEt,qualificationEt,moreComments;
     String[] business=new String[]{"None","Restaurant","Daily needs","Kirana","Automobile","Others"};
     String[] profession=new String[]{"Teacher","Professor","Doctor","Engineer","Goverment Job","Lawyer","Others"};
     String[] bloodgroup=new String[]{"A+","A-","B+","B-","AB+","AB-","o+","o-"};
@@ -60,6 +60,7 @@ public class Createcommunity extends AppCompatActivity {
         middlenameEt=(EditText)findViewById(R.id.middlename);
         lastnameEt=(EditText)findViewById(R.id.lastname);
         avantakEt=(EditText)findViewById(R.id.avantak);
+        moreComments=(EditText)findViewById(R.id.morecomments);
 
         ressiEt=(EditText)findViewById(R.id.resiadd);
         nativeaddEt=(EditText)findViewById(R.id.permadd);
@@ -169,6 +170,7 @@ public class Createcommunity extends AppCompatActivity {
 
                 boystr=boyspin.getSelectedItem().toString();
                 girlstr=girlspin.getSelectedItem().toString();
+                morecomments=moreComments.getText().toString();
 
                 addvalidations();
 
@@ -262,6 +264,7 @@ public class Createcommunity extends AppCompatActivity {
             jsonObject.put("maritalstatus",maritalstatusstr);
             jsonObject.put("boynum",boystr);
             jsonObject.put("girnum",girlstr);
+            jsonObject.put("morecommenst",morecomments);
 
             jsonObject.put("image",imageurl);
 

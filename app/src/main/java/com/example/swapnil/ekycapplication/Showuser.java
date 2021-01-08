@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.LruCache;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -38,7 +39,7 @@ public class Showuser extends AppCompatActivity {
             firstgotraSt,secondgotraSt,emailidSt,resiaddSt,permaddSt,contactnumberSt,heightSt,bloodgroupSt,complexionSt,
             educationSt, annualincomeSt,mothertonugeSt,birthnameSt,birthtimeSt,birthplaceSt,fathersnameSt,occupation1St,mothersnameSt,
             occupation2St, noofbrothersSt,brotherdetailsSt,noofsistersSt,sisterdetailsSt,qualificationSt,annualincome1St,avantakst,mamaavantakst,
-            agerangeSt,height1St,occupation3St,preferredcitySt,chauphalst;
+            agerangeSt,height1St,occupation3St,preferredcitySt,chauphalst,curentctyStr;
     TextView usernameEt,passwordEt,firstnameEt,middlenameEt,lastnameEt,dateofbirthEt,occupatioEt,aboutmeEt,maritalstatusEt,
             firstgotraEt,secondgotraEt,emailidEt,resiaddEt,permaddEt,contactnumberEt,heightEt,bloodgroupEt,complexionEt,educationEt,
             annualincomeEt,mothertonugeEt,birthnameEt,birthtimeEt,birthplaceEt,fathersnameEt,occupation1Et,mothersnameEt,occupation2Et,
@@ -52,10 +53,12 @@ public class Showuser extends AppCompatActivity {
     Button returnhomebutton;
     ImageLoader imageLoader;
     ProgressBar progressBar;
+    TextView showctcty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_showuser);
 
         progressBar=(ProgressBar)findViewById(R.id.showuserprogress);
@@ -101,6 +104,7 @@ public class Showuser extends AppCompatActivity {
         preferredcityEt=(TextView)findViewById(R.id.preferredcity);
         avataltext=(TextView)findViewById(R.id.showavantak);
         mamaavantek=(TextView)findViewById(R.id.showmamaavantak);
+        showctcty=(TextView)findViewById(R.id.showctcty);
       imageLoader = AppController.getInstance().getImageLoader();
 
 
@@ -200,6 +204,8 @@ public class Showuser extends AppCompatActivity {
                             chauphalst=individualjsonobject.getString("chaukhala");
                             mamaavantakst=individualjsonobject.getString("mamavantak");
 
+                            curentctyStr=individualjsonobject.getString("currentcity");
+
 
                             String imageurl=jsonObject.getString("image");
                             mNetworkImageView.setImageUrl(imageurl,imageLoader);
@@ -211,7 +217,7 @@ public class Showuser extends AppCompatActivity {
                             aboutmeEt.setText("About Me:- "+aboutmeSt);
 
                             mamaavantek.setText("Mama Avantak:- "+mamaavantakst);
-
+                            //Toast.makeText(Showuser.this, maritalstatusSt, Toast.LENGTH_SHORT).show();
                             if(maritalstatusSt.equals("N")){
                                 maritalstatusSt="Not Married";
                             }else if(maritalstatusSt.equals("M")){
@@ -264,6 +270,8 @@ public class Showuser extends AppCompatActivity {
                             height1Et.setText("Height:- "+height1St);
                             occupation3Et.setText("Occupation:- "+occupation3St);
                             preferredcityEt.setText("Prefered City:- "+preferredcitySt);
+
+                            showctcty.setText("Current City:- "+curentctyStr);
                         } catch (JSONException e) {
                             Toast.makeText(Showuser.this, e.toString(), Toast.LENGTH_LONG).show();
                         }

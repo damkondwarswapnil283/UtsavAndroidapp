@@ -14,19 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CommunityMode"></activity>
-        <activity android:name=".Viewactivity" >
-
-        </activity>
-        <activity android:name=".Editcommunity"
-            android:screenOrientation="portrait"
-            >
-
-        </activity>
-        <activity android:name=".Createcommunity"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <activity android:name=".Comingsoon1"></activity>
+        <activity android:name=".Comingsoon" />
+        <activity android:name=".CommunityMode" />
+        <activity android:name=".Viewactivity" />
+        <activity
+            android:name=".Editcommunity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Createcommunity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Usernamecheck"
             android:screenOrientation="portrait" />

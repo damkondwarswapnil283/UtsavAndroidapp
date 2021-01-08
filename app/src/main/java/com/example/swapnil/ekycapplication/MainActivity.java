@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Html;
@@ -163,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         sizemessage=(TextView)findViewById(R.id.sizemessage);
 
         getid=getIntent().getExtras().getString("id");
+        blink();
 
         String[] heights=new String[]{"100","101","102","103","104","105","106","107","108","109","110","111","112",
                 "113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129"
@@ -843,5 +845,37 @@ selectphotofromgalleryBtn.setOnClickListener(new View.OnClickListener() {
         }
 
 
+
+
+    }
+    @Override
+    public void onBackPressed() {
+        Intent gotologinscreen=new Intent(MainActivity.this,selectmode.class);
+        gotologinscreen.putExtra("userid",getid);
+        startActivity(gotologinscreen);
+        finish();
+    }
+
+    private void blink(){
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int timeToBlink = 500;    //in milissegunds
+                try{Thread.sleep(timeToBlink);}catch (Exception e) {}
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(sizemessage.getVisibility() == View.VISIBLE){
+                            sizemessage.setVisibility(View.INVISIBLE);
+                        }else{
+                            sizemessage.setVisibility(View.VISIBLE);
+                        }
+                        blink();
+                    }
+                });
+            }
+        }).start();
     }
 }

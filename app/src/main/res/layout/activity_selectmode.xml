@@ -46,5 +46,24 @@
             android:textColor="#fff"
             android:background="@drawable/button"
             android:text="Utsav Community" />
+
+
+        <Button
+            android:id="@+id/newsportal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:textColor="#fff"
+            android:layout_margin="10dp"
+            android:text="Utsav News Portal" />
+
+        <Button
+            android:id="@+id/utsavhelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="#fff"
+            android:background="@drawable/button"
+            android:text="Utsav Help" />
     </LinearLayout>
 </RelativeLayout>

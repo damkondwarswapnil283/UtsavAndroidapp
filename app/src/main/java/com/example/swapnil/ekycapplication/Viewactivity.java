@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,14 +27,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Viewactivity extends AppCompatActivity {
-    String firstnameSt,middlenameSt,lastnameSt,avantak_string,chaukhalst,bloodgrSt,getid,getdataurl="http://greenleafpureveg.in/utsavapplication/getdatabyidcomm.php",
-            bussinessStr,professionStr,ressiStr,nativeaddStr,contactnumStr,qualificationStr,genderStr,addcommunityurl="http://greenleafpureveg.in/utsavapplication/updatecomdata.php";
+    String addcomment,getid,getdataurl="http://greenleafpureveg.in/utsavapplication/getdatabyidcomm.php",addcommunityurl="http://greenleafpureveg.in/utsavapplication/updatecomdata.php";
 
     JSONObject jsonObject,infojsondata;
     TextView professionSpin,businessSpin,bloodgroupSpin,ageText,maritalText,childText,gendertxt,chauphalatxt;
 
 
-
+    TextView addcommenttxt;
     StringRequest stringRequest;
     TextView firstnameEt,middlenameEt,lastnameEt,avantakEt,chaukhalaEt,bloodgrEt,occuptEt,ressiEt,nativeaddEt,
             contactnumEt,qualificationEt;
@@ -45,13 +45,14 @@ public class Viewactivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_viewactivity);
 
         firstnameEt=(TextView)findViewById(R.id.firstname);
         middlenameEt=(TextView)findViewById(R.id.middlename);
         lastnameEt=(TextView)findViewById(R.id.lastname);
         avantakEt=(TextView)findViewById(R.id.avantak);
-
+        addcommenttxt=(TextView)findViewById(R.id.addcommenttxt);
         ressiEt=(TextView)findViewById(R.id.resiadd);
         nativeaddEt=(TextView)findViewById(R.id.permadd);
         contactnumEt=(TextView)findViewById(R.id.contact1);
@@ -126,14 +127,14 @@ public class Viewactivity extends AppCompatActivity {
                     businessSpin.setText("Business:- "+infojsondata.getString("dateofbirth"));
 
                     qualificationEt.setText("Qualification:- "+infojsondata.getString("qualification"));
-                    ressiEt.setText("Resindential Address:- "+infojsondata.getString("aboutme"));
+                    ressiEt.setText("Residential Address:- "+infojsondata.getString("aboutme"));
                     nativeaddEt.setText("Native address:- "+infojsondata.getString("nativeaddress"));
                     contactnumEt.setText("Contact number:- "+infojsondata.getString("contactnumber"));
 
                     ageText.setText("Age:- "+infojsondata.getString("ageofuser"));
                     maritalText.setText("Marital Status:- "+infojsondata.getString("maritalstatus"));
                     childText.setText("Boy :- "+infojsondata.getString("boynum")+", Girl:- "+infojsondata.getString("girnum"));
-
+                    addcommenttxt.setText(infojsondata.getString("morecommenst"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(Viewactivity.this, "Exception "+e.toString(), Toast.LENGTH_LONG).show();

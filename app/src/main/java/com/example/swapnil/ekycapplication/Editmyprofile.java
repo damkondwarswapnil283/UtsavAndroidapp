@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -147,6 +148,8 @@ public class Editmyprofile extends AppCompatActivity {
         chansathRb=(RadioButton)findViewById(R.id.editchansath);
 
         getid=getIntent().getExtras().getString("id");
+
+        blink();
 
         String[] heights=new String[]{"100","101","102","103","104","105","106","107","108","109","110","111","112",
                 "113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129"
@@ -348,7 +351,7 @@ public class Editmyprofile extends AppCompatActivity {
                 middlenameSt=middlenameEt.getText().toString().replace("\"","").replace("\'","");
                 lastnameSt=lastnameEt.getText().toString().replace("\"","").replace("\'","");
                 avantak_string=avantakEt.getText().toString().replace("\"","").replace("\'","");
-                dateofbirthSt=dnum5_string+dnum6_string+dnum7_string+dnum8_string;
+                dateofbirthSt=dnum1_string+dnum2_string+" - "+dnum3_string+dnum4_string+" - "+dnum5_string+dnum6_string+dnum7_string+dnum8_string;;
                 occupatioSt=occupatioEt.getText().toString().replace("\"","").replace("\'","");
                 aboutmeSt=aboutmeEt.getText().toString().replace("\"","").replace("\'","");
                 if(nevermarriedRb.isChecked()){
@@ -861,5 +864,30 @@ public class Editmyprofile extends AppCompatActivity {
         }
 
 
+
+
+    }
+
+    private void blink(){
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int timeToBlink = 500;    //in milissegunds
+                try{Thread.sleep(timeToBlink);}catch (Exception e) {}
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(sizemessage.getVisibility() == View.VISIBLE){
+                            sizemessage.setVisibility(View.INVISIBLE);
+                        }else{
+                            sizemessage.setVisibility(View.VISIBLE);
+                        }
+                        blink();
+                    }
+                });
+            }
+        }).start();
     }
 }

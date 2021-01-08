@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".Editcommunity">
 
 
@@ -211,6 +212,14 @@
 
                 </RadioGroup>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/edittextround"
+                    >
 
                 <TextView
                     android:layout_width="match_parent"
@@ -228,13 +237,17 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:hint="bloodgroup" />
-                <View
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/colorPrimary"
-                    />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/edittextround"
+                    >
 
                 <TextView
                     android:layout_width="match_parent"
@@ -253,14 +266,16 @@
                     android:inputType="text"
                     android:hint="Business" />
 
+                </LinearLayout>
 
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/colorPrimary"
-                    />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/edittextround"
+                    >
 
                 <TextView
                     android:layout_width="match_parent"
@@ -278,6 +293,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:hint="Profession" />
+
+                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -337,6 +354,15 @@
                         android:hint="Qualification" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/edittextround"
+                    >
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -353,7 +379,7 @@
                     android:weightSum="2"
                     android:padding="10dp"
                     android:layout_margin="7dp"
-                    android:background="@drawable/edittextround"
+
                     android:orientation="vertical">
 
                     <Spinner
@@ -363,6 +389,8 @@
                         android:inputType="text"
                         android:layout_weight="1"
                         />
+                </LinearLayout>
+
                 </LinearLayout>
 
 
@@ -474,6 +502,38 @@
                             android:layout_weight="1"
                             />
                     </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/edittextround"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layout_margin="16dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="समाज की प्रगती में मेरे सुझाव और विचार ...." />
+
+                    <EditText
+                        android:id="@+id/morecomments"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:padding="7dp"
+                        android:background="@drawable/edittextsharp"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine" />
 
                 </LinearLayout>
 

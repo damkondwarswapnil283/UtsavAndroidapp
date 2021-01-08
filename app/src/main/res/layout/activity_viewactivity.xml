@@ -141,34 +141,11 @@
                         android:hint="Avantak * (For Ex. Todrawat)" />
 
 
-                    <TextView
-                        android:layout_margin="5dp"
-                        android:padding="5dp"
-                        android:background="@drawable/edittextround"
-                        android:textColor="@color/colorPrimary"
-                        android:id="@+id/chauphalatext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:textSize="18sp"
-                        android:inputType="text"
-                        android:hint="bloodgroup" />
 
 
 
 
-                    <TextView
-                        android:layout_margin="5dp"
-                        android:padding="5dp"
-                        android:background="@drawable/edittextround"
-                        android:textColor="@color/colorPrimary"
-                        android:id="@+id/bloodgroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:textSize="18sp"
-                        android:inputType="text"
-                        android:hint="bloodgroup" />
+
 
 
                     <TextView
@@ -200,6 +177,36 @@
 
 
 
+
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/chauphalatext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:textSize="18sp"
+                        android:inputType="text"
+                        android:hint="" />
+
+
+
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/permadd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:inputType="textMultiLine"
+                        android:hint="Native Address (Rajsthan) *" />
+
                     <TextView
                         android:layout_margin="5dp"
                         android:padding="5dp"
@@ -217,12 +224,13 @@
                         android:padding="5dp"
                         android:background="@drawable/edittextround"
                         android:textColor="@color/colorPrimary"
-                        android:id="@+id/permadd"
+                        android:id="@+id/bloodgroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
                         android:textSize="18sp"
-                        android:inputType="textMultiLine"
-                        android:hint="Native Address (Rajsthan) *" />
+                        android:inputType="text"
+                        android:hint="bloodgroup" />
 
 
                     <TextView
@@ -287,6 +295,18 @@
                         android:textSize="18sp"
                         android:inputType="text"
                         android:hint="Qualification" />
+
+                    <TextView
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:background="@drawable/edittextround"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/addcommenttxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:inputType="textMultiLine"
+                         />
 
 
 

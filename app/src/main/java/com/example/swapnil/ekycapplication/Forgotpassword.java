@@ -29,9 +29,9 @@ import java.util.Map;
 
 public class Forgotpassword extends AppCompatActivity {
 Button forgotPass,sendotp;
-EditText emailAddress,passwordnew;
+EditText emailAddress,passwordnew,otppasswordet;
 String OTP,updatepasswordUrl="http://greenleafpureveg.in/utsavapplication/passwordupdate.php";
-String forgotpassUrl="http://greenleafpureveg.in/utsavapplication/sendotp.php";
+String forgotpassUrl="http://greenleafpureveg.in/utsavapplication/sendotp.php",otpstr;
 ProgressBar sendotpprogress,updateprogressbar;
     StringRequest stringRequest;
     @Override
@@ -41,6 +41,7 @@ ProgressBar sendotpprogress,updateprogressbar;
         forgotPass=(Button)findViewById(R.id.resetpassword);
         emailAddress=(EditText)findViewById(R.id.input_email);
         passwordnew=(EditText)findViewById(R.id.passwordnew);
+        otppasswordet=(EditText)findViewById(R.id.otppassword);
         sendotp=(Button)findViewById(R.id.sendotp);
         sendotpprogress=(ProgressBar)findViewById(R.id.otpprogress);
         updateprogressbar=(ProgressBar)findViewById(R.id.updateprogressbar) ;
@@ -49,7 +50,20 @@ ProgressBar sendotpprogress,updateprogressbar;
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updatepassword();
+                if(passwordnew.equals("")){
+                    Toast.makeText(Forgotpassword.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
+                }else if(otppasswordet.equals("")){
+                    Toast.makeText(Forgotpassword.this, "Please Enter OTP", Toast.LENGTH_SHORT).show();
+                }else{
+                    //Toast.makeText(Forgotpassword.this, otpstr, Toast.LENGTH_SHORT).show();
+                    if(otpstr.equals(otppasswordet.getText().toString().trim())){
+                        updatepassword();
+                    }else{
+                        Toast.makeText(Forgotpassword.this, "OTP is wrong", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
             }
         });
 
@@ -61,7 +75,9 @@ ProgressBar sendotpprogress,updateprogressbar;
                 if(emailAddress.equals("")){
                     emailAddress.requestFocus();
                     Toast.makeText(Forgotpassword.this, "Please Enter Username", Toast.LENGTH_SHORT).show();
-                }else {
+                }
+                else {
+
                     sendMessage();
                 }
             }
@@ -126,7 +142,8 @@ ProgressBar sendotpprogress,updateprogressbar;
                     JSONObject jsonObject=new JSONObject(response);
 
                     if(jsonObject.getString("success").equals("1")){
-                        Toast.makeText(Forgotpassword.this, jsonObject.getString("otp").toString(), Toast.LENGTH_LONG).show();
+                        otpstr=jsonObject.getString("otp").toString();
+                       // Toast.makeText(Forgotpassword.this, jsonObject.getString("otp").toString(), Toast.LENGTH_LONG).show();
                     }
 
                 } catch (JSONException e) {

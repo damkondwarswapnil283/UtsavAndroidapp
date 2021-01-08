@@ -429,14 +429,15 @@
                     android:gravity="center"
                     android:layout_weight="2" >
                     <RadioButton
-                        android:id="@+id/editmarried"
+
+                        android:id="@+id/editnevermarried"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Never Married" />
 
                     <RadioButton
-                        android:id="@+id/editnevermarried"
+                        android:id="@+id/editmarried"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -454,6 +455,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Widow" />
+
+                    <RadioButton
+                        android:id="@+id/widower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Widower" />
 
                 </RadioGroup>
 
@@ -851,6 +859,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
                     android:textColor="@color/colorAccent"
                     android:layout_weight="1"
                     android:text="Image size must be less than 150kb" />

@@ -240,6 +240,17 @@
                     android:hint="Perm.Add" />
 
                 <TextView
+                    android:id="@+id/showctcty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittextround"
+                    android:textSize="18sp"
+                    android:hint="Current city" />
+
+                <TextView
                     android:id="@+id/contact1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
